@@ -1,0 +1,21 @@
+{
+  "sections": {
+    "our_philosophy": {
+      "type": "our-philosophy",
+      "blocks": {
+        "pillar_1": { "type": "pillar", "settings": { "title": "Would we wear it ourselves?", "body": "Every piece that enters the edit is worn, tested, and loved by someone on our team first. If it doesn't move us, it doesn't move to you." } },
+        "pillar_2": { "type": "pillar", "settings": { "title": "Is the craft worth the price?", "body": "We scrutinise construction, materials, and longevity. A piece doesn't earn its price tag through a logo alone." } },
+        "pillar_3": { "type": "pillar", "settings": { "title": "Does it have a point of view?", "body": "Every designer in our edit brings something distinct — a handwriting, a heritage, a way of seeing the world that can't be replicated." } },
+        "dont_1": { "type": "dont_item", "settings": { "title": "Flash sales and artificial urgency", "body": "We don't mark things up to mark them down. Every price is the real price." } },
+        "dont_2": { "type": "dont_item", "settings": { "title": "Seasonal trend chasing", "body": "Our edit is built to last beyond a runway cycle. We look for pieces with longevity." } },
+        "dont_3": { "type": "dont_item", "settings": { "title": "Brands we haven't personally vetted", "body": "Every brand has been discovered by hand — through travel, word of mouth, and years of watching the industry closely." } },
+        "dont_4": { "type": "dont_item", "settings": { "title": "Volume over meaning", "body": "We'd rather carry thirty pieces we love deeply than three hundred we feel fine about." } },
+        "stat_1": { "type": "stat", "settings": { "number": "12+", "label": "Curated designer brands" } },
+        "stat_2": { "type": "stat", "settings": { "number": "100%", "label": "Personally vetted pieces" } },
+        "stat_3": { "type": "stat", "settings": { "number": "0", "label": "Brands added without a relationship" } }
+      },
+      "blocks_order": ["pillar_1","pillar_2","pillar_3","dont_1","dont_2","dont_3","dont_4","stat_1","stat_2","stat_3"]
+    }
+  },
+  "order": ["our_philosophy"]
+}
