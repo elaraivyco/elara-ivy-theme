@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "main-product", "settings": { "show_spotlight": true } }
+  },
+  "order": ["main"]
+}
