@@ -1,0 +1,86 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "eyebrow": "SS26 COLLECTION — NOW LANDING",
+        "heading": "The season's most coveted arrivals.",
+        "subheading": "Curated from the world's finest designers. Each piece selected for its craftsmanship, story, and undeniable presence.",
+        "badge_name": "Jacquemus",
+        "cta_primary_label": "EXPLORE THE EDIT",
+        "cta_secondary_label": "SHOP DESIGNERS"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "brands": "JACQUEMUS, HUNZA G, GUCCI, GANNI, TOTEME, SAINT LAURENT, BY FAR, KHAITE"
+      }
+    },
+    "designer_grid": {
+      "type": "designer-grid",
+      "settings": {
+        "heading": "Shop by Designer",
+        "subheading": "Every designer we carry is here for a reason. Meet the makers behind the pieces."
+      },
+      "blocks": {
+        "jacquemus": {
+          "type": "designer",
+          "settings": {
+            "name": "Jacquemus",
+            "category": "FRENCH LUXURY",
+            "description": "Sun-drenched minimalism with a Provençal soul. Bold silhouettes, tactile fabrics, unmistakable wit."
+          }
+        },
+        "hunza": {
+          "type": "designer",
+          "settings": {
+            "name": "Hunza G",
+            "category": "RESORT WEAR",
+            "description": "The original crinkle. Effortless swimwear trusted by icons from Capri to Cannes since 1984."
+          }
+        },
+        "gucci": {
+          "type": "designer",
+          "settings": {
+            "name": "Gucci",
+            "category": "ITALIAN HERITAGE",
+            "description": "Eclectic, romantic, opulent. A vision of maximalist romance rooted in Florentine craft."
+          }
+        }
+      },
+      "blocks_order": ["jacquemus", "hunza", "gucci"]
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "New In",
+        "subheading": "The latest arrivals from across our designer roster, landing now.",
+        "products_to_show": 4
+      },
+      "blocks": {},
+      "blocks_order": []
+    },
+    "accent_strip": {
+      "type": "accent-strip",
+      "settings": {
+        "label": "THE ELARA IVY EDIT",
+        "heading": "Not everything makes the cut. That's the point.",
+        "body": "We spend months vetting new designers so you don't have to. Our curation is deliberate, seasonal, and always guided by one question: would we wear it ourselves?",
+        "cta_label": "READ OUR PHILOSOPHY",
+        "cta_url": "/pages/our-philosophy"
+      }
+    },
+    "editorial_strip": {
+      "type": "editorial-strip",
+      "settings": {
+        "label": "FROM THE JOURNAL",
+        "heading": "Summer dressing, done with intention.",
+        "body": "Our SS26 edit is built around ease — pieces that move between beach and dinner, morning and midnight, without missing a beat.",
+        "link_label": "READ THE STORY",
+        "link_url": "/blogs/journal"
+      }
+    }
+  },
+  "order": ["hero","marquee","designer_grid","featured_products","accent_strip","editorial_strip"]
+}
