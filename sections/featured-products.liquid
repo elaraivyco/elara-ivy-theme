@@ -1,0 +1,80 @@
+<section class="section section--warm">
+  <div class="section__header">
+    <h2 class="section__title ei-serif">{{ section.settings.heading }}</h2>
+    {% if section.settings.view_all_url != blank %}
+      <a href="{{ section.settings.view_all_url }}" class="section__link">VIEW ALL</a>
+    {% endif %}
+  </div>
+  {% if section.settings.subheading != blank %}
+    <p class="section__sub">{{ section.settings.subheading }}</p>
+  {% endif %}
+  <div class="product-grid">
+    {% assign collection = collections[section.settings.collection] %}
+    {% if collection != blank %}
+      {% for product in collection.products limit: section.settings.products_to_show %}
+        <div class="product-card">
+          <a href="{{ product.url }}">
+            <div class="product-card__media">
+              {% if product.featured_image %}
+                <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+              {% endif %}
+              {% if product.tags contains 'new' %}
+                <span class="product-card__badge">NEW</span>
+              {% endif %}
+            </div>
+            <div class="product-card__info">
+              <div class="product-card__designer">{{ product.vendor | upcase }}</div>
+              <div class="product-card__title ei-serif">{{ product.title }}</div>
+              <div class="product-card__price">{{ product.price | money }}</div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    {% else %}
+      {% for block in section.blocks %}
+        <div class="product-card" {{ block.shopify_attributes }}>
+          <div class="product-card__media">
+            {% if block.settings.image %}
+              <img src="{{ block.settings.image | img_url: '600x' }}" alt="{{ block.settings.title | escape }}" loading="lazy">
+            {% endif %}
+            {% if block.settings.show_badge %}
+              <span class="product-card__badge">NEW</span>
+            {% endif %}
+          </div>
+          <div class="product-card__info">
+            <div class="product-card__designer">{{ block.settings.designer | upcase }}</div>
+            <div class="product-card__title ei-serif">{{ block.settings.title }}</div>
+            <div class="product-card__price">{{ block.settings.price }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "New In" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "The latest arrivals from across our designer roster." },
+    { "type": "collection", "id": "collection", "label": "Collection to show" },
+    { "type": "range", "id": "products_to_show", "label": "Products to show", "min": 2, "max": 8, "step": 2, "default": 4 },
+    { "type": "url", "id": "view_all_url", "label": "View all link" }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product (manual)",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Product image" },
+        { "type": "text", "id": "designer", "label": "Designer", "default": "Hunza G" },
+        { "type": "text", "id": "title", "label": "Product title", "default": "Alicia Bikini" },
+        { "type": "text", "id": "price", "label": "Price", "default": "£195" },
+        { "type": "checkbox", "id": "show_badge", "label": "Show NEW badge", "default": true }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Featured Products" }]
+}
+{% endschema %}
