@@ -48,7 +48,12 @@
 
       <!-- QR Code -->
       <div style="margin-bottom:32px;">
-        {{ gift_card.qr_identifier | img_tag: 'QR code', 'style="width:120px;height:120px;margin:0 auto;"' }}
+        <img
+          src="{{ gift_card.qr_identifier | image_url: width: 120 }}"
+          alt="QR code"
+          width="120"
+          height="120"
+          style="margin:0 auto;display:block;">
       </div>
 
       <!-- Copy Code Button -->
