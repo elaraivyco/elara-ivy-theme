@@ -1,0 +1,165 @@
+{% comment %} sections/shipping-info.liquid {% endcomment %}
+
+<!-- HERO -->
+<div style="background:var(--navy);padding:64px 24px 56px;">
+  <div style="font-size:9px;letter-spacing:0.32em;color:var(--periwinkle);margin-bottom:16px;">CUSTOMER CARE</div>
+  <h1 class="ei-serif" style="font-size:44px;line-height:1.06;color:#fff;font-weight:300;font-style:italic;margin-bottom:20px;">Shipping &amp; Delivery</h1>
+  <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.85;max-width:520px;">Each order is carefully processed and shipped through our trusted fulfilment partners. Here's everything you need to know.</p>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span>2–5 DAY PROCESSING</span><span class="dot">·</span>
+    <span>FULLY TRACKED</span><span class="dot">·</span>
+    <span>WORLDWIDE DELIVERY</span><span class="dot">·</span>
+    <span>TRUSTED FULFILMENT PARTNERS</span><span class="dot">·</span>
+    <span>5–18 DAY DELIVERY</span><span class="dot">·</span>
+    <span>2–5 DAY PROCESSING</span><span class="dot">·</span>
+    <span>FULLY TRACKED</span><span class="dot">·</span>
+    <span>WORLDWIDE DELIVERY</span><span class="dot">·</span>
+    <span>TRUSTED FULFILMENT PARTNERS</span><span class="dot">·</span>
+    <span>5–18 DAY DELIVERY</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- QUICK STATS -->
+<div style="background:var(--white);padding:56px 24px;">
+  <div style="font-size:8px;letter-spacing:0.3em;color:var(--ink-muted);margin-bottom:32px;text-transform:uppercase;">AT A GLANCE</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;">
+    <div style="background:var(--surface-warm);padding:24px 20px;border-top:2px solid var(--periwinkle);">
+      <div style="font-size:32px;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--periwinkle);margin-bottom:8px;">2–5</div>
+      <div style="font-size:9px;letter-spacing:0.16em;color:var(--navy);margin-bottom:6px;">BUSINESS DAYS</div>
+      <div style="font-size:11px;color:var(--ink-muted);line-height:1.6;">Order processing time</div>
+    </div>
+    <div style="background:var(--surface-warm);padding:24px 20px;border-top:2px solid var(--periwinkle);">
+      <div style="font-size:32px;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--periwinkle);margin-bottom:8px;">5–18</div>
+      <div style="font-size:9px;letter-spacing:0.16em;color:var(--navy);margin-bottom:6px;">BUSINESS DAYS</div>
+      <div style="font-size:11px;color:var(--ink-muted);line-height:1.6;">Estimated delivery after shipment</div>
+    </div>
+    <div style="background:var(--surface-warm);padding:24px 20px;border-top:2px solid var(--blush-mid);">
+      <div style="font-size:32px;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--periwinkle);margin-bottom:8px;">2–4</div>
+      <div style="font-size:9px;letter-spacing:0.16em;color:var(--navy);margin-bottom:6px;">DAYS TO UPDATE</div>
+      <div style="font-size:11px;color:var(--ink-muted);line-height:1.6;">Tracking after label creation</div>
+    </div>
+    <div style="background:var(--surface-warm);padding:24px 20px;border-top:2px solid var(--blush-mid);">
+      <div style="font-size:32px;font-family:'Cormorant Garamond',serif;font-weight:300;color:var(--periwinkle);margin-bottom:8px;">∞</div>
+      <div style="font-size:9px;letter-spacing:0.16em;color:var(--navy);margin-bottom:6px;">DESTINATIONS</div>
+      <div style="font-size:11px;color:var(--ink-muted);line-height:1.6;">Worldwide delivery available</div>
+    </div>
+  </div>
+</div>
+
+<!-- ORDER PROCESSING -->
+<div style="background:var(--surface-warm);padding:56px 24px;">
+  <div style="max-width:720px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">ORDER PROCESSING</div>
+    <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:24px;">What happens after you order?</h2>
+    <p style="font-size:13px;color:var(--ink-body);line-height:1.9;margin-bottom:24px;">Orders are processed within 2–5 business days after placement. During peak periods or new collection launches, processing may take slightly longer.</p>
+    <div style="display:flex;flex-direction:column;gap:3px;">
+      {% assign steps = "Order verification|Quality checks|Packaging and fulfilment coordination" | split: "|" %}
+      {% for step in steps %}
+        <div style="background:var(--white);padding:16px 20px;display:flex;align-items:center;gap:16px;">
+          <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--periwinkle);opacity:0.5;line-height:1;flex-shrink:0;">0{{ forloop.index }}</div>
+          <div style="font-size:13px;color:var(--ink-body);">{{ step }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- SHIPPING RATES -->
+<div style="background:var(--white);padding:56px 24px;">
+  <div style="max-width:720px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">SHIPPING RATES</div>
+    <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:24px;">How shipping is calculated</h2>
+    <p style="font-size:13px;color:var(--ink-body);line-height:1.9;margin-bottom:28px;">Shipping rates are calculated at checkout based on your destination, order weight, order value, and any active promotions. Free shipping promotions will be clearly shown at checkout when active.</p>
+    <div style="display:flex;flex-direction:column;gap:3px;">
+      {% assign factors = "Destination country and region|Order weight and dimensions|Order value|Current promotions — free shipping shown at checkout when active" | split: "|" %}
+      {% for factor in factors %}
+        <div style="background:var(--surface-warm);padding:16px 20px;display:flex;align-items:center;gap:14px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--periwinkle);flex-shrink:0;"></div>
+          <div style="font-size:13px;color:var(--ink-body);">{{ factor }}</div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<!-- MULTIPLE SHIPMENTS -->
+<div style="background:var(--surface-warm);padding:56px 24px;">
+  <div style="max-width:720px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">MULTIPLE SHIPMENTS</div>
+    <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:20px;">Why did my order arrive in parts?</h2>
+    <p style="font-size:13px;color:var(--ink-body);line-height:1.9;margin-bottom:20px;">Because we work with multiple trusted fulfilment partners, items in the same order may ship separately. You may receive multiple tracking numbers and packages may arrive on different days.</p>
+    <div style="background:var(--white);border-left:3px solid var(--periwinkle);padding:16px 20px;">
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.75;">This is completely normal for curated boutique fulfilment and ensures each piece is handled with the care it deserves.</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRACKING -->
+<div style="background:var(--white);padding:56px 24px;">
+  <div style="max-width:720px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">TRACKING YOUR ORDER</div>
+    <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:20px;">Staying informed</h2>
+    <p style="font-size:13px;color:var(--ink-body);line-height:1.9;margin-bottom:20px;">Once your order ships, you'll receive a tracking email. Please allow 2–4 days for tracking to update after label creation.</p>
+    <div style="background:#FFF8EC;border-left:3px solid var(--gold);padding:16px 20px;">
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.75;">Customers are responsible for entering the correct shipping address. We are not responsible for delays or non-delivery due to address errors. If an order is returned due to address error, reshipping fees apply.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DELAYS & LOST PACKAGES -->
+<div style="background:var(--surface-warm);padding:56px 24px;">
+  <div style="max-width:720px;">
+    <div style="display:flex;flex-direction:column;gap:32px;">
+      <div>
+        <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">DELAYS OUTSIDE OUR CONTROL</div>
+        <h2 class="ei-serif" style="font-size:28px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:16px;">When things take longer</h2>
+        <p style="font-size:13px;color:var(--ink-body);line-height:1.9;margin-bottom:16px;">We are not responsible for delays caused by carrier issues, weather events, customs processing, holiday volume, or postal disruptions. We will always help you track and investigate delayed shipments.</p>
+      </div>
+      <div>
+        <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">LOST OR STOLEN PACKAGES</div>
+        <h2 class="ei-serif" style="font-size:28px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:16px;">Marked as delivered?</h2>
+        <p style="font-size:13px;color:var(--ink-body);line-height:1.9;margin-bottom:16px;">Once marked as delivered by the carrier, we are not liable for lost or stolen packages. We recommend checking with neighbours and your local carrier office first. You may file a carrier claim — we will assist with documentation.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- INTERNATIONAL / DUTIES -->
+<div style="background:var(--blush);padding:56px 24px;">
+  <div style="max-width:720px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--navy);opacity:0.55;margin-bottom:16px;text-transform:uppercase;">INTERNATIONAL ORDERS</div>
+    <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:20px;">Duties &amp; Taxes</h2>
+    <p style="font-size:13px;color:var(--navy);opacity:0.7;line-height:1.9;margin-bottom:20px;">International shipments may be subject to import duties, taxes, and customs fees. These charges are the customer's responsibility and are not included in our prices or shipping fees.</p>
+    <p style="font-size:13px;color:var(--navy);opacity:0.7;line-height:1.9;">The amount varies by destination country and order value. We recommend checking with your local customs authority for estimated charges before placing your order.</p>
+  </div>
+</div>
+
+<!-- ORDER CHANGES -->
+<div style="background:var(--navy);padding:56px 24px;">
+  <div style="max-width:720px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">ORDER CHANGES &amp; CANCELLATIONS</div>
+    <h2 class="ei-serif" style="font-size:28px;font-style:italic;font-weight:300;color:#fff;margin-bottom:16px;">Need to make a change?</h2>
+    <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.9;">Orders cannot be changed or cancelled once processing begins. If you contact us quickly after ordering, we will try — but cannot guarantee — cancellation. Please email <a href="mailto:shop@elaraivyco.com" style="color:var(--periwinkle);">shop@elaraivyco.com</a> immediately if you need assistance.</p>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div style="background:var(--surface-warm);padding:56px 24px;text-align:center;">
+  <div style="max-width:480px;margin:0 auto;">
+    <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:12px;">Questions about your order?</h2>
+    <p style="font-size:13px;color:var(--ink-muted);line-height:1.85;margin-bottom:28px;">Our team is happy to help with any shipping questions or concerns.</p>
+    <a href="mailto:shop@elaraivyco.com" class="btn-primary">EMAIL US</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Shipping Info",
+  "settings": [],
+  "presets": [{ "name": "Shipping Info" }]
+}
+{% endschema %}
