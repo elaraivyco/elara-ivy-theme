@@ -6,6 +6,7 @@
   <title>{{ gift_card.initial_value | money_without_trailing_zeros }} Gift Card — {{ shop.name }}</title>
   {{ content_for_header }}
   {{ 'elara-ivy.css' | asset_url | stylesheet_tag }}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 </head>
 <body>
 
@@ -46,14 +47,9 @@
         </div>
       {% endif %}
 
-      <!-- QR Code -->
+      <!-- QR Code (JS generated) -->
       <div style="margin-bottom:32px;">
-        <img
-          src="{{ gift_card.qr_identifier | image_url: width: 120 }}"
-          alt="QR code"
-          width="120"
-          height="120"
-          style="margin:0 auto;display:block;">
+        <div id="qr-code" style="display:inline-block;padding:12px;background:#fff;border:1px solid var(--rule);"></div>
       </div>
 
       <!-- Copy Code Button -->
@@ -86,6 +82,18 @@
   </footer>
 
   <script>
+    // Generate QR code from gift card code
+    var giftCardCode = '{{ gift_card.code }}';
+    new QRCode(document.getElementById('qr-code'), {
+      text: giftCardCode,
+      width: 120,
+      height: 120,
+      colorDark: '#0D1B3E',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.H
+    });
+
+    // Copy code to clipboard
     function copyCode() {
       var code = '{{ gift_card.code | format_code }}';
       navigator.clipboard.writeText(code).then(function() {
@@ -98,3 +106,4 @@
 
 </body>
 </html>
+
