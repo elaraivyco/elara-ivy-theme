@@ -1,0 +1,57 @@
+<section class="section section--white">
+  <div class="section__header">
+    <h2 class="section__title ei-serif">{{ section.settings.heading }}</h2>
+    {% if section.settings.view_all_url != blank %}
+      <a href="{{ section.settings.view_all_url }}" class="section__link">VIEW ALL</a>
+    {% endif %}
+  </div>
+  {% if section.settings.subheading != blank %}
+    <p class="section__sub">{{ section.settings.subheading }}</p>
+  {% endif %}
+  <div class="designer-grid">
+    {% for block in section.blocks %}
+      <div class="designer-card" {{ block.shopify_attributes }}>
+        <div class="designer-card__img">
+          {% if block.settings.image %}
+            <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.name | escape }}" loading="lazy">
+          {% endif %}
+        </div>
+        <div class="designer-card__info">
+          {% if block.settings.category != blank %}
+            <div class="designer-card__pill">{{ block.settings.category }}</div>
+          {% endif %}
+          <div class="designer-card__name ei-serif">{{ block.settings.name }}</div>
+          <p class="designer-card__desc">{{ block.settings.description }}</p>
+          {% if block.settings.link_url != blank %}
+            <a href="{{ block.settings.link_url }}" class="designer-card__link">SHOP {{ block.settings.name | upcase }}</a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Designer Grid",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by Designer" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Every designer we carry is here for a reason." },
+    { "type": "url", "id": "view_all_url", "label": "View all link" }
+  ],
+  "blocks": [
+    {
+      "type": "designer",
+      "name": "Designer",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Designer image" },
+        { "type": "text", "id": "name", "label": "Designer name", "default": "Jacquemus" },
+        { "type": "text", "id": "category", "label": "Category pill", "default": "FRENCH LUXURY" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Sun-drenched minimalism with a Provençal soul." },
+        { "type": "url", "id": "link_url", "label": "Collection link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Designer Grid" }]
+}
+{% endschema %}
