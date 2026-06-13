@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "vip-apply", "settings": {} }
+  },
+  "order": ["main"]
+}
