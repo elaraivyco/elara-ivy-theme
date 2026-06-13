@@ -1,0 +1,26 @@
+<div class="marquee">
+  <div class="marquee__track">
+    {% assign brands = section.settings.brands | split: ',' %}
+    {% for brand in brands %}
+      <span>{{ brand | strip }}</span><span class="dot">·</span>
+    {% endfor %}
+    {% for brand in brands %}
+      <span>{{ brand | strip }}</span><span class="dot">·</span>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Designer Marquee",
+  "settings": [
+    {
+      "type": "text",
+      "id": "brands",
+      "label": "Designer names (comma separated)",
+      "default": "JACQUEMUS, HUNZA G, GUCCI, GANNI, TOTEME, SAINT LAURENT, BY FAR, KHAITE"
+    }
+  ],
+  "presets": [{ "name": "Designer Marquee" }]
+}
+{% endschema %}
