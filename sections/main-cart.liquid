@@ -1,0 +1,35 @@
+<div class="section section--white">
+  <h1 class="section__title ei-serif" style="margin-bottom:32px;">Your Bag</h1>
+  {% if cart.item_count == 0 %}
+    <p style="color:var(--ink-muted);font-size:13px;margin-bottom:24px;">Your bag is empty.</p>
+    <a href="{{ routes.collections_url }}" class="btn-primary">CONTINUE SHOPPING</a>
+  {% else %}
+    {% for item in cart.items %}
+      <div style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--rule);">
+        <img src="{{ item.image | img_url: '200x' }}" alt="{{ item.title }}" style="width:100px;height:100px;object-fit:cover;">
+        <div style="flex:1;">
+          <div style="font-size:8px;letter-spacing:0.2em;color:var(--periwinkle);margin-bottom:4px;">{{ item.vendor | upcase }}</div>
+          <div class="ei-serif" style="font-size:18px;font-style:italic;color:var(--navy);margin-bottom:6px;">{{ item.product_title }}</div>
+          <div style="font-size:11px;color:var(--ink-muted);margin-bottom:8px;">{{ item.variant_title }}</div>
+          <div style="font-size:14px;color:var(--ink);">{{ item.final_price | money }}</div>
+        </div>
+        <a href="{{ routes.cart_change_url }}?line={{ forloop.index }}&quantity=0" style="font-size:10px;color:var(--ink-faint);align-self:flex-start;">Remove</a>
+      </div>
+    {% endfor %}
+    <div style="padding:24px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;">
+      <div>
+        <div style="font-size:9px;letter-spacing:0.18em;color:var(--ink-muted);margin-bottom:4px;">SUBTOTAL</div>
+        <div class="ei-serif" style="font-size:24px;color:var(--navy);">{{ cart.total_price | money }}</div>
+      </div>
+      <a href="{{ routes.checkout }}" class="btn-primary">CHECKOUT</a>
+    </div>
+  {% endif %}
+</div>
+
+{% schema %}
+{
+  "name": "Cart",
+  "settings": [],
+  "presets": [{ "name": "Cart" }]
+}
+{% endschema %}
