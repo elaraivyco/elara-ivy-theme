@@ -1,0 +1,153 @@
+<div class="ph-hero">
+  <div class="ph-hero__content">
+    <div class="ph-hero__eyebrow">{{ section.settings.eyebrow }}</div>
+    <h1 class="ph-hero__heading ei-serif">{{ section.settings.heading }}</h1>
+    <p class="ph-hero__body">{{ section.settings.hero_body }}</p>
+  </div>
+  <div class="ph-hero__img">
+    {% if section.settings.hero_image %}
+      <img src="{{ section.settings.hero_image | img_url: '1000x' }}" alt="Our Philosophy" loading="eager">
+    {% endif %}
+  </div>
+</div>
+
+<div class="ph-opener">
+  <div class="ph-opener__rule-label">{{ section.settings.opener_label }}</div>
+  <blockquote class="ph-opener__quote ei-serif">{{ section.settings.quote }}</blockquote>
+  <p class="ph-opener__body">{{ section.settings.opener_body }}</p>
+</div>
+
+<div class="ph-pillars">
+  <div class="ph-pillars__header">
+    <div class="ph-opener__rule-label" style="color:var(--periwinkle);">{{ section.settings.pillars_label }}</div>
+    <h2 class="ph-pillars__title ei-serif">{{ section.settings.pillars_heading }}</h2>
+  </div>
+  <div class="ph-pillars__grid">
+    {% for block in section.blocks %}
+      {% if block.type == 'pillar' %}
+        <div class="ph-pillar" {{ block.shopify_attributes }}>
+          <div class="ph-pillar__num ei-serif">0{{ forloop.index }}</div>
+          <h3 class="ph-pillar__title ei-serif">{{ block.settings.title }}</h3>
+          <p class="ph-pillar__body">{{ block.settings.body }}</p>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<div class="ph-interlude">
+  <div class="ph-interlude__label">{{ section.settings.interlude_label }}</div>
+  <h2 class="ph-interlude__heading ei-serif">{{ section.settings.interlude_heading }}</h2>
+  <p class="ph-interlude__body">{{ section.settings.interlude_body }}</p>
+</div>
+
+<div class="ph-dontdo">
+  <div class="ph-dontdo__inner">
+    <div class="ph-dontdo__text">
+      <div class="ph-dontdo__label">{{ section.settings.dontdo_label }}</div>
+      <h2 class="ph-dontdo__title ei-serif">{{ section.settings.dontdo_heading }}</h2>
+      <p class="ph-dontdo__intro">{{ section.settings.dontdo_intro }}</p>
+    </div>
+    <div class="ph-dontdo__list">
+      {% for block in section.blocks %}
+        {% if block.type == 'dont_item' %}
+          <div class="ph-dont-item" {{ block.shopify_attributes }}>
+            <div class="ph-dont-icon">
+              <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div>
+              <div class="ph-dont-title ei-serif">{{ block.settings.title }}</div>
+              <p class="ph-dont-body">{{ block.settings.body }}</p>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<div class="ph-promise">
+  <div class="ph-promise__label">{{ section.settings.promise_label }}</div>
+  <h2 class="ph-promise__title ei-serif">{{ section.settings.promise_heading }}</h2>
+  <p class="ph-promise__body">{{ section.settings.promise_body }}</p>
+  <div class="ph-promise__stats">
+    {% for block in section.blocks %}
+      {% if block.type == 'stat' %}
+        <div class="ph-stat" {{ block.shopify_attributes }}>
+          <div class="ph-stat__num ei-serif">{{ block.settings.number }}</div>
+          <div class="ph-stat__label">{{ block.settings.label }}</div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+</div>
+
+<div class="ph-closing">
+  <div class="ph-closing__inner">
+    <h2 class="ph-closing__title ei-serif">{{ section.settings.closing_heading }}</h2>
+    <p class="ph-closing__body">{{ section.settings.closing_body }}</p>
+    <div class="ph-closing__ctas">
+      <a href="{{ section.settings.cta_primary_url }}" class="btn-primary">{{ section.settings.cta_primary_label }}</a>
+      <a href="{{ section.settings.cta_secondary_url }}" class="btn-secondary">{{ section.settings.cta_secondary_label }}</a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Our Philosophy",
+  "settings": [
+    { "type": "image_picker", "id": "hero_image", "label": "Hero image" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "THE ELARA IVY EDIT" },
+    { "type": "textarea", "id": "heading", "label": "Hero heading", "default": "We don't carry everything. Deliberately." },
+    { "type": "textarea", "id": "hero_body", "label": "Hero body", "default": "A note on how we choose what earns a place in our edit — and why most things don't make it." },
+    { "type": "text", "id": "opener_label", "label": "Opener label", "default": "OUR CURATION PHILOSOPHY" },
+    { "type": "textarea", "id": "quote", "label": "Pull quote", "default": "The most powerful word in fashion is no." },
+    { "type": "textarea", "id": "opener_body", "label": "Opener body", "default": "At Elara Ivy Co., we believe a smaller edit is a more honest one." },
+    { "type": "text", "id": "pillars_label", "label": "Pillars label", "default": "HOW WE CHOOSE" },
+    { "type": "text", "id": "pillars_heading", "label": "Pillars heading", "default": "Three questions. Every single time." },
+    { "type": "text", "id": "interlude_label", "label": "Interlude label", "default": "A NOTE ON NEWNESS" },
+    { "type": "text", "id": "interlude_heading", "label": "Interlude heading", "default": "We add slowly. We remove rarely." },
+    { "type": "textarea", "id": "interlude_body", "label": "Interlude body", "default": "Our designer roster grows by invitation, not application." },
+    { "type": "text", "id": "dontdo_label", "label": "What we don't do label", "default": "WHAT SETS US APART" },
+    { "type": "text", "id": "dontdo_heading", "label": "What we don't do heading", "default": "A few things you won't find here." },
+    { "type": "textarea", "id": "dontdo_intro", "label": "What we don't do intro", "default": "We think the clearest way to explain what we stand for is to explain what we don't do." },
+    { "type": "text", "id": "promise_label", "label": "Promise label", "default": "OUR COMMITMENT" },
+    { "type": "text", "id": "promise_heading", "label": "Promise heading", "default": "To every designer we carry." },
+    { "type": "textarea", "id": "promise_body", "label": "Promise body", "default": "When we bring a designer into the Elara Ivy edit, we commit to telling their story honestly and championing them to our community." },
+    { "type": "text", "id": "closing_heading", "label": "Closing heading", "default": "Ready to meet the edit?" },
+    { "type": "textarea", "id": "closing_body", "label": "Closing body", "default": "Every piece in the Elara Ivy Co. collection has earned its place. We think you'll feel the difference." },
+    { "type": "text", "id": "cta_primary_label", "label": "Primary CTA", "default": "EXPLORE THE EDIT" },
+    { "type": "url", "id": "cta_primary_url", "label": "Primary CTA link" },
+    { "type": "text", "id": "cta_secondary_label", "label": "Secondary CTA", "default": "MEET OUR DESIGNERS" },
+    { "type": "url", "id": "cta_secondary_url", "label": "Secondary CTA link" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Would we wear it ourselves?" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "Every piece that enters the edit is worn, tested, and loved by someone on our team first." }
+      ]
+    },
+    {
+      "type": "dont_item",
+      "name": "What We Don't Do Item",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Flash sales and artificial urgency" },
+        { "type": "textarea", "id": "body", "label": "Body", "default": "We don't mark things up to mark them down. Every price is the real price." }
+      ]
+    },
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        { "type": "text", "id": "number", "label": "Number", "default": "12+" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Curated designer brands" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Our Philosophy" }]
+}
+{% endschema %}
