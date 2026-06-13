@@ -1,0 +1,16 @@
+<div class="section section--white" style="text-align:center;padding:80px 24px;">
+  <div style="max-width:480px;margin:0 auto;">
+    <div style="font-size:9px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;">404</div>
+    <h1 class="ei-serif" style="font-size:42px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:16px;">Page not found.</h1>
+    <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:32px;">The page you were looking for doesn't exist. It may have moved, or the link might be incorrect.</p>
+    <a href="{{ routes.root_url }}" class="btn-primary">BACK TO HOME</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "404 Page",
+  "settings": [],
+  "presets": [{ "name": "404" }]
+}
+{% endschema %}
