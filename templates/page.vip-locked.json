@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "vip-locked", "settings": {} }
+  },
+  "order": ["main"]
+}
