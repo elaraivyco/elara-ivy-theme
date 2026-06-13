@@ -1,0 +1,180 @@
+{% comment %} sections/vip-members.liquid {% endcomment %}
+
+{% if customer and customer.tags contains 'vip' %}
+
+  <!-- HERO -->
+  <div style="background:var(--navy);padding:64px 24px 56px;position:relative;overflow:hidden;">
+    <div style="position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:var(--periwinkle);opacity:0.06;"></div>
+    <div style="position:absolute;bottom:-80px;left:-40px;width:260px;height:260px;border-radius:50%;background:var(--blush);opacity:0.05;"></div>
+    <div style="font-size:9px;letter-spacing:0.32em;color:var(--periwinkle);margin-bottom:8px;">ELARA IVY INNER CIRCLE</div>
+    <h1 class="ei-serif" style="font-size:44px;line-height:1.06;color:#fff;font-weight:300;font-style:italic;margin-bottom:16px;">Welcome back,<br>{{ customer.first_name }}.</h1>
+    <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.85;max-width:480px;">You have exclusive early access to our latest arrivals, members-only pricing, and curated lookbooks — before anyone else.</p>
+    <div style="display:inline-flex;align-items:center;gap:8px;margin-top:24px;background:rgba(255,255,255,0.06);padding:8px 16px;">
+      <div style="width:6px;height:6px;border-radius:50%;background:var(--periwinkle);"></div>
+      <div style="font-size:9px;letter-spacing:0.2em;color:var(--periwinkle);">INNER CIRCLE MEMBER</div>
+    </div>
+  </div>
+
+  <!-- MARQUEE -->
+  <div class="marquee">
+    <div class="marquee__track">
+      <span>EARLY ACCESS</span><span class="dot">·</span>
+      <span>EXCLUSIVE PRICING</span><span class="dot">·</span>
+      <span>MEMBERS-ONLY EDITS</span><span class="dot">·</span>
+      <span>FIRST DIBS</span><span class="dot">·</span>
+      <span>THE INNER CIRCLE</span><span class="dot">·</span>
+      <span>EARLY ACCESS</span><span class="dot">·</span>
+      <span>EXCLUSIVE PRICING</span><span class="dot">·</span>
+      <span>MEMBERS-ONLY EDITS</span><span class="dot">·</span>
+      <span>FIRST DIBS</span><span class="dot">·</span>
+      <span>THE INNER CIRCLE</span><span class="dot">·</span>
+    </div>
+  </div>
+
+  <!-- EARLY ACCESS ARRIVALS -->
+  <div style="background:var(--white);padding:56px 24px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:12px;text-transform:uppercase;">EXCLUSIVELY YOURS FIRST</div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
+      <h2 class="ei-serif" style="font-size:36px;font-style:italic;font-weight:300;color:var(--navy);">Early Access Arrivals</h2>
+      <a href="/collections/all" style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);border-bottom:1px solid var(--periwinkle);">VIEW ALL</a>
+    </div>
+    <div class="product-grid">
+      {% assign vip_collection = collections['vip-early-access'] %}
+      {% if vip_collection != blank %}
+        {% for product in vip_collection.products limit: 4 %}
+          <div class="product-card">
+            <a href="{{ product.url }}">
+              <div class="product-card__media">
+                {% if product.featured_image %}
+                  <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+                {% endif %}
+                <span class="product-card__badge" style="background:var(--gold);color:var(--navy);">EARLY ACCESS</span>
+              </div>
+              <div class="product-card__info">
+                <div class="product-card__designer">{{ product.vendor | upcase }}</div>
+                <div class="product-card__title ei-serif">{{ product.title }}</div>
+                <div class="product-card__price">{{ product.price | money }}</div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div style="grid-column:1/-1;padding:48px;text-align:center;background:var(--surface-warm);">
+          <div class="ei-serif" style="font-size:22px;font-style:italic;color:var(--ink-muted);">New arrivals dropping soon.</div>
+          <p style="font-size:12px;color:var(--ink-muted);margin-top:8px;">Check back — you'll always see them here first.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- EXCLUSIVE PRICING -->
+  <div style="background:var(--surface-warm);padding:56px 24px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:12px;text-transform:uppercase;">MEMBERS-ONLY PRICING</div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
+      <h2 class="ei-serif" style="font-size:36px;font-style:italic;font-weight:300;color:var(--navy);">Exclusive Member Prices</h2>
+      <a href="/collections/vip-sale" style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);border-bottom:1px solid var(--periwinkle);">VIEW ALL</a>
+    </div>
+    <div class="product-grid">
+      {% assign sale_collection = collections['vip-sale'] %}
+      {% if sale_collection != blank %}
+        {% for product in sale_collection.products limit: 4 %}
+          <div class="product-card">
+            <a href="{{ product.url }}">
+              <div class="product-card__media">
+                {% if product.featured_image %}
+                  <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy">
+                {% endif %}
+                <span class="product-card__badge" style="background:var(--blush);color:var(--navy);">MEMBERS PRICE</span>
+              </div>
+              <div class="product-card__info">
+                <div class="product-card__designer">{{ product.vendor | upcase }}</div>
+                <div class="product-card__title ei-serif">{{ product.title }}</div>
+                <div style="display:flex;gap:10px;align-items:center;">
+                  <div class="product-card__price">{{ product.price | money }}</div>
+                  {% if product.compare_at_price > product.price %}
+                    <div style="font-size:11px;color:var(--ink-faint);text-decoration:line-through;">{{ product.compare_at_price | money }}</div>
+                  {% endif %}
+                </div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div style="grid-column:1/-1;padding:48px;text-align:center;background:var(--white);">
+          <div class="ei-serif" style="font-size:22px;font-style:italic;color:var(--ink-muted);">Member pricing coming soon.</div>
+          <p style="font-size:12px;color:var(--ink-muted);margin-top:8px;">Exclusive deals are on their way.</p>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <!-- MEMBERS LOOKBOOK -->
+  <div style="background:var(--navy);padding:56px 24px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:12px;text-transform:uppercase;">MEMBERS-ONLY EDITORIAL</div>
+    <h2 class="ei-serif" style="font-size:36px;font-style:italic;font-weight:300;color:#fff;margin-bottom:32px;">The Inner Circle Edit</h2>
+    {% assign lookbook_articles = blogs['inner-circle'].articles %}
+    {% if lookbook_articles.size > 0 %}
+      <div class="product-grid">
+        {% for article in lookbook_articles limit: 2 %}
+          <div class="product-card" style="background:var(--navy-mid);">
+            <a href="{{ article.url }}">
+              {% if article.image %}
+                <div class="product-card__media">
+                  <img src="{{ article.image | img_url: '600x' }}" alt="{{ article.title }}" loading="lazy">
+                </div>
+              {% endif %}
+              <div class="product-card__info" style="background:var(--navy-mid);">
+                <div class="product-card__designer" style="color:var(--periwinkle);">{{ article.published_at | date: '%B %Y' }}</div>
+                <div class="product-card__title ei-serif" style="color:#fff;">{{ article.title }}</div>
+                <div style="font-size:11px;color:rgba(255,255,255,0.4);margin-top:4px;">{{ article.excerpt | strip_html | truncate: 60 }}</div>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div style="padding:48px;text-align:center;background:rgba(255,255,255,0.04);">
+        <div class="ei-serif" style="font-size:22px;font-style:italic;color:rgba(255,255,255,0.4);">Editorial content coming soon.</div>
+      </div>
+    {% endif %}
+  </div>
+
+  <!-- MEMBER PERKS -->
+  <div style="background:var(--blush);padding:56px 24px;">
+    <div style="max-width:720px;">
+      <div style="font-size:8px;letter-spacing:0.3em;color:var(--navy);opacity:0.55;margin-bottom:16px;text-transform:uppercase;">YOUR MEMBERSHIP PERKS</div>
+      <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:28px;">What being Inner Circle means.</h2>
+      <div style="display:flex;flex-direction:column;gap:3px;">
+        {% assign perks = "48-hour early access to all new arrivals before the public|Exclusive member-only pricing on selected pieces|First look at seasonal lookbooks and editorials|Invitations to private events and collection previews|Priority customer care via shop@elaraivyco.com" | split: "|" %}
+        {% for perk in perks %}
+          <div style="background:rgba(255,255,255,0.5);padding:16px 20px;display:flex;align-items:center;gap:14px;">
+            <div style="width:6px;height:6px;border-radius:50%;background:var(--navy);flex-shrink:0;opacity:0.5;"></div>
+            <div style="font-size:13px;color:var(--navy);line-height:1.6;">{{ perk }}</div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+{% else %}
+
+  {% comment %} Not a VIP — redirect to locked page {% endcomment %}
+  <script>window.location.href = '/pages/inner-circle-locked';</script>
+
+  <div style="background:var(--navy);min-height:60vh;display:flex;align-items:center;justify-content:center;padding:40px 24px;text-align:center;">
+    <div>
+      <div style="font-size:9px;letter-spacing:0.28em;color:var(--periwinkle);margin-bottom:16px;">RESTRICTED ACCESS</div>
+      <h1 class="ei-serif" style="font-size:36px;font-style:italic;font-weight:300;color:#fff;margin-bottom:16px;">This page is for members only.</h1>
+      <p style="font-size:13px;color:rgba(255,255,255,0.45);margin-bottom:28px;">Redirecting you now...</p>
+    </div>
+  </div>
+
+{% endif %}
+
+{% schema %}
+{
+  "name": "VIP Members Page",
+  "settings": [],
+  "presets": [{ "name": "VIP Members" }]
+}
+{% endschema %}
