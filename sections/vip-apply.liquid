@@ -1,0 +1,154 @@
+{% comment %} sections/vip-apply.liquid {% endcomment %}
+
+<!-- HERO -->
+<div style="background:var(--navy);padding:64px 24px 56px;position:relative;overflow:hidden;">
+  <div style="position:absolute;top:-60px;right:-60px;width:300px;height:300px;border-radius:50%;background:var(--periwinkle);opacity:0.06;"></div>
+  <div style="font-size:9px;letter-spacing:0.32em;color:var(--periwinkle);margin-bottom:16px;">BY INVITATION</div>
+  <h1 class="ei-serif" style="font-size:44px;line-height:1.06;color:#fff;font-weight:300;font-style:italic;margin-bottom:20px;">Apply for the<br>Inner Circle.</h1>
+  <p style="font-size:13px;color:rgba(255,255,255,0.5);line-height:1.85;max-width:480px;">Early access. Exclusive pricing. Members-only edits. A small group of people who get first dibs on everything we carry.</p>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <div class="marquee__track">
+    <span>EARLY ACCESS</span><span class="dot">·</span>
+    <span>EXCLUSIVE PRICING</span><span class="dot">·</span>
+    <span>MEMBERS-ONLY EDITS</span><span class="dot">·</span>
+    <span>FIRST DIBS</span><span class="dot">·</span>
+    <span>THE INNER CIRCLE</span><span class="dot">·</span>
+    <span>EARLY ACCESS</span><span class="dot">·</span>
+    <span>EXCLUSIVE PRICING</span><span class="dot">·</span>
+    <span>MEMBERS-ONLY EDITS</span><span class="dot">·</span>
+    <span>FIRST DIBS</span><span class="dot">·</span>
+    <span>THE INNER CIRCLE</span><span class="dot">·</span>
+  </div>
+</div>
+
+<!-- PERKS -->
+<div style="background:var(--white);padding:56px 24px;">
+  <div style="font-size:8px;letter-spacing:0.3em;color:var(--ink-muted);margin-bottom:32px;text-transform:uppercase;">MEMBERSHIP INCLUDES</div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin-bottom:0;">
+    <div style="background:var(--surface-warm);padding:28px 24px;border-top:2px solid var(--periwinkle);">
+      <div style="font-size:28px;margin-bottom:12px;">48h</div>
+      <div style="font-size:9px;letter-spacing:0.16em;color:var(--navy);margin-bottom:8px;">EARLY ACCESS</div>
+      <div style="font-size:11px;color:var(--ink-muted);line-height:1.65;">First look at every new arrival before the public</div>
+    </div>
+    <div style="background:var(--surface-warm);padding:28px 24px;border-top:2px solid var(--periwinkle);">
+      <div style="font-size:28px;margin-bottom:12px;">%</div>
+      <div style="font-size:9px;letter-spacing:0.16em;color:var(--navy);margin-bottom:8px;">EXCLUSIVE PRICING</div>
+      <div style="font-size:11px;color:var(--ink-muted);line-height:1.65;">Member-only prices on selected pieces</div>
+    </div>
+    <div style="background:var(--surface-warm);padding:28px 24px;border-top:2px solid var(--blush-mid);">
+      <div style="font-size:28px;margin-bottom:12px;">✦</div>
+      <div style="font-size:9px;letter-spacing:0.16em;color:var(--navy);margin-bottom:8px;">MEMBERS EDITORIAL</div>
+      <div style="font-size:11px;color:var(--ink-muted);line-height:1.65;">Private lookbooks and style edits</div>
+    </div>
+    <div style="background:var(--surface-warm);padding:28px 24px;border-top:2px solid var(--blush-mid);">
+      <div style="font-size:28px;margin-bottom:12px;">◈</div>
+      <div style="font-size:9px;letter-spacing:0.16em;color:var(--navy);margin-bottom:8px;">PRIVATE EVENTS</div>
+      <div style="font-size:11px;color:var(--ink-muted);line-height:1.65;">Invitations to collection previews and launches</div>
+    </div>
+  </div>
+</div>
+
+<!-- APPLICATION FORM -->
+<div style="background:var(--surface-warm);padding:56px 24px;">
+  <div style="max-width:600px;">
+    <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">YOUR APPLICATION</div>
+    <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:8px;">Tell us about yourself.</h2>
+    <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:32px;">We review all applications personally. If approved, you'll receive an invitation email within 3–5 business days.</p>
+
+    {% form 'contact' %}
+      {{ form.errors | default_errors }}
+      {% if form.posted_successfully? %}
+        <div style="background:var(--white);border-left:3px solid var(--periwinkle);padding:20px 24px;margin-bottom:24px;">
+          <div class="ei-serif" style="font-size:20px;font-style:italic;color:var(--navy);margin-bottom:6px;">Application received.</div>
+          <div style="font-size:12px;color:var(--ink-muted);">We'll be in touch within 3–5 business days.</div>
+        </div>
+      {% else %}
+
+        <!-- Hidden field to identify VIP applications -->
+        <input type="hidden" name="contact[tags]" value="vip-application">
+        <input type="hidden" name="contact[subject]" value="Inner Circle Application">
+
+        <div style="display:flex;flex-direction:column;gap:14px;">
+
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;">
+            <div>
+              <label style="font-size:9px;letter-spacing:0.18em;color:var(--ink-muted);display:block;margin-bottom:6px;">FIRST NAME</label>
+              <input type="text" name="contact[first_name]" required
+                style="width:100%;border:1px solid var(--rule);padding:11px 14px;font-size:12px;font-family:'Jost',sans-serif;background:var(--white);outline:none;color:var(--ink);">
+            </div>
+            <div>
+              <label style="font-size:9px;letter-spacing:0.18em;color:var(--ink-muted);display:block;margin-bottom:6px;">LAST NAME</label>
+              <input type="text" name="contact[last_name]" required
+                style="width:100%;border:1px solid var(--rule);padding:11px 14px;font-size:12px;font-family:'Jost',sans-serif;background:var(--white);outline:none;color:var(--ink);">
+            </div>
+          </div>
+
+          <div>
+            <label style="font-size:9px;letter-spacing:0.18em;color:var(--ink-muted);display:block;margin-bottom:6px;">EMAIL ADDRESS</label>
+            <input type="email" name="contact[email]" required
+              style="width:100%;border:1px solid var(--rule);padding:11px 14px;font-size:12px;font-family:'Jost',sans-serif;background:var(--white);outline:none;color:var(--ink);">
+          </div>
+
+          <div>
+            <label style="font-size:9px;letter-spacing:0.18em;color:var(--ink-muted);display:block;margin-bottom:6px;">WHICH DESIGNERS DO YOU LOVE?</label>
+            <input type="text" name="contact[designers]" placeholder="e.g. Jacquemus, Toteme, By Far..."
+              style="width:100%;border:1px solid var(--rule);padding:11px 14px;font-size:12px;font-family:'Jost',sans-serif;background:var(--white);outline:none;color:var(--ink);">
+          </div>
+
+          <div>
+            <label style="font-size:9px;letter-spacing:0.18em;color:var(--ink-muted);display:block;margin-bottom:6px;">HOW DID YOU HEAR ABOUT ELARA IVY CO.?</label>
+            <select name="contact[how_did_you_hear]"
+              style="width:100%;border:1px solid var(--rule);padding:11px 14px;font-size:12px;font-family:'Jost',sans-serif;background:var(--white);outline:none;color:var(--ink);">
+              <option value="">Please select...</option>
+              <option>Instagram</option>
+              <option>A friend or recommendation</option>
+              <option>Google search</option>
+              <option>Editorial or press</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div>
+            <label style="font-size:9px;letter-spacing:0.18em;color:var(--ink-muted);display:block;margin-bottom:6px;">WHY DO YOU WANT TO JOIN THE INNER CIRCLE? <span style="opacity:0.5;">(optional)</span></label>
+            <textarea name="contact[body]" rows="4" placeholder="Tell us a little about yourself and your relationship with fashion..."
+              style="width:100%;border:1px solid var(--rule);padding:11px 14px;font-size:12px;font-family:'Jost',sans-serif;background:var(--white);outline:none;color:var(--ink);resize:vertical;"></textarea>
+          </div>
+
+          <div style="display:flex;align-items:flex-start;gap:10px;margin-top:4px;">
+            <input type="checkbox" name="contact[newsletter]" id="newsletter" value="yes" style="margin-top:3px;accent-color:var(--navy);">
+            <label for="newsletter" style="font-size:11px;color:var(--ink-muted);line-height:1.6;cursor:pointer;">I'd also like to receive the Elara Ivy Co. newsletter with style notes and new arrivals.</label>
+          </div>
+
+          <button type="submit" class="btn-primary" style="margin-top:8px;align-self:flex-start;padding:13px 36px;">SUBMIT APPLICATION</button>
+
+        </div>
+      {% endif %}
+    {% endform %}
+  </div>
+</div>
+
+<!-- WHAT HAPPENS NEXT -->
+<div style="background:var(--navy);padding:56px 24px;">
+  <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">WHAT HAPPENS NEXT</div>
+  <h2 class="ei-serif" style="font-size:28px;font-style:italic;font-weight:300;color:#fff;margin-bottom:28px;">The process.</h2>
+  <div style="display:flex;flex-direction:column;gap:3px;max-width:560px;">
+    {% assign next_steps = "We review your application personally — usually within 3–5 business days.|If approved, you'll receive an invitation email with instructions to activate your membership.|Create or log into your Elara Ivy Co. account — your VIP access will be activated.|Visit the Inner Circle page to shop early access arrivals, exclusive pricing, and members-only content." | split: "|" %}
+    {% for step in next_steps %}
+      <div style="background:rgba(255,255,255,0.04);padding:18px 22px;display:flex;gap:18px;align-items:flex-start;">
+        <div style="font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:300;color:var(--periwinkle);opacity:0.5;line-height:1;flex-shrink:0;">0{{ forloop.index }}</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.5);line-height:1.8;padding-top:5px;">{{ step }}</div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "VIP Apply Page",
+  "settings": [],
+  "presets": [{ "name": "VIP Apply" }]
+}
+{% endschema %}
