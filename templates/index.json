@@ -12,7 +12,8 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "badge_name": "Jacquemus",
+        "hero_image": "shopify://shop_images/10913617_1.jpg",
+        "badge_name": "Gucci",
         "eyebrow": "SS26 COLLECTION — NOW LANDING",
         "heading": "The season's most coveted arrivals.",
         "subheading": "Curated from the world's finest designers. Each piece selected for its craftsmanship, story, and undeniable presence.",
