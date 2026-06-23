@@ -42,7 +42,7 @@
       "settings": {
         "heading": "New In",
         "subheading": "The latest arrivals from across our designer roster, landing now.",
-        "collection": "",
+        "collection": "the-designer-edit",
         "products_to_show": 4,
         "view_all_url": ""
       }
