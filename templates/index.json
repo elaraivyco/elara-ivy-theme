@@ -1,65 +1,50 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
+        "badge_name": "Jacquemus",
         "eyebrow": "SS26 COLLECTION — NOW LANDING",
         "heading": "The season's most coveted arrivals.",
         "subheading": "Curated from the world's finest designers. Each piece selected for its craftsmanship, story, and undeniable presence.",
-        "badge_name": "Jacquemus",
         "cta_primary_label": "EXPLORE THE EDIT",
-        "cta_secondary_label": "SHOP DESIGNERS"
+        "cta_primary_url": "",
+        "cta_secondary_label": "SHOP DESIGNERS",
+        "cta_secondary_url": ""
       }
     },
     "marquee": {
       "type": "marquee",
       "settings": {
-        "brands": "JACQUEMUS, HUNZA G, GUCCI, GANNI, TOTEME, SAINT LAURENT, BY FAR, KHAITE"
+        "brands": "ADIDAS, ALEXANDER WANG, ALICE + OLIVIA, BALENCIAGA, BIRKENSTOCK, BOTTEGA VENETA, BURBERRY, COACH, CARTIER, CASABLANCA, CHANEL, CHRISTIAN DIOR, CHRISTIAN LOUBOUTIN, CULT GAIA, FURLA, GOLDEN GOOSE, GUCCI, HERMÉS, HUNZA G, KATE SPADE, KHAITE, LORO PIANA, LOUIS VUITTON, MARC JACOBS, MAX MARA, MICHAEL KORS, MIU MIU, PAIGE, PHILOSOPHY, PRADA, SAINT LAURENT, STELLA McCARTNEY, THE ATTICO, THE ROW, TIFFANY & CO., TOM FORD, TORY BURCH, UMA WANG, VERSACE, VICTORIA'S SECRET, VIVIENNE WESTWOOD, WILD CASHMERE, WINDSOR,"
       }
     },
     "designer_grid": {
       "type": "designer-grid",
       "settings": {
         "heading": "Shop by Designer",
-        "subheading": "Every designer we carry is here for a reason. Meet the makers behind the pieces."
-      },
-      "blocks": {
-        "jacquemus": {
-          "type": "designer",
-          "settings": {
-            "name": "Jacquemus",
-            "category": "FRENCH LUXURY",
-            "description": "Sun-drenched minimalism with a Provençal soul. Bold silhouettes, tactile fabrics, unmistakable wit."
-          }
-        },
-        "hunza": {
-          "type": "designer",
-          "settings": {
-            "name": "Hunza G",
-            "category": "RESORT WEAR",
-            "description": "The original crinkle. Effortless swimwear trusted by icons from Capri to Cannes since 1984."
-          }
-        },
-        "gucci": {
-          "type": "designer",
-          "settings": {
-            "name": "Gucci",
-            "category": "ITALIAN HERITAGE",
-            "description": "Eclectic, romantic, opulent. A vision of maximalist romance rooted in Florentine craft."
-          }
-        }
-      },
-      "blocks_order": ["jacquemus", "hunza", "gucci"]
+        "subheading": "Every designer we carry is here for a reason. Meet the makers behind the pieces.",
+        "view_all_url": ""
+      }
     },
     "featured_products": {
       "type": "featured-products",
       "settings": {
         "heading": "New In",
         "subheading": "The latest arrivals from across our designer roster, landing now.",
-        "products_to_show": 4
-      },
-      "blocks": {},
-      "blocks_order": []
+        "collection": "",
+        "products_to_show": 4,
+        "view_all_url": ""
+      }
     },
     "accent_strip": {
       "type": "accent-strip",
@@ -82,5 +67,12 @@
       }
     }
   },
-  "order": ["hero","marquee","designer_grid","featured_products","accent_strip","editorial_strip"]
+  "order": [
+    "hero",
+    "marquee",
+    "designer_grid",
+    "featured_products",
+    "accent_strip",
+    "editorial_strip"
+  ]
 }
