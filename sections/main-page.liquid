@@ -1,14 +1,289 @@
-<div class="section section--white">
-  <h1 class="section__title ei-serif">{{ page.title }}</h1>
-  <div style="margin-top:24px;font-size:14px;line-height:1.9;color:var(--ink-body);max-width:720px;">
-    {{ page.content }}
+<div class="ei-password">
+
+  <div class="ei-password__inner">
+
+    <div class="ei-password__brand">
+      <a href="/" class="ei-password__logo ei-serif">Elara Ivy Co.</a>
+    </div>
+
+    <div class="ei-password__content">
+
+      <p class="ei-password__eyebrow">Coming Soon</p>
+
+      <h1 class="ei-password__headline ei-serif">
+        Something curated<br>is on its way.
+      </h1>
+
+      <p class="ei-password__subline">
+        We're carefully selecting the pieces that belong in your wardrobe.<br>
+        New collections, arriving soon.
+      </p>
+
+      <div class="ei-password__form-wrap">
+        <p class="ei-password__form-label">Be the first to know</p>
+
+        {% form 'customer', class: 'ei-password__form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter,password-page">
+
+          <div class="ei-password__input-row">
+            <input
+              type="email"
+              name="contact[email]"
+              id="ei-email"
+              class="ei-password__input"
+              placeholder="Your email address"
+              autocomplete="email"
+              required
+              aria-label="Email address"
+            >
+            <button type="submit" class="ei-password__btn">
+              Notify me
+            </button>
+          </div>
+
+          {% if form.posted_successfully? %}
+            <p class="ei-password__success">
+              You're on the list. We'll be in touch.
+            </p>
+          {% endif %}
+
+          {% if form.errors %}
+            <p class="ei-password__error">
+              {{ form.errors | default_errors }}
+            </p>
+          {% endif %}
+
+        {% endform %}
+      </div>
+
+    </div>
+
+    <div class="ei-password__footer">
+      <p class="ei-password__footer-text">Elara Ivy Co. &mdash; curated luxury, delivered.</p>
+      {% if shop.password_message != blank %}
+        <p class="ei-password__footer-text">{{ shop.password_message }}</p>
+      {% endif %}
+    </div>
+
   </div>
+
 </div>
+
+<style>
+  :root {
+    --ei-navy: #0D1B3E;
+    --ei-gold: #CFAE70;
+    --ei-blush: #F3C7D3;
+    --ei-periwinkle: #6E73B8;
+    --ei-ink-muted: #6B6B6B;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background-color: #FAFAF8;
+    min-height: 100vh;
+  }
+
+  .ei-password {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    background-color: #FAFAF8;
+    background-image: radial-gradient(ellipse at 20% 80%, rgba(243,199,211,0.18) 0%, transparent 55%),
+                      radial-gradient(ellipse at 80% 20%, rgba(207,174,112,0.10) 0%, transparent 55%);
+  }
+
+  .ei-password__inner {
+    max-width: 560px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .ei-password__brand {
+    width: 100%;
+  }
+
+  .ei-password__logo {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 22px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: var(--ei-navy);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .ei-password__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 100%;
+  }
+
+  .ei-password__eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ei-gold);
+  }
+
+  .ei-password__headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(36px, 6vw, 52px);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.2;
+    color: var(--ei-navy);
+    letter-spacing: 0.01em;
+  }
+
+  .ei-password__subline {
+    font-family: 'Jost', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--ei-ink-muted);
+    max-width: 420px;
+  }
+
+  .ei-password__form-wrap {
+    width: 100%;
+    max-width: 440px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .ei-password__form-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--ei-navy);
+  }
+
+  .ei-password__form {
+    width: 100%;
+  }
+
+  .ei-password__input-row {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    border: 1px solid rgba(13,27,62,0.2);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color 0.2s ease;
+  }
+
+  .ei-password__input-row:focus-within {
+    border-color: var(--ei-navy);
+  }
+
+  .ei-password__input {
+    flex: 1;
+    padding: 14px 18px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: var(--ei-navy);
+    background: #fff;
+    border: none;
+    outline: none;
+    min-width: 0;
+  }
+
+  .ei-password__input::placeholder {
+    color: #ADADAD;
+  }
+
+  .ei-password__btn {
+    padding: 14px 24px;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #fff;
+    background-color: var(--ei-navy);
+    border: none;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease;
+    flex-shrink: 0;
+  }
+
+  .ei-password__btn:hover {
+    background-color: var(--ei-periwinkle);
+  }
+
+  .ei-password__success {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    color: #2D6A4F;
+    letter-spacing: 0.05em;
+    margin-top: 10px;
+    padding: 10px 16px;
+    background: rgba(45,106,79,0.07);
+    border-radius: 2px;
+  }
+
+  .ei-password__error {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    color: #993C1D;
+    letter-spacing: 0.05em;
+    margin-top: 10px;
+  }
+
+  .ei-password__footer {
+    width: 100%;
+    padding-top: 16px;
+    border-top: 1px solid rgba(13,27,62,0.08);
+  }
+
+  .ei-password__footer-text {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    color: #ADADAD;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 480px) {
+    .ei-password__input-row {
+      flex-direction: column;
+      border-radius: 2px;
+    }
+
+    .ei-password__input {
+      border-bottom: 1px solid rgba(13,27,62,0.12);
+    }
+
+    .ei-password__btn {
+      padding: 14px;
+    }
+  }
+</style>
 
 {% schema %}
 {
-  "name": "Page",
+  "name": "Password page",
   "settings": [],
-  "presets": [{ "name": "Page" }]
+  "presets": [{ "name": "Password page" }]
 }
 {% endschema %}
+
