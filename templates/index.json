@@ -31,6 +31,76 @@
     },
     "designer_grid": {
       "type": "designer-grid",
+      "blocks": {
+        "designer_TnLhCz": {
+          "type": "designer",
+          "settings": {
+            "image": "shopify://shop_images/10822139.jpg",
+            "name": "Gucci",
+            "category": "ITALIAN LUXURY",
+            "description": "Where maximalism meets heritage. The house that redefined Italian glamour.",
+            "link_url": "shopify://collections/gucci"
+          }
+        },
+        "designer_LEgypb": {
+          "type": "designer",
+          "settings": {
+            "image": "shopify://shop_images/10247166.jpg",
+            "name": "Balenciaga",
+            "category": "AVANT-GARDE",
+            "description": "Pushing the boundaries of fashion with bold silhouettes and iconic streetwear.",
+            "link_url": "shopify://collections/balenciaga"
+          }
+        },
+        "designer_hmrjbf": {
+          "type": "designer",
+          "settings": {
+            "image": "shopify://shop_images/10758427.jpg",
+            "name": "Burberry",
+            "category": "BRITISH HERITAGE",
+            "description": "The definitive British luxury house. Timeless checks, iconic trench coats.",
+            "link_url": "shopify://collections/burberry"
+          }
+        },
+        "designer_BdURB4": {
+          "type": "designer",
+          "settings": {
+            "image": "shopify://shop_images/10831039.jpg",
+            "name": "Saint Laurent",
+            "category": "FRENCH LUXURY",
+            "description": "Effortless Parisian cool. Rock and roll edge with couture precision.",
+            "link_url": "shopify://collections/saint-laurent"
+          }
+        },
+        "designer_z48hpm": {
+          "type": "designer",
+          "settings": {
+            "image": "shopify://shop_images/10915338.jpg",
+            "name": "Versace",
+            "category": "ITALIAN FASHION",
+            "description": "Bold, sensual, unapologetic. The house of Medusa never whispers.",
+            "link_url": "shopify://collections/versace"
+          }
+        },
+        "designer_YrdAUQ": {
+          "type": "designer",
+          "settings": {
+            "image": "shopify://shop_images/10659363.jpg",
+            "name": "The Attico",
+            "category": "CONTEMPORARY LUXURY",
+            "description": "Milan's most wanted. Elevated eveningwear for the woman who owns the room.",
+            "link_url": "shopify://collections/the-attico"
+          }
+        }
+      },
+      "block_order": [
+        "designer_TnLhCz",
+        "designer_LEgypb",
+        "designer_hmrjbf",
+        "designer_BdURB4",
+        "designer_z48hpm",
+        "designer_YrdAUQ"
+      ],
       "settings": {
         "heading": "Shop by Designer",
         "subheading": "Every designer we carry is here for a reason. Meet the makers behind the pieces.",
