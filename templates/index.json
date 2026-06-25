@@ -85,7 +85,7 @@
         "designer_YrdAUQ": {
           "type": "designer",
           "settings": {
-            "image": "shopify://shop_images/10659363.jpg",
+            "image": "shopify://shop_images/10659353.jpg",
             "name": "The Attico",
             "category": "CONTEMPORARY LUXURY",
             "description": "Milan's most wanted. Elevated eveningwear for the woman who owns the room.",
@@ -109,6 +109,21 @@
     },
     "featured_products": {
       "type": "featured-products",
+      "blocks": {
+        "product_3eeWnM": {
+          "type": "product",
+          "settings": {
+            "image": "shopify://shop_images/9835322.jpg",
+            "designer": "Prada",
+            "title": "Alicia Bikini",
+            "price": "£195",
+            "show_badge": true
+          }
+        }
+      },
+      "block_order": [
+        "product_3eeWnM"
+      ],
       "settings": {
         "heading": "New In",
         "subheading": "The latest arrivals from across our designer roster, landing now.",
