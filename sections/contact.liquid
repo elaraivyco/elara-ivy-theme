@@ -1,0 +1,273 @@
+<div class="ei-contact">
+
+  <div class="ei-contact__hero">
+    <p class="ei-contact__eyebrow">Get in Touch</p>
+    <h1 class="ei-contact__headline">Contact Us</h1>
+    <p class="ei-contact__subline">We're here to help. Whether it's a question about an order, a styling query, or just to say hello — we'd love to hear from you.</p>
+  </div>
+
+  <div class="ei-contact__body">
+
+    <div class="ei-contact__info">
+      <div class="ei-contact__info-block">
+        <p class="ei-contact__info-label">Email</p>
+        <a href="mailto:shop@elaraivyco.com" class="ei-contact__info-value">shop@elaraivyco.com</a>
+        <p class="ei-contact__info-note">We aim to respond within 1–2 business days.</p>
+      </div>
+      <div class="ei-contact__info-block">
+        <p class="ei-contact__info-label">Hours</p>
+        <p class="ei-contact__info-value">Monday – Friday</p>
+        <p class="ei-contact__info-note">9:00 AM – 5:00 PM CST</p>
+      </div>
+      <div class="ei-contact__info-block">
+        <p class="ei-contact__info-label">Returns & Orders</p>
+        <p class="ei-contact__info-value">Order enquiries</p>
+        <p class="ei-contact__info-note">Please include your order number when reaching out.</p>
+      </div>
+    </div>
+
+    <div class="ei-contact__form-wrap">
+      <p class="ei-contact__form-heading">Send a message</p>
+      {% form 'contact', class: 'ei-contact__form' %}
+        {% if form.posted_successfully? %}
+          <div class="ei-contact__success">
+            <p>Thank you for reaching out. We'll be in touch within 1–2 business days.</p>
+          </div>
+        {% else %}
+          <div class="ei-contact__field">
+            <label for="ContactFormName">Full name</label>
+            <input type="text" id="ContactFormName" name="contact[name]" autocomplete="name" placeholder="Your name" required>
+          </div>
+          <div class="ei-contact__field">
+            <label for="ContactFormEmail">Email address</label>
+            <input type="email" id="ContactFormEmail" name="contact[email]" autocomplete="email" placeholder="your@email.com" required>
+          </div>
+          <div class="ei-contact__field">
+            <label for="ContactFormSubject">Subject</label>
+            <select id="ContactFormSubject" name="contact[subject]">
+              <option value="">Select a topic</option>
+              <option value="Order enquiry">Order enquiry</option>
+              <option value="Returns & refunds">Returns & refunds</option>
+              <option value="Styling advice">Styling advice</option>
+              <option value="General question">General question</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="ei-contact__field">
+            <label for="ContactFormMessage">Message</label>
+            <textarea id="ContactFormMessage" name="contact[body]" rows="5" placeholder="How can we help?" required></textarea>
+          </div>
+          <button type="submit" class="ei-contact__submit">Send message</button>
+        {% endif %}
+      {% endform %}
+    </div>
+
+  </div>
+
+</div>
+
+<style>
+  .ei-contact {
+    font-family: 'Jost', sans-serif;
+    color: #0D1B3E;
+  }
+
+  .ei-contact__hero {
+    background-color: #0D1B3E;
+    padding: 64px 48px 56px;
+    text-align: center;
+  }
+
+  .ei-contact__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #CFAE70;
+    margin-bottom: 12px;
+  }
+
+  .ei-contact__headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 300;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.15;
+    margin-bottom: 16px;
+  }
+
+  .ei-contact__subline {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.85;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .ei-contact__body {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 0;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 64px 48px;
+  }
+
+  .ei-contact__info {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+    padding-right: 48px;
+    border-right: 1px solid #EDE9E4;
+  }
+
+  .ei-contact__info-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #CFAE70;
+    margin-bottom: 8px;
+  }
+
+  .ei-contact__info-value {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    font-style: italic;
+    color: #0D1B3E;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  a.ei-contact__info-value:hover {
+    color: #6E73B8;
+  }
+
+  .ei-contact__info-note {
+    font-size: 12px;
+    font-weight: 300;
+    color: #999;
+    line-height: 1.6;
+  }
+
+  .ei-contact__form-wrap {
+    padding-left: 48px;
+  }
+
+  .ei-contact__form-heading {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #0D1B3E;
+    margin-bottom: 24px;
+  }
+
+  .ei-contact__field {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .ei-contact__field label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #666;
+  }
+
+  .ei-contact__field input,
+  .ei-contact__field select,
+  .ei-contact__field textarea {
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    color: #0D1B3E;
+    background: #FAFAF8;
+    border: 1px solid #E8E4DF;
+    border-radius: 2px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s ease;
+    width: 100%;
+  }
+
+  .ei-contact__field input:focus,
+  .ei-contact__field select:focus,
+  .ei-contact__field textarea:focus {
+    border-color: #0D1B3E;
+  }
+
+  .ei-contact__field textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .ei-contact__submit {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #0D1B3E;
+    border: none;
+    padding: 14px 32px;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    margin-top: 8px;
+  }
+
+  .ei-contact__submit:hover {
+    background: #6E73B8;
+  }
+
+  .ei-contact__success {
+    background: rgba(13,27,62,0.04);
+    border: 1px solid #E8E4DF;
+    border-left: 3px solid #CFAE70;
+    padding: 20px 24px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #0D1B3E;
+    line-height: 1.7;
+    border-radius: 2px;
+  }
+
+  @media (max-width: 768px) {
+    .ei-contact__body {
+      grid-template-columns: 1fr;
+      padding: 40px 24px;
+    }
+    .ei-contact__info {
+      border-right: none;
+      border-bottom: 1px solid #EDE9E4;
+      padding-right: 0;
+      padding-bottom: 36px;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .ei-contact__info-block {
+      flex: 1;
+      min-width: 140px;
+    }
+    .ei-contact__form-wrap {
+      padding-left: 0;
+      padding-top: 36px;
+    }
+    .ei-contact__hero {
+      padding: 40px 24px 32px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Contact",
+  "settings": [],
+  "presets": [{ "name": "Contact" }]
+}
+{% endschema %}
