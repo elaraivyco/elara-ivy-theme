@@ -1,0 +1,276 @@
+<div class="ei-designers">
+
+  <div class="ei-designers__hero">
+    <p class="ei-designers__eyebrow">Our Curation</p>
+    <h1 class="ei-designers__headline">The Designers</h1>
+    <p class="ei-designers__subline">Every label we carry is here for a reason. A considered edit of the world's most exceptional designers — spanning heritage houses, contemporary icons, and emerging voices.</p>
+  </div>
+
+  <div class="ei-designers__grid">
+
+    {%- assign designer_collections = collections | where: 'handle', 'adidas'
+      | concat: collections | where: 'handle', 'alexander-wang'
+      | concat: collections | where: 'handle', 'alice-olivia'
+      | concat: collections | where: 'handle', 'balenciaga'
+      | concat: collections | where: 'handle', 'birkenstock'
+      | concat: collections | where: 'handle', 'bottega-veneta'
+      | concat: collections | where: 'handle', 'burberry'
+      | concat: collections | where: 'handle', 'cartier'
+      | concat: collections | where: 'handle', 'casablanca'
+      | concat: collections | where: 'handle', 'chanel'
+      | concat: collections | where: 'handle', 'christian-dior'
+      | concat: collections | where: 'handle', 'christian-louboutin'
+      | concat: collections | where: 'handle', 'coach'
+      | concat: collections | where: 'handle', 'cult-gaia'
+      | concat: collections | where: 'handle', 'furla'
+      | concat: collections | where: 'handle', 'golden-goose'
+      | concat: collections | where: 'handle', 'gucci'
+      | concat: collections | where: 'handle', 'hermes'
+      | concat: collections | where: 'handle', 'hunza-g'
+      | concat: collections | where: 'handle', 'kate-spade'
+      | concat: collections | where: 'handle', 'khaite'
+      | concat: collections | where: 'handle', 'loro-piana'
+      | concat: collections | where: 'handle', 'louis-vuitton'
+      | concat: collections | where: 'handle', 'marc-jacobs'
+      | concat: collections | where: 'handle', 'max-mara'
+      | concat: collections | where: 'handle', 'michael-kors'
+      | concat: collections | where: 'handle', 'miu-miu'
+      | concat: collections | where: 'handle', 'paige'
+      | concat: collections | where: 'handle', 'philosophy'
+      | concat: collections | where: 'handle', 'prada'
+      | concat: collections | where: 'handle', 'saint-laurent'
+      | concat: collections | where: 'handle', 'stella-mccartney'
+      | concat: collections | where: 'handle', 'the-attico'
+      | concat: collections | where: 'handle', 'the-row'
+      | concat: collections | where: 'handle', 'tiffany-co'
+      | concat: collections | where: 'handle', 'tom-ford'
+      | concat: collections | where: 'handle', 'tory-burch'
+      | concat: collections | where: 'handle', 'uma-wang'
+      | concat: collections | where: 'handle', 'versace'
+      | concat: collections | where: 'handle', 'victorias-secret'
+      | concat: collections | where: 'handle', 'vivienne-westwood'
+      | concat: collections | where: 'handle', 'wild-cashmere'
+      | concat: collections | where: 'handle', 'windsor'
+    -%}
+
+    {%- for col in designer_collections -%}
+      {%- assign has_products = false -%}
+      {%- if col.products_count > 0 -%}{%- assign has_products = true -%}{%- endif -%}
+      <a href="{{ col.url }}" class="ei-designers__card{% unless has_products %} ei-designers__card--empty{% endunless %}">
+        <div class="ei-designers__card-img">
+          {%- if col.image -%}
+            <img
+              src="{{ col.image | img_url: '600x800', crop: 'center' }}"
+              alt="{{ col.title }}"
+              loading="lazy"
+              width="600"
+              height="800"
+            >
+          {%- else -%}
+            <div class="ei-designers__card-placeholder">
+              <span class="ei-designers__card-initials">{{ col.title | slice: 0 }}</span>
+            </div>
+          {%- endif -%}
+          {%- if has_products -%}
+            <div class="ei-designers__card-count">{{ col.products_count }} pieces</div>
+          {%- else -%}
+            <div class="ei-designers__card-coming">Coming soon</div>
+          {%- endif -%}
+        </div>
+        <div class="ei-designers__card-body">
+          <p class="ei-designers__card-name">{{ col.title }}</p>
+          <p class="ei-designers__card-cta">Shop collection →</p>
+        </div>
+      </a>
+    {%- endfor -%}
+
+  </div>
+
+</div>
+
+<style>
+  .ei-designers {
+    font-family: 'Jost', sans-serif;
+    color: #0D1B3E;
+  }
+
+  .ei-designers__hero {
+    background-color: #0D1B3E;
+    padding: 64px 48px 56px;
+    text-align: center;
+    background-image: radial-gradient(ellipse at 80% 20%, rgba(207,174,112,0.08) 0%, transparent 55%),
+                      radial-gradient(ellipse at 20% 80%, rgba(243,199,211,0.06) 0%, transparent 55%);
+  }
+
+  .ei-designers__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #CFAE70;
+    margin-bottom: 12px;
+  }
+
+  .ei-designers__headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 300;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .ei-designers__subline {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.85;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .ei-designers__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background-color: #E8E4DF;
+    padding: 0;
+  }
+
+  .ei-designers__card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #ffffff;
+    transition: background 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ei-designers__card:hover {
+    background: #FAFAF8;
+  }
+
+  .ei-designers__card:hover .ei-designers__card-cta {
+    color: #CFAE70;
+  }
+
+  .ei-designers__card:hover .ei-designers__card-img img {
+    transform: scale(1.03);
+  }
+
+  .ei-designers__card--empty {
+    opacity: 0.5;
+  }
+
+  .ei-designers__card--empty:hover {
+    opacity: 0.65;
+  }
+
+  .ei-designers__card-img {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #F5F3F0;
+  }
+
+  .ei-designers__card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .ei-designers__card-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F0EDE8;
+  }
+
+  .ei-designers__card-initials {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 72px;
+    font-weight: 300;
+    font-style: italic;
+    color: #D4CFC8;
+  }
+
+  .ei-designers__card-count {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: rgba(13,27,62,0.7);
+    padding: 4px 10px;
+    border-radius: 2px;
+    backdrop-filter: blur(4px);
+  }
+
+  .ei-designers__card-coming {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #CFAE70;
+    background: rgba(13,27,62,0.6);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .ei-designers__card-body {
+    padding: 16px 20px 20px;
+    border-top: 1px solid #F0EDE8;
+  }
+
+  .ei-designers__card-name {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: italic;
+    color: #0D1B3E;
+    margin-bottom: 4px;
+  }
+
+  .ei-designers__card-cta {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #999;
+    transition: color 0.2s ease;
+  }
+
+  @media (max-width: 1024px) {
+    .ei-designers__grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .ei-designers__hero {
+      padding: 48px 32px 40px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ei-designers__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .ei-designers__hero {
+      padding: 40px 24px 32px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Designers",
+  "settings": [],
+  "presets": [{ "name": "Designers" }]
+}
+{% endschema %}
