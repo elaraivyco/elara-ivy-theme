@@ -1,0 +1,6 @@
+{
+  "sections": {
+    "main": { "type": "designers", "settings": {} }
+  },
+  "order": ["main"]
+}
