@@ -1,0 +1,373 @@
+{%- assign new_in = collections['new-in'] -%}
+
+<div class="ei-new-in">
+
+  <div class="ei-new-in__hero">
+    <p class="ei-new-in__eyebrow">Just Arrived</p>
+    <h1 class="ei-new-in__headline">New In</h1>
+    <p class="ei-new-in__subline">The latest arrivals, carefully considered. New pieces from the world's most coveted designers, arriving weekly.</p>
+    <div class="ei-new-in__meta">
+      <span>{{ new_in.products_count }} pieces</span>
+      <span class="ei-new-in__dot">·</span>
+      <span>Updated weekly</span>
+      <span class="ei-new-in__dot">·</span>
+      <span>Complimentary shipping over £200</span>
+    </div>
+  </div>
+
+  <div class="ei-new-in__filter-bar">
+    <div class="ei-new-in__filters">
+      <span class="ei-new-in__filter-label">Filter</span>
+      <button class="ei-new-in__pill ei-new-in__pill--active" data-filter="all">All</button>
+      <button class="ei-new-in__pill" data-filter="Bags">Bags</button>
+      <button class="ei-new-in__pill" data-filter="Shoes">Shoes</button>
+      <button class="ei-new-in__pill" data-filter="Clothing">Clothing</button>
+      <button class="ei-new-in__pill" data-filter="Accessories">Accessories</button>
+      <button class="ei-new-in__pill" data-filter="Swimwear">Swimwear</button>
+    </div>
+    <div class="ei-new-in__sort">
+      <span class="ei-new-in__filter-label">Sort</span>
+      <select class="ei-new-in__sort-select" onchange="window.location=this.value">
+        <option value="?sort_by=created-descending"{% if collection.sort_by == 'created-descending' %} selected{% endif %}>Newest first</option>
+        <option value="?sort_by=price-ascending"{% if collection.sort_by == 'price-ascending' %} selected{% endif %}>Price: low to high</option>
+        <option value="?sort_by=price-descending"{% if collection.sort_by == 'price-descending' %} selected{% endif %}>Price: high to low</option>
+        <option value="?sort_by=title-ascending"{% if collection.sort_by == 'title-ascending' %} selected{% endif %}>Name A–Z</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="ei-new-in__grid" id="ei-new-in-grid">
+    {%- for product in new_in.products -%}
+      {%- assign product_tags = product.tags | join: ',' -%}
+      <a
+        href="{{ product.url }}"
+        class="ei-new-in__card"
+        data-tags="{{ product_tags }}"
+      >
+        <div class="ei-new-in__card-img">
+          {%- if product.featured_image -%}
+            <img
+              src="{{ product.featured_image | img_url: '600x800', crop: 'center' }}"
+              alt="{{ product.title | escape }}"
+              loading="lazy"
+              width="600"
+              height="800"
+            >
+          {%- else -%}
+            <div class="ei-new-in__card-placeholder"></div>
+          {%- endif -%}
+          <div class="ei-new-in__card-badge">New In</div>
+        </div>
+        <div class="ei-new-in__card-body">
+          <p class="ei-new-in__card-vendor">{{ product.vendor }}</p>
+          <p class="ei-new-in__card-title">{{ product.title }}</p>
+          <p class="ei-new-in__card-price">
+            {%- if product.price_varies -%}
+              From {{ product.price_min | money }}
+            {%- else -%}
+              {{ product.price | money }}
+            {%- endif -%}
+          </p>
+        </div>
+      </a>
+    {%- else -%}
+      <div class="ei-new-in__empty">
+        <p>New arrivals coming soon.</p>
+      </div>
+    {%- endfor -%}
+  </div>
+
+  {%- if new_in.products_count == 0 -%}{% else %}
+  <div class="ei-new-in__footer">
+    <a href="/collections/all" class="ei-new-in__view-all">View all products</a>
+  </div>
+  {%- endif -%}
+
+</div>
+
+<style>
+  .ei-new-in {
+    font-family: 'Jost', sans-serif;
+    color: #0D1B3E;
+  }
+
+  .ei-new-in__hero {
+    background-color: #0D1B3E;
+    padding: 64px 48px 56px;
+    text-align: center;
+  }
+
+  .ei-new-in__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: #CFAE70;
+    margin-bottom: 12px;
+  }
+
+  .ei-new-in__headline {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 300;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .ei-new-in__subline {
+    font-size: 14px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.85;
+    max-width: 480px;
+    margin: 0 auto 20px;
+  }
+
+  .ei-new-in__meta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+  }
+
+  .ei-new-in__dot {
+    opacity: 0.4;
+  }
+
+  .ei-new-in__filter-bar {
+    background: #F5F3F0;
+    padding: 14px 48px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #E8E4DF;
+  }
+
+  .ei-new-in__filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+
+  .ei-new-in__filter-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #999;
+    margin-right: 4px;
+  }
+
+  .ei-new-in__pill {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    border: 1px solid #D8D4CE;
+    background: transparent;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .ei-new-in__pill:hover {
+    border-color: #0D1B3E;
+    color: #0D1B3E;
+  }
+
+  .ei-new-in__pill--active {
+    background: #0D1B3E;
+    color: #ffffff;
+    border-color: #0D1B3E;
+  }
+
+  .ei-new-in__sort {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .ei-new-in__sort-select {
+    font-family: 'Jost', sans-serif;
+    font-size: 12px;
+    border: 1px solid #D8D4CE;
+    border-radius: 2px;
+    padding: 6px 12px;
+    background: #ffffff;
+    color: #0D1B3E;
+    outline: none;
+  }
+
+  .ei-new-in__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: #E8E4DF;
+    padding: 1px;
+  }
+
+  .ei-new-in__card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #ffffff;
+    transition: background 0.2s ease;
+  }
+
+  .ei-new-in__card:hover {
+    background: #FAFAF8;
+  }
+
+  .ei-new-in__card:hover img {
+    transform: scale(1.03);
+  }
+
+  .ei-new-in__card.ei-hidden {
+    display: none;
+  }
+
+  .ei-new-in__card-img {
+    position: relative;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #F5F3F0;
+  }
+
+  .ei-new-in__card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+  }
+
+  .ei-new-in__card-placeholder {
+    width: 100%;
+    height: 100%;
+    background: #F0EDE8;
+  }
+
+  .ei-new-in__card-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #CFAE70;
+    background: rgba(13,27,62,0.8);
+    padding: 4px 10px;
+    border-radius: 2px;
+  }
+
+  .ei-new-in__card-body {
+    padding: 16px 20px 20px;
+    border-top: 1px solid #F0EDE8;
+  }
+
+  .ei-new-in__card-vendor {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #CFAE70;
+    margin-bottom: 4px;
+  }
+
+  .ei-new-in__card-title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 16px;
+    font-style: italic;
+    color: #0D1B3E;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .ei-new-in__card-price {
+    font-size: 13px;
+    font-weight: 300;
+    color: #666;
+  }
+
+  .ei-new-in__empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 80px 24px;
+    font-size: 14px;
+    color: #999;
+    background: #ffffff;
+  }
+
+  .ei-new-in__footer {
+    text-align: center;
+    padding: 40px 24px;
+    border-top: 1px solid #E8E4DF;
+  }
+
+  .ei-new-in__view-all {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #0D1B3E;
+    text-decoration: none;
+    border-bottom: 1px solid #CFAE70;
+    padding-bottom: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .ei-new-in__view-all:hover {
+    color: #CFAE70;
+  }
+
+  @media (max-width: 768px) {
+    .ei-new-in__hero { padding: 40px 24px 32px; }
+    .ei-new-in__filter-bar { padding: 12px 24px; }
+    .ei-new-in__grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  @media (max-width: 480px) {
+    .ei-new-in__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const pills = document.querySelectorAll('.ei-new-in__pill');
+    const cards = document.querySelectorAll('.ei-new-in__card');
+
+    pills.forEach(function(pill) {
+      pill.addEventListener('click', function() {
+        pills.forEach(function(p) { p.classList.remove('ei-new-in__pill--active'); });
+        pill.classList.add('ei-new-in__pill--active');
+
+        const filter = pill.getAttribute('data-filter');
+        cards.forEach(function(card) {
+          if (filter === 'all') {
+            card.classList.remove('ei-hidden');
+          } else {
+            const tags = card.getAttribute('data-tags') || '';
+            if (tags.toLowerCase().indexOf(filter.toLowerCase()) > -1) {
+              card.classList.remove('ei-hidden');
+            } else {
+              card.classList.add('ei-hidden');
+            }
+          }
+        });
+      });
+    });
+  });
+</script>
+
+{% schema %}
+{
+  "name": "New In",
+  "settings": [],
+  "presets": [{ "name": "New In" }]
+}
+{% endschema %}
