@@ -1,46 +1,44 @@
 {%- assign clothing = collections['clothing'] -%}
 
-<div class="ei-collection">
-
-  <div class="ei-collection__hero">
-    <p class="ei-collection__eyebrow">Ready-to-wear</p>
-    <h1 class="ei-collection__headline">Clothing</h1>
-    <p class="ei-collection__subline">Considered pieces for every occasion. Curated ready-to-wear from the world's most exceptional designers.</p>
-    <div class="ei-collection__meta">
+<div class="ei-cl">
+  <div class="ei-cl__hero">
+    <p class="ei-cl__eyebrow">Ready-to-wear</p>
+    <h1 class="ei-cl__headline">Clothing</h1>
+    <p class="ei-cl__subline">Considered pieces for every occasion. Curated ready-to-wear from the world's most exceptional designers.</p>
+    <div class="ei-cl__meta">
       <span>{{ clothing.products_count }} pieces</span>
-      <span class="ei-collection__dot">·</span>
+      <span class="ei-cl__dot">·</span>
       <span>Complimentary shipping over £200</span>
-      <span class="ei-collection__dot">·</span>
+      <span class="ei-cl__dot">·</span>
       <span>Returns within 14 days</span>
     </div>
   </div>
 
-  <div class="ei-collection__filter-bar">
-    <div class="ei-collection__filters">
-      <span class="ei-collection__filter-label">Filter</span>
-      <button class="ei-collection__pill ei-collection__pill--active" data-filter="all">All</button>
-      <button class="ei-collection__pill" data-filter="denim">Denim</button>
-      <button class="ei-collection__pill" data-filter="tops">Tops</button>
-      <button class="ei-collection__pill" data-filter="bottoms">Bottoms</button>
-      <button class="ei-collection__pill" data-filter="dresses">Dresses</button>
-      <button class="ei-collection__pill" data-filter="outerwear">Outerwear</button>
-      <button class="ei-collection__pill" data-filter="knitwear">Knitwear</button>
-      <button class="ei-collection__pill" data-filter="swimwear">Swimwear</button>
-      <button class="ei-collection__pill" data-filter="underwear">Underwear</button>
+  <div class="ei-cl__filter-bar">
+    <div class="ei-cl__filters">
+      <span class="ei-cl__filter-label">Filter</span>
+      <button class="ei-cl__pill ei-cl__pill--active" data-filter="all">All</button>
+      <button class="ei-cl__pill" data-filter="denim">Denim</button>
+      <button class="ei-cl__pill" data-filter="tops">Tops</button>
+      <button class="ei-cl__pill" data-filter="bottoms">Bottoms</button>
+      <button class="ei-cl__pill" data-filter="dresses">Dresses</button>
+      <button class="ei-cl__pill" data-filter="outerwear">Outerwear</button>
+      <button class="ei-cl__pill" data-filter="knitwear">Knitwear</button>
+      <button class="ei-cl__pill" data-filter="swimwear">Swimwear</button>
+      <button class="ei-cl__pill" data-filter="underwear">Underwear</button>
     </div>
-    <div class="ei-collection__sort">
-      <span class="ei-collection__filter-label">Sort</span>
-      <select class="ei-collection__sort-select" id="ei-sort">
+    <div class="ei-cl__sort">
+      <span class="ei-cl__filter-label">Sort</span>
+      <select class="ei-cl__sort-select" id="ei-cl-sort">
         <option value="best-selling">Best selling</option>
         <option value="price-asc">Price: low to high</option>
         <option value="price-desc">Price: high to low</option>
         <option value="title-asc">Name A–Z</option>
-        <option value="newest">Newest first</option>
       </select>
     </div>
   </div>
 
-  <div class="ei-collection__grid" id="ei-grid">
+  <div class="ei-cl__grid" id="ei-cl-grid">
     {%- for product in clothing.products -%}
       {%- assign tags = product.tags | join: ',' | downcase -%}
       {%- assign ptype = product.type | downcase -%}
@@ -53,35 +51,91 @@
       {%- if tags contains 'knit' or ptype contains 'knit' or ptype contains 'sweater' or ptype contains 'cardigan' -%}{%- assign fv = fv | append: 'knitwear ' -%}{%- endif -%}
       {%- if tags contains 'swim' or ptype contains 'swim' or ptype contains 'bikini' -%}{%- assign fv = fv | append: 'swimwear ' -%}{%- endif -%}
       {%- if tags contains 'underwear' or ptype contains 'underwear' or ptype contains 'lingerie' or ptype contains 'bra' or ptype contains 'brief' -%}{%- assign fv = fv | append: 'underwear ' -%}{%- endif -%}
-
-      <a href="{{ product.url }}" class="ei-collection__card" data-filter-vals="{{ fv | strip }}" data-price="{{ product.price }}" data-title="{{ product.title | escape }}">
-        <div class="ei-collection__card-img">
+      <a href="{{ product.url }}" class="ei-cl__card" data-fv="{{ fv | strip }}" data-price="{{ product.price }}" data-title="{{ product.title | escape }}">
+        <div class="ei-cl__card-img">
           {%- if product.featured_image -%}
             <img src="{{ product.featured_image | img_url: '600x800', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="600" height="800">
           {%- else -%}
-            <div class="ei-collection__card-placeholder"></div>
+            <div class="ei-cl__card-placeholder"></div>
           {%- endif -%}
-          {%- if product.tags contains 'new-in' or product.tags contains 'New In' -%}
-            <div class="ei-collection__card-badge">New In</div>
-          {%- endif -%}
+          {%- if product.tags contains 'New In' -%}<div class="ei-cl__card-badge">New In</div>{%- endif -%}
         </div>
-        <div class="ei-collection__card-body">
-          <p class="ei-collection__card-vendor">{{ product.vendor }}</p>
-          <p class="ei-collection__card-title">{{ product.title }}</p>
-          <p class="ei-collection__card-price">
-            {%- if product.price_varies -%}From {{ product.price_min | money }}{%- else -%}{{ product.price | money }}{%- endif -%}
-          </p>
+        <div class="ei-cl__card-body">
+          <p class="ei-cl__card-vendor">{{ product.vendor }}</p>
+          <p class="ei-cl__card-title">{{ product.title }}</p>
+          <p class="ei-cl__card-price">{%- if product.price_varies -%}From {{ product.price_min | money }}{%- else -%}{{ product.price | money }}{%- endif -%}</p>
         </div>
       </a>
     {%- else -%}
-      <div class="ei-collection__empty"><p>No products found.</p></div>
+      <div class="ei-cl__empty"><p>No products found.</p></div>
     {%- endfor -%}
   </div>
-
 </div>
 
-{% render 'collection-styles' %}
-{% render 'collection-scripts' %}
+<style>
+.ei-cl{font-family:'Jost',sans-serif;color:#0D1B3E}
+.ei-cl__hero{background:#0D1B3E;padding:64px 48px 56px;text-align:center;background-image:radial-gradient(ellipse at 80% 20%,rgba(207,174,112,.07) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(243,199,211,.05) 0%,transparent 55%)}
+.ei-cl__eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:#CFAE70;margin-bottom:12px}
+.ei-cl__headline{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(40px,6vw,64px);font-weight:300;font-style:italic;color:#fff;line-height:1.1;margin-bottom:16px}
+.ei-cl__subline{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.85;max-width:520px;margin:0 auto 20px}
+.ei-cl__meta{display:flex;align-items:center;justify-content:center;gap:12px;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.35);text-transform:uppercase;flex-wrap:wrap}
+.ei-cl__dot{opacity:.4}
+.ei-cl__filter-bar{background:#F5F3F0;padding:14px 48px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid #E8E4DF;position:sticky;top:0;z-index:10}
+.ei-cl__filters{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap}
+.ei-cl__filter-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#999;margin-right:4px;flex-shrink:0}
+.ei-cl__pill{font-family:'Jost',sans-serif;font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid #D8D4CE;background:transparent;color:#666;cursor:pointer;transition:all .15s ease;white-space:nowrap}
+.ei-cl__pill:hover{border-color:#0D1B3E;color:#0D1B3E}
+.ei-cl__pill--active{background:#0D1B3E;color:#fff;border-color:#0D1B3E}
+.ei-cl__sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ei-cl__sort-select{font-family:'Jost',sans-serif;font-size:12px;border:1px solid #D8D4CE;border-radius:2px;padding:6px 12px;background:#fff;color:#0D1B3E;outline:none}
+.ei-cl__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E4DF;padding:1px}
+.ei-cl__card{display:block;text-decoration:none;color:inherit;background:#fff;transition:background .2s ease}
+.ei-cl__card:hover{background:#FAFAF8}
+.ei-cl__card:hover img{transform:scale(1.03)}
+.ei-cl__card.ei-hidden{display:none}
+.ei-cl__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0}
+.ei-cl__card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.ei-cl__card-placeholder{width:100%;height:100%;background:#F0EDE8}
+.ei-cl__card-badge{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;background:rgba(13,27,62,.8);padding:4px 10px;border-radius:2px}
+.ei-cl__card-body{padding:16px 20px 20px;border-top:1px solid #F0EDE8}
+.ei-cl__card-vendor{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#0D1B3E;margin-bottom:4px}
+.ei-cl__card-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;font-style:italic;color:#0D1B3E;margin-bottom:6px;line-height:1.3}
+.ei-cl__card-price{font-size:14px;font-weight:300;color:#666}
+.ei-cl__empty{grid-column:1/-1;text-align:center;padding:80px 24px;font-size:14px;color:#999;background:#fff}
+@media(max-width:768px){.ei-cl__hero{padding:40px 24px 32px}.ei-cl__filter-bar{padding:12px 16px}.ei-cl__grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.ei-cl__grid{grid-template-columns:1fr}}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var pills=document.querySelectorAll('.ei-cl__pill');
+  var cards=Array.from(document.querySelectorAll('.ei-cl__card'));
+  var sort=document.getElementById('ei-cl-sort');
+  var grid=document.getElementById('ei-cl-grid');
+  pills.forEach(function(pill){
+    pill.addEventListener('click',function(){
+      pills.forEach(function(p){p.classList.remove('ei-cl__pill--active')});
+      pill.classList.add('ei-cl__pill--active');
+      var f=pill.getAttribute('data-filter');
+      cards.forEach(function(c){
+        if(f==='all'){c.classList.remove('ei-hidden')}
+        else{var v=c.getAttribute('data-fv')||'';v.indexOf(f)>-1?c.classList.remove('ei-hidden'):c.classList.add('ei-hidden')}
+      });
+    });
+  });
+  if(sort){sort.addEventListener('change',function(){
+    var m=this.value;
+    var visible=cards.filter(function(c){return!c.classList.contains('ei-hidden')});
+    visible.sort(function(a,b){
+      if(m==='price-asc')return parseInt(a.dataset.price)-parseInt(b.dataset.price);
+      if(m==='price-desc')return parseInt(b.dataset.price)-parseInt(a.dataset.price);
+      if(m==='title-asc')return a.dataset.title.localeCompare(b.dataset.title);
+      return 0;
+    });
+    visible.forEach(function(c){grid.appendChild(c)});
+  });}
+});
+</script>
 
 {% schema %}
 {
