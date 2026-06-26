@@ -84,19 +84,19 @@
 .ei-acc__pill--active{background:#0D1B3E;color:#fff;border-color:#0D1B3E}
 .ei-acc__sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .ei-acc__sort-select{font-family:'Jost',sans-serif;font-size:12px;border:1px solid #D8D4CE;border-radius:2px;padding:6px 12px;background:#fff;color:#0D1B3E;outline:none}
-.ei-acc__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E4DF;padding:1px}
+.ei-acc__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;background:transparent;padding:24px 48px}
 .ei-acc__card{display:block;text-decoration:none;color:inherit;background:#fff;transition:background .2s ease}
 .ei-acc__card:hover{background:#FAFAF8}
 .ei-acc__card:hover img{transform:scale(1.03)}
 .ei-acc__card.ei-hidden{display:none}
-.ei-acc__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0}
+.ei-acc__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0;max-height:320px}
 .ei-acc__card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
 .ei-acc__card-placeholder{width:100%;height:100%;background:#F0EDE8}
 .ei-acc__card-badge{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;background:rgba(13,27,62,.8);padding:4px 10px;border-radius:2px}
-.ei-acc__card-body{padding:16px 20px 20px;border-top:1px solid #F0EDE8}
-.ei-acc__card-vendor{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#0D1B3E;margin-bottom:4px}
+.ei-acc__card-body{padding:14px 16px 16px;border-top:2px solid #0D1B3E;background:#ffffff}
+.ei-acc__card-vendor{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;margin-bottom:4px;font-weight:500}
 .ei-acc__card-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;font-style:italic;color:#0D1B3E;margin-bottom:6px;line-height:1.3}
-.ei-acc__card-price{font-size:14px;font-weight:300;color:#666}
+.ei-acc__card-price{font-size:13px;font-weight:500;color:#0D1B3E;letter-spacing:.02em}
 .ei-acc__empty{grid-column:1/-1;text-align:center;padding:80px 24px;font-size:14px;color:#999;background:#fff}
 @media(max-width:768px){.ei-acc__hero{padding:40px 24px 32px}.ei-acc__filter-bar{padding:12px 16px}.ei-acc__grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.ei-acc__grid{grid-template-columns:1fr}}
@@ -140,3 +140,4 @@ document.addEventListener('DOMContentLoaded',function(){
   "presets": [{ "name": "Accessories" }]
 }
 {% endschema %}
+
