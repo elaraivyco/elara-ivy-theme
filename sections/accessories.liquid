@@ -1,0 +1,142 @@
+{%- assign acc = collections['accessories'] -%}
+
+<div class="ei-acc">
+  <div class="ei-acc__hero">
+    <p class="ei-acc__eyebrow">The Finishing Touch</p>
+    <h1 class="ei-acc__headline">Accessories</h1>
+    <p class="ei-acc__subline">The details that define an outfit. Bags, jewellery, scarves and more from the world's most coveted houses.</p>
+    <div class="ei-acc__meta">
+      <span>{{ acc.products_count }} pieces</span>
+      <span class="ei-acc__dot">·</span>
+      <span>Complimentary shipping over £200</span>
+      <span class="ei-acc__dot">·</span>
+      <span>Returns within 14 days</span>
+    </div>
+  </div>
+
+  <div class="ei-acc__filter-bar">
+    <div class="ei-acc__filters">
+      <span class="ei-acc__filter-label">Filter</span>
+      <button class="ei-acc__pill ei-acc__pill--active" data-filter="all">All</button>
+      <button class="ei-acc__pill" data-filter="bags">Bags</button>
+      <button class="ei-acc__pill" data-filter="sunglasses">Sunglasses</button>
+      <button class="ei-acc__pill" data-filter="scarves">Scarves</button>
+      <button class="ei-acc__pill" data-filter="jewellery">Jewellery</button>
+      <button class="ei-acc__pill" data-filter="belts">Belts</button>
+      <button class="ei-acc__pill" data-filter="wallets">Wallets</button>
+    </div>
+    <div class="ei-acc__sort">
+      <span class="ei-acc__filter-label">Sort</span>
+      <select class="ei-acc__sort-select" id="ei-acc-sort">
+        <option value="best-selling">Best selling</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+        <option value="title-asc">Name A–Z</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="ei-acc__grid" id="ei-acc-grid">
+    {%- for product in acc.products -%}
+      {%- assign tags = product.tags | join: ',' | downcase -%}
+      {%- assign ptype = product.type | downcase -%}
+      {%- assign fv = '' -%}
+      {%- if tags contains 'bag' or ptype contains 'bag' or ptype contains 'tote' or ptype contains 'handbag' or ptype contains 'clutch' or ptype contains 'crossbody' or ptype contains 'backpack' or ptype contains 'satchel' -%}{%- assign fv = fv | append: 'bags ' -%}{%- endif -%}
+      {%- if tags contains 'sunglass' or ptype contains 'sunglass' -%}{%- assign fv = fv | append: 'sunglasses ' -%}{%- endif -%}
+      {%- if tags contains 'scarf' or ptype contains 'scarf' -%}{%- assign fv = fv | append: 'scarves ' -%}{%- endif -%}
+      {%- if tags contains 'jewel' or ptype contains 'jewel' or ptype contains 'necklace' or ptype contains 'earring' or ptype contains 'ring' or ptype contains 'bracelet' -%}{%- assign fv = fv | append: 'jewellery ' -%}{%- endif -%}
+      {%- if tags contains 'belt' or ptype contains 'belt' -%}{%- assign fv = fv | append: 'belts ' -%}{%- endif -%}
+      {%- if tags contains 'wallet' or ptype contains 'wallet' or ptype contains 'cardholder' or ptype contains 'purse' -%}{%- assign fv = fv | append: 'wallets ' -%}{%- endif -%}
+      <a href="{{ product.url }}" class="ei-acc__card" data-fv="{{ fv | strip }}" data-price="{{ product.price }}" data-title="{{ product.title | escape }}">
+        <div class="ei-acc__card-img">
+          {%- if product.featured_image -%}
+            <img src="{{ product.featured_image | img_url: '600x800', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="600" height="800">
+          {%- else -%}
+            <div class="ei-acc__card-placeholder"></div>
+          {%- endif -%}
+          {%- if product.tags contains 'New In' -%}<div class="ei-acc__card-badge">New In</div>{%- endif -%}
+        </div>
+        <div class="ei-acc__card-body">
+          <p class="ei-acc__card-vendor">{{ product.vendor }}</p>
+          <p class="ei-acc__card-title">{{ product.title }}</p>
+          <p class="ei-acc__card-price">{%- if product.price_varies -%}From {{ product.price_min | money }}{%- else -%}{{ product.price | money }}{%- endif -%}</p>
+        </div>
+      </a>
+    {%- else -%}
+      <div class="ei-acc__empty"><p>No products found.</p></div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+.ei-acc{font-family:'Jost',sans-serif;color:#0D1B3E}
+.ei-acc__hero{background:#0D1B3E;padding:64px 48px 56px;text-align:center;background-image:radial-gradient(ellipse at 80% 20%,rgba(207,174,112,.07) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(243,199,211,.05) 0%,transparent 55%)}
+.ei-acc__eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:#CFAE70;margin-bottom:12px}
+.ei-acc__headline{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(40px,6vw,64px);font-weight:300;font-style:italic;color:#fff;line-height:1.1;margin-bottom:16px}
+.ei-acc__subline{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.85;max-width:520px;margin:0 auto 20px}
+.ei-acc__meta{display:flex;align-items:center;justify-content:center;gap:12px;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.35);text-transform:uppercase;flex-wrap:wrap}
+.ei-acc__dot{opacity:.4}
+.ei-acc__filter-bar{background:#F5F3F0;padding:14px 48px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid #E8E4DF;position:sticky;top:0;z-index:10}
+.ei-acc__filters{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap}
+.ei-acc__filter-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#999;margin-right:4px;flex-shrink:0}
+.ei-acc__pill{font-family:'Jost',sans-serif;font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid #D8D4CE;background:transparent;color:#666;cursor:pointer;transition:all .15s ease;white-space:nowrap}
+.ei-acc__pill:hover{border-color:#0D1B3E;color:#0D1B3E}
+.ei-acc__pill--active{background:#0D1B3E;color:#fff;border-color:#0D1B3E}
+.ei-acc__sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ei-acc__sort-select{font-family:'Jost',sans-serif;font-size:12px;border:1px solid #D8D4CE;border-radius:2px;padding:6px 12px;background:#fff;color:#0D1B3E;outline:none}
+.ei-acc__grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#E8E4DF;padding:1px}
+.ei-acc__card{display:block;text-decoration:none;color:inherit;background:#fff;transition:background .2s ease}
+.ei-acc__card:hover{background:#FAFAF8}
+.ei-acc__card:hover img{transform:scale(1.03)}
+.ei-acc__card.ei-hidden{display:none}
+.ei-acc__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0}
+.ei-acc__card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.ei-acc__card-placeholder{width:100%;height:100%;background:#F0EDE8}
+.ei-acc__card-badge{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;background:rgba(13,27,62,.8);padding:4px 10px;border-radius:2px}
+.ei-acc__card-body{padding:16px 20px 20px;border-top:1px solid #F0EDE8}
+.ei-acc__card-vendor{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#0D1B3E;margin-bottom:4px}
+.ei-acc__card-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:16px;font-style:italic;color:#0D1B3E;margin-bottom:6px;line-height:1.3}
+.ei-acc__card-price{font-size:14px;font-weight:300;color:#666}
+.ei-acc__empty{grid-column:1/-1;text-align:center;padding:80px 24px;font-size:14px;color:#999;background:#fff}
+@media(max-width:768px){.ei-acc__hero{padding:40px 24px 32px}.ei-acc__filter-bar{padding:12px 16px}.ei-acc__grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:480px){.ei-acc__grid{grid-template-columns:1fr}}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var pills=document.querySelectorAll('.ei-acc__pill');
+  var cards=Array.from(document.querySelectorAll('.ei-acc__card'));
+  var sort=document.getElementById('ei-acc-sort');
+  var grid=document.getElementById('ei-acc-grid');
+  pills.forEach(function(pill){
+    pill.addEventListener('click',function(){
+      pills.forEach(function(p){p.classList.remove('ei-acc__pill--active')});
+      pill.classList.add('ei-acc__pill--active');
+      var f=pill.getAttribute('data-filter');
+      cards.forEach(function(c){
+        if(f==='all'){c.classList.remove('ei-hidden')}
+        else{var v=c.getAttribute('data-fv')||'';v.indexOf(f)>-1?c.classList.remove('ei-hidden'):c.classList.add('ei-hidden')}
+      });
+    });
+  });
+  if(sort){sort.addEventListener('change',function(){
+    var m=this.value;
+    var visible=cards.filter(function(c){return!c.classList.contains('ei-hidden')});
+    visible.sort(function(a,b){
+      if(m==='price-asc')return parseInt(a.dataset.price)-parseInt(b.dataset.price);
+      if(m==='price-desc')return parseInt(b.dataset.price)-parseInt(a.dataset.price);
+      if(m==='title-asc')return a.dataset.title.localeCompare(b.dataset.title);
+      return 0;
+    });
+    visible.forEach(function(c){grid.appendChild(c)});
+  });}
+});
+</script>
+
+{% schema %}
+{
+  "name": "Accessories",
+  "settings": [],
+  "presets": [{ "name": "Accessories" }]
+}
+{% endschema %}
