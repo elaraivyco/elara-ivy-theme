@@ -72,7 +72,7 @@
   {{-- ═══════════════════════════════════════ --}}
   {{-- INTERLUDE --}}
   {{-- ═══════════════════════════════════════ --}}
-  <div class="ph-interlude">
+  <div class="ph-interlude" style="background:#0D1B3E !important;">
     <div class="ph-interlude__inner">
       <p class="ph-interlude__label">{{ section.settings.interlude_label }}</p>
       <h2 class="ph-interlude__heading">{{ section.settings.interlude_heading }}</h2>
@@ -278,14 +278,14 @@
 
 /* ─── OPENER ─────────────────────────────── */
 .ph-opener {
-  padding: 96px 80px;
-  max-width: 800px;
+  padding: 80px 80px 72px;
+  max-width: 820px;
   margin: 0 auto;
   text-align: center;
 }
 
 .ph-opener__label {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: #CFAE70;
@@ -311,7 +311,7 @@
 }
 
 .ph-opener__body {
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 300;
   line-height: 1.9;
   color: #555;
@@ -330,7 +330,7 @@
 }
 
 .ph-pillars__label {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: #6E73B8;
@@ -349,7 +349,7 @@
 .ph-pillars__grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 48px;
+  gap: 56px;
 }
 
 .ph-pillar {
@@ -375,7 +375,7 @@
 
 .ph-pillar__title {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 400;
   font-style: italic;
   color: #0D1B3E;
@@ -384,7 +384,7 @@
 }
 
 .ph-pillar__body {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 300;
   line-height: 1.85;
   color: #666;
@@ -392,7 +392,7 @@
 
 /* ─── INTERLUDE ──────────────────────────── */
 .ph-interlude {
-  background: #0D1B3E;
+  background: #0D1B3E !important;
   padding: 96px 80px;
   background-image:
     radial-gradient(ellipse at 90% 10%, rgba(207,174,112,0.08) 0%, transparent 50%),
@@ -406,7 +406,7 @@
 }
 
 .ph-interlude__label {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: rgba(207,174,112,0.7);
@@ -424,10 +424,10 @@
 }
 
 .ph-interlude__body {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 300;
   line-height: 1.9;
-  color: rgba(255,255,255,0.5);
+  color: rgba(255,255,255,0.6);
 }
 
 /* ─── WHAT WE DON'T DO ───────────────────── */
@@ -444,7 +444,7 @@
 }
 
 .ph-dontdo__label {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: #CFAE70;
@@ -462,7 +462,7 @@
 }
 
 .ph-dontdo__intro {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 300;
   line-height: 1.85;
   color: #666;
@@ -503,14 +503,14 @@
 
 .ph-dont-title {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 18px;
+  font-size: 20px;
   font-style: italic;
   color: #0D1B3E;
   margin-bottom: 6px;
 }
 
 .ph-dont-body {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 300;
   line-height: 1.8;
   color: #888;
@@ -521,13 +521,13 @@
   background: #F5F3F0;
   padding: 96px 80px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr 1.2fr;
   gap: 80px;
   align-items: center;
 }
 
 .ph-promise__label {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.35em;
   text-transform: uppercase;
   color: #CFAE70;
@@ -545,7 +545,7 @@
 }
 
 .ph-promise__body {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 300;
   line-height: 1.9;
   color: #666;
@@ -553,19 +553,19 @@
 
 .ph-promise__stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
 .ph-stat {
-  padding: 32px;
+  padding: 36px 32px;
   background: #ffffff;
   border-top: 2px solid #CFAE70;
 }
 
 .ph-stat__num {
   font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 48px;
+  font-size: 64px;
   font-weight: 300;
   font-style: italic;
   color: #0D1B3E;
@@ -574,7 +574,7 @@
 }
 
 .ph-stat__label {
-  font-size: 11px;
+  font-size: 12px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: #999;
@@ -613,7 +613,7 @@
 }
 
 .ph-closing__body {
-  font-size: 15px;
+  font-size: 17px;
   font-weight: 300;
   line-height: 1.85;
   color: rgba(255,255,255,0.5);
@@ -748,4 +748,5 @@
   "presets": [{ "name": "Our Philosophy" }]
 }
 {% endschema %}
+
 
