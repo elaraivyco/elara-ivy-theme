@@ -12,20 +12,6 @@
     "our_philosophy": {
       "type": "our-philosophy",
       "blocks": {
-        "stat_XGPE3E": {
-          "type": "stat",
-          "settings": {
-            "number": "12+",
-            "label": "Curated designer brands"
-          }
-        },
-        "dont_item_8a3AVk": {
-          "type": "dont_item",
-          "settings": {
-            "title": "Flash sales and artificial urgency",
-            "body": "We don't mark things up to mark them down. Every price is the real price."
-          }
-        },
         "pillar_jhH7kg": {
           "type": "pillar",
           "settings": {
@@ -46,14 +32,28 @@
             "title": "Does it serve her, or just impress her?",
             "body": "There's a difference between a piece that commands a room and one that quietly changes how you carry yourself. We look for both — but when a piece only does one, we choose the latter. Elara Ivy is for women who dress for themselves first."
           }
+        },
+        "dont_item_8a3AVk": {
+          "type": "dont_item",
+          "settings": {
+            "title": "Flash sales and artificial urgency",
+            "body": "We don't mark things up to mark them down. Every price is the real price."
+          }
+        },
+        "stat_XGPE3E": {
+          "type": "stat",
+          "settings": {
+            "number": "12+",
+            "label": "Curated designer brands"
+          }
         }
       },
       "block_order": [
-        "stat_XGPE3E",
-        "dont_item_8a3AVk",
         "pillar_jhH7kg",
         "pillar_zwyYJt",
-        "pillar_cNmdX9"
+        "pillar_cNmdX9",
+        "dont_item_8a3AVk",
+        "stat_XGPE3E"
       ],
       "settings": {
         "hero_image": "shopify://shop_images/elara-ivy-philosophy-hero_1.jpg",
