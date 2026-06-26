@@ -206,7 +206,7 @@
 
   .ei-new-in__grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 1fr); gap: 16px; background: transparent;
     gap: 16px;
     background: transparent;
     padding: 24px 48px;
@@ -217,11 +217,15 @@
     text-decoration: none;
     color: inherit;
     background: #ffffff;
-    transition: background 0.2s ease;
+    transition: all 0.2s ease;
+    border: 1px solid #E8E4DF;
+    border-radius: 2px;
   }
 
   .ei-new-in__card:hover {
     background: #FAFAF8;
+    box-shadow: 0 4px 16px rgba(13,27,62,.1);
+    transform: translateY(-2px);
   }
 
   .ei-new-in__card:hover img {
@@ -272,26 +276,28 @@
   }
 
   .ei-new-in__card-vendor {
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: #CFAE70;
     margin-bottom: 4px;
+    font-weight: 500;
   }
 
   .ei-new-in__card-title {
     font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 16px;
+    font-size: 15px;
     font-style: italic;
     color: #0D1B3E;
     margin-bottom: 6px;
-    line-height: 1.3;
+    line-height: 1.25;
   }
 
   .ei-new-in__card-price {
     font-size: 13px;
-    font-weight: 300;
-    color: #666;
+    font-weight: 500;
+    color: #0D1B3E;
+    letter-spacing: 0.02em;
   }
 
   .ei-new-in__empty {
@@ -370,6 +376,3 @@
   "presets": [{ "name": "New In" }]
 }
 {% endschema %}
-
-
-
