@@ -9,7 +9,20 @@
  */
 {
   "sections": {
-    "main": { "type": "clothing", "settings": {} }
+    "main": {
+      "type": "designers",
+      "settings": {}
+    },
+    "marquee_a6KK9X": {
+      "type": "marquee",
+      "name": "Designer Marquee",
+      "settings": {
+        "brands": "JACQUEMUS, HUNZA G, GUCCI, GANNI, TOTEME, SAINT LAURENT, BY FAR, KHAITE"
+      }
+    }
   },
-  "order": ["main"]
+  "order": [
+    "main",
+    "marquee_a6KK9X"
+  ]
 }
