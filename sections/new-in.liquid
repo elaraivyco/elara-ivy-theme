@@ -207,10 +207,10 @@
 
   .ei-new-in__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #E8E4DF;
-    padding: 1px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    background: transparent;
+    padding: 24px 48px;
   }
 
   .ei-new-in__card {
@@ -235,7 +235,7 @@
 
   .ei-new-in__card-img {
     position: relative;
-    aspect-ratio: 3/4;
+    aspect-ratio: 3/4; max-height: 320px;
     overflow: hidden;
     background: #F5F3F0;
   }
@@ -268,8 +268,8 @@
   }
 
   .ei-new-in__card-body {
-    padding: 16px 20px 20px;
-    border-top: 1px solid #F0EDE8;
+    padding: 14px 16px 16px;
+    border-top: 2px solid #0D1B3E; background: #ffffff;
   }
 
   .ei-new-in__card-vendor {
@@ -325,10 +325,10 @@
     color: #CFAE70;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) { .ei-new-in__grid { grid-template-columns: repeat(4, 1fr); padding: 20px 24px; } } @media (max-width: 768px) {
     .ei-new-in__hero { padding: 40px 24px 32px; }
     .ei-new-in__filter-bar { padding: 12px 24px; }
-    .ei-new-in__grid { grid-template-columns: repeat(2, 1fr); }
+    .ei-new-in__grid { grid-template-columns: repeat(2, 1fr); padding: 16px; }
   }
 
   @media (max-width: 480px) {
@@ -371,3 +371,4 @@
   "presets": [{ "name": "New In" }]
 }
 {% endschema %}
+
