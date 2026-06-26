@@ -1,21 +1,73 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "our_philosophy": {
       "type": "our-philosophy",
       "blocks": {
-        "pillar_1": { "type": "pillar", "settings": { "title": "Would we wear it ourselves?", "body": "Every piece that enters the edit is worn, tested, and loved by someone on our team first. If it doesn't move us, it doesn't move to you." } },
-        "pillar_2": { "type": "pillar", "settings": { "title": "Is the craft worth the price?", "body": "We scrutinise construction, materials, and longevity. A piece doesn't earn its price tag through a logo alone." } },
-        "pillar_3": { "type": "pillar", "settings": { "title": "Does it have a point of view?", "body": "Every designer in our edit brings something distinct — a handwriting, a heritage, a way of seeing the world that can't be replicated." } },
-        "dont_1": { "type": "dont_item", "settings": { "title": "Flash sales and artificial urgency", "body": "We don't mark things up to mark them down. Every price is the real price." } },
-        "dont_2": { "type": "dont_item", "settings": { "title": "Seasonal trend chasing", "body": "Our edit is built to last beyond a runway cycle. We look for pieces with longevity." } },
-        "dont_3": { "type": "dont_item", "settings": { "title": "Brands we haven't personally vetted", "body": "Every brand has been discovered by hand — through travel, word of mouth, and years of watching the industry closely." } },
-        "dont_4": { "type": "dont_item", "settings": { "title": "Volume over meaning", "body": "We'd rather carry thirty pieces we love deeply than three hundred we feel fine about." } },
-        "stat_1": { "type": "stat", "settings": { "number": "12+", "label": "Curated designer brands" } },
-        "stat_2": { "type": "stat", "settings": { "number": "100%", "label": "Personally vetted pieces" } },
-        "stat_3": { "type": "stat", "settings": { "number": "0", "label": "Brands added without a relationship" } }
+        "pillar_jhH7kg": {
+          "type": "pillar",
+          "settings": {
+            "title": "Does it earn its place in a wardrobe?",
+            "body": "A beautiful piece is not enough. We ask whether every item we carry genuinely belongs in a life — not just a lookbook. If we can't imagine it being reached for again and again, worn differently across seasons, it doesn't make the edit."
+          }
+        },
+        "pillar_zwyYJt": {
+          "type": "pillar",
+          "settings": {
+            "title": "Would we wear it ourselves?",
+            "body": "Every piece that enters the edit is worn, tested, and loved by someone on our team first."
+          }
+        },
+        "pillar_cNmdX9": {
+          "type": "pillar",
+          "settings": {
+            "title": "Would we wear it ourselves?",
+            "body": "Every piece that enters the edit is worn, tested, and loved by someone on our team first."
+          }
+        }
       },
-      "blocks_order": ["pillar_1","pillar_2","pillar_3","dont_1","dont_2","dont_3","dont_4","stat_1","stat_2","stat_3"]
+      "block_order": [
+        "pillar_jhH7kg",
+        "pillar_zwyYJt",
+        "pillar_cNmdX9"
+      ],
+      "settings": {
+        "hero_image": "shopify://shop_images/elara-ivy-philosophy-hero_1.jpg",
+        "eyebrow": "THE ELARA IVY EDIT",
+        "heading": "We don't carry everything. Deliberately.",
+        "hero_body": "A note on how we choose what earns a place in our edit — and why most things don't make it.",
+        "opener_label": "OUR CURATION PHILOSOPHY",
+        "quote": "The most powerful word in fashion is no.",
+        "opener_body": "At Elara Ivy Co., we believe a smaller edit is a more honest one.",
+        "pillars_label": "HOW WE CHOOSE",
+        "pillars_heading": "Three questions. Every single time.",
+        "interlude_label": "A NOTE ON NEWNESS",
+        "interlude_heading": "We add slowly. We remove rarely.",
+        "interlude_body": "Our designer roster grows by invitation, not application.",
+        "dontdo_label": "WHAT SETS US APART",
+        "dontdo_heading": "A few things you won't find here.",
+        "dontdo_intro": "We think the clearest way to explain what we stand for is to explain what we don't do.",
+        "promise_label": "OUR COMMITMENT",
+        "promise_heading": "To every designer we carry.",
+        "promise_body": "When we bring a designer into the Elara Ivy edit, we commit to telling their story honestly and championing them to our community.",
+        "closing_heading": "Ready to meet the edit?",
+        "closing_body": "Every piece in the Elara Ivy Co. collection has earned its place. We think you'll feel the difference.",
+        "cta_primary_label": "EXPLORE THE EDIT",
+        "cta_primary_url": "",
+        "cta_secondary_label": "MEET OUR DESIGNERS",
+        "cta_secondary_url": ""
+      }
     }
   },
-  "order": ["our_philosophy"]
+  "order": [
+    "our_philosophy"
+  ]
 }
