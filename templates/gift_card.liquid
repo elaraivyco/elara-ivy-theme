@@ -1,417 +1,327 @@
-<!DOCTYPE html>
-<html lang="{{ request.locale.iso_code }}">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ gift_card.initial_value | money_without_trailing_zeros }} Gift Card — {{ shop.name }}</title>
-  {{ content_for_header }}
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<style>
+  .gc-page {
+    font-family: 'Jost', sans-serif;
+    color: #0D1B3E;
+    background: #FAFAF8;
+    min-height: 60vh;
+  }
 
-    body {
-      font-family: 'Jost', sans-serif;
-      background: #FAFAF8;
-      color: #0D1B3E;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
+  .gc-intro {
+    text-align: center;
+    padding: 64px 24px 48px;
+    border-bottom: 1px solid #EDE9E4;
+  }
 
-    /* ── Header ── */
-    .gc-header {
-      background: #ffffff;
-      border-bottom: 1px solid #EDE9E4;
-      padding: 0 48px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-shrink: 0;
-    }
+  .gc-intro__eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: #CFAE70;
+    margin-bottom: 14px;
+  }
 
-    .gc-header__logo {
-      font-family: 'Jost', sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      letter-spacing: 0.28em;
-      color: #0D1B3E;
-      text-decoration: none;
-      text-transform: uppercase;
-    }
+  .gc-intro__title {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(48px, 8vw, 80px);
+    font-weight: 300;
+    font-style: italic;
+    color: #0D1B3E;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
 
-    .gc-header__back {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #999;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
+  .gc-intro__sub {
+    font-size: 13px;
+    font-weight: 300;
+    color: #AAAAAA;
+    letter-spacing: 0.08em;
+  }
 
-    .gc-header__back:hover { color: #0D1B3E; }
+  .gc-body {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 
-    /* ── Main ── */
-    .gc-main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 64px 24px 80px;
-    }
+  .gc-card {
+    background: #0D1B3E;
+    border-radius: 8px;
+    padding: 52px 44px 44px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    width: 100%;
+    margin-bottom: 36px;
+    box-shadow: 0 24px 64px rgba(13,27,62,0.18), 0 4px 16px rgba(13,27,62,0.08);
+  }
 
-    /* ── Hero text ── */
-    .gc-intro {
-      text-align: center;
-      margin-bottom: 48px;
-    }
+  .gc-card__orb-1 {
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 240px; height: 240px;
+    border-radius: 50%;
+    background: #6E73B8;
+    opacity: 0.14;
+  }
 
-    .gc-intro__eyebrow {
-      font-size: 10px;
-      letter-spacing: 0.35em;
-      text-transform: uppercase;
-      color: #CFAE70;
-      margin-bottom: 14px;
-    }
+  .gc-card__orb-2 {
+    position: absolute;
+    bottom: -70px; left: -50px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: #F3C7D3;
+    opacity: 0.08;
+  }
 
-    .gc-intro__title {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(42px, 8vw, 72px);
-      font-weight: 300;
-      font-style: italic;
-      color: #0D1B3E;
-      line-height: 1;
-      margin-bottom: 12px;
-    }
+  .gc-card__orb-3 {
+    position: absolute;
+    top: 50%; right: 18%;
+    transform: translateY(-50%);
+    width: 110px; height: 110px;
+    border-radius: 50%;
+    background: #CFAE70;
+    opacity: 0.05;
+  }
 
-    .gc-intro__sub {
-      font-size: 13px;
-      font-weight: 300;
-      color: #999;
-      letter-spacing: 0.08em;
-    }
+  .gc-card__logo {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.38em;
+    color: rgba(255,255,255,0.35);
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
 
-    /* ── Card ── */
-    .gc-card-wrap {
-      width: 100%;
-      max-width: 480px;
-      margin-bottom: 40px;
-    }
+  .gc-card__divider {
+    width: 28px;
+    height: 1px;
+    background: rgba(207,174,112,0.35);
+    margin: 0 auto 28px;
+    position: relative;
+    z-index: 1;
+  }
 
-    .gc-card {
-      background: #0D1B3E;
-      border-radius: 8px;
-      padding: 52px 44px 44px;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-      box-shadow: 0 24px 64px rgba(13,27,62,0.18), 0 4px 16px rgba(13,27,62,0.08);
-    }
+  .gc-card__amount {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: clamp(48px, 10vw, 68px);
+    font-weight: 300;
+    font-style: italic;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+  }
 
-    .gc-card__orb-1 {
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 240px; height: 240px;
-      border-radius: 50%;
-      background: #6E73B8;
-      opacity: 0.14;
-    }
+  .gc-card__code-label {
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.25);
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
 
-    .gc-card__orb-2 {
-      position: absolute;
-      bottom: -70px; left: -50px;
-      width: 220px; height: 220px;
-      border-radius: 50%;
-      background: #F3C7D3;
-      opacity: 0.08;
-    }
+  .gc-card__code {
+    font-family: 'Jost', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    letter-spacing: 0.22em;
+    color: #CFAE70;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(207,174,112,0.2);
+    padding: 12px 28px;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+  }
 
-    .gc-card__orb-3 {
-      position: absolute;
-      top: 50%; right: 20%;
-      transform: translateY(-50%);
-      width: 100px; height: 100px;
-      border-radius: 50%;
-      background: #CFAE70;
-      opacity: 0.05;
-    }
+  .gc-card__disabled {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: #F3C7D3;
+    margin-top: 16px;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
 
-    .gc-card__logo {
-      font-family: 'Jost', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.35em;
-      color: rgba(255,255,255,0.4);
-      text-transform: uppercase;
-      margin-bottom: 32px;
-      position: relative;
-      z-index: 1;
-    }
+  .gc-balance {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #EDE9E4;
+    border-left: 3px solid #6E73B8;
+    padding: 16px 24px;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 
-    .gc-card__divider {
-      width: 32px;
-      height: 1px;
-      background: rgba(207,174,112,0.4);
-      margin: 0 auto 28px;
-      position: relative;
-      z-index: 1;
-    }
+  .gc-balance__label {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #999;
+  }
 
-    .gc-card__amount {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(48px, 10vw, 72px);
-      font-weight: 300;
-      font-style: italic;
-      color: #ffffff;
-      line-height: 1;
-      margin-bottom: 32px;
-      position: relative;
-      z-index: 1;
-    }
+  .gc-balance__amount {
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    font-size: 28px;
+    font-style: italic;
+    color: #0D1B3E;
+  }
 
-    .gc-card__code-label {
-      font-size: 9px;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-      margin-bottom: 8px;
-      position: relative;
-      z-index: 1;
-    }
+  .gc-qr {
+    text-align: center;
+    margin-bottom: 36px;
+  }
 
-    .gc-card__code {
-      font-family: 'Jost', sans-serif;
-      font-size: 15px;
-      font-weight: 300;
-      letter-spacing: 0.22em;
-      color: #CFAE70;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(207,174,112,0.2);
-      padding: 12px 28px;
-      border-radius: 2px;
-      display: inline-block;
-      position: relative;
-      z-index: 1;
-    }
+  .gc-qr__wrap {
+    display: inline-block;
+    padding: 16px;
+    background: #ffffff;
+    border: 1px solid #EDE9E4;
+    border-radius: 4px;
+    box-shadow: 0 2px 12px rgba(13,27,62,0.06);
+  }
 
-    .gc-card__disabled {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      color: #F3C7D3;
-      margin-top: 16px;
-      text-transform: uppercase;
-      position: relative;
-      z-index: 1;
-    }
+  .gc-qr__label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #CFAE70;
+    margin-top: 12px;
+  }
 
-    /* ── Balance ── */
-    .gc-balance {
-      width: 100%;
-      max-width: 480px;
-      background: #ffffff;
-      border: 1px solid #EDE9E4;
-      border-left: 3px solid #6E73B8;
-      padding: 18px 24px;
-      border-radius: 0 4px 4px 0;
-      margin-bottom: 36px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
+  .gc-actions {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 44px;
+  }
 
-    .gc-balance__label {
-      font-size: 11px;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: #999;
-    }
+  .gc-btn-copy {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #ffffff;
+    background: #0D1B3E;
+    border: none;
+    padding: 15px 0;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s ease;
+  }
 
-    .gc-balance__amount {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: 28px;
-      font-style: italic;
-      color: #0D1B3E;
-    }
+  .gc-btn-copy:hover { background: #6E73B8; }
 
-    /* ── QR ── */
-    .gc-qr {
-      text-align: center;
-      margin-bottom: 40px;
-    }
+  .gc-copy-confirm {
+    font-size: 12px;
+    color: #6E73B8;
+    letter-spacing: 0.1em;
+    min-height: 18px;
+    text-align: center;
+  }
 
-    .gc-qr__wrap {
-      display: inline-block;
-      padding: 16px;
-      background: #ffffff;
-      border: 1px solid #EDE9E4;
-      border-radius: 4px;
-      box-shadow: 0 2px 12px rgba(13,27,62,0.06);
-    }
+  .gc-print {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #BBBBBB;
+    text-decoration: none;
+    border-bottom: 1px solid #DDDDDD;
+    padding-bottom: 2px;
+    transition: color 0.2s;
+  }
 
-    .gc-qr__label {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #CFAE70;
-      margin-top: 12px;
-    }
+  .gc-print:hover { color: #0D1B3E; border-color: #0D1B3E; }
 
-    /* ── Actions ── */
-    .gc-actions {
-      width: 100%;
-      max-width: 480px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 14px;
-      margin-bottom: 48px;
-    }
+  .gc-note {
+    width: 100%;
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid #EDE9E4;
+  }
 
-    .gc-btn-copy {
-      font-family: 'Jost', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #ffffff;
-      background: #0D1B3E;
-      border: none;
-      padding: 15px 0;
-      border-radius: 2px;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.2s ease;
-    }
+  .gc-note p {
+    font-size: 13px;
+    font-weight: 300;
+    color: #999;
+    line-height: 1.9;
+    margin-bottom: 24px;
+  }
 
-    .gc-btn-copy:hover { background: #6E73B8; }
+  .gc-note a {
+    color: #0D1B3E;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
 
-    .gc-copy-confirm {
-      font-size: 12px;
-      color: #6E73B8;
-      letter-spacing: 0.1em;
-      min-height: 18px;
-      text-align: center;
-    }
+  .gc-btn-shop {
+    display: inline-block;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #0D1B3E;
+    background: #CFAE70;
+    padding: 14px 40px;
+    border-radius: 2px;
+    text-decoration: none;
+    transition: opacity 0.2s;
+  }
 
-    .gc-print {
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #BBBBBB;
-      text-decoration: none;
-      border-bottom: 1px solid #DDDDDD;
-      padding-bottom: 2px;
-      transition: color 0.2s;
-    }
+  .gc-btn-shop:hover { opacity: 0.85; }
 
-    .gc-print:hover { color: #0D1B3E; border-color: #0D1B3E; }
+  @media print {
+    .gc-actions,
+    .gc-note .gc-btn-shop { display: none; }
+  }
 
-    /* ── Footer note ── */
-    .gc-note {
-      width: 100%;
-      max-width: 480px;
-      text-align: center;
-      padding-top: 36px;
-      border-top: 1px solid #EDE9E4;
-      margin-bottom: 48px;
-    }
+  @media (max-width: 480px) {
+    .gc-intro { padding: 40px 20px 36px; }
+    .gc-card { padding: 36px 24px 32px; }
+  }
+</style>
 
-    .gc-note p {
-      font-size: 13px;
-      font-weight: 300;
-      color: #999;
-      line-height: 1.9;
-      margin-bottom: 24px;
-    }
+<div class="gc-page">
 
-    .gc-note a {
-      color: #0D1B3E;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-    }
+  <div class="gc-intro">
+    <p class="gc-intro__eyebrow">A gift worth giving</p>
+    <div class="gc-intro__title">{{ gift_card.initial_value | money_without_trailing_zeros }}</div>
+    <p class="gc-intro__sub">Elara Ivy Co. Gift Card</p>
+  </div>
 
-    .gc-btn-shop {
-      display: inline-block;
-      font-family: 'Jost', sans-serif;
-      font-size: 11px;
-      font-weight: 400;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: #0D1B3E;
-      background: #CFAE70;
-      padding: 14px 40px;
-      border-radius: 2px;
-      text-decoration: none;
-      transition: opacity 0.2s;
-    }
+  <div class="gc-body">
 
-    .gc-btn-shop:hover { opacity: 0.85; }
-
-    /* ── Footer ── */
-    .gc-footer {
-      background: #0D1B3E;
-      text-align: center;
-      padding: 20px 24px;
-      flex-shrink: 0;
-    }
-
-    .gc-footer p {
-      font-size: 10px;
-      font-weight: 300;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.3);
-    }
-
-    /* ── Print ── */
-    @media print {
-      .gc-header__back,
-      .gc-actions,
-      .gc-note .gc-btn-shop,
-      .gc-footer { display: none; }
-      body { background: #ffffff; }
-      .gc-card { box-shadow: none; }
-    }
-
-    @media (max-width: 480px) {
-      .gc-header { padding: 0 20px; }
-      .gc-main { padding: 40px 20px 60px; }
-      .gc-card { padding: 40px 28px 36px; }
-    }
-  </style>
-</head>
-<body>
-
-  <header class="gc-header">
-    <a href="{{ routes.root_url }}" class="gc-header__logo">Elara Ivy Co.</a>
-    <a href="{{ routes.root_url }}" class="gc-header__back">← Back to store</a>
-  </header>
-
-  <main class="gc-main">
-
-    <div class="gc-intro">
-      <p class="gc-intro__eyebrow">A gift worth giving</p>
-      <div class="gc-intro__title">{{ gift_card.initial_value | money_without_trailing_zeros }}</div>
-      <p class="gc-intro__sub">Elara Ivy Co. Gift Card</p>
-    </div>
-
-    <div class="gc-card-wrap">
-      <div class="gc-card">
-        <div class="gc-card__orb-1"></div>
-        <div class="gc-card__orb-2"></div>
-        <div class="gc-card__orb-3"></div>
-        <div class="gc-card__logo">Elara Ivy Co.</div>
-        <div class="gc-card__divider"></div>
-        <div class="gc-card__amount">{{ gift_card.initial_value | money_without_trailing_zeros }}</div>
-        <div class="gc-card__code-label">Gift card code</div>
-        <div class="gc-card__code" id="gift-card-code">{{ gift_card.code | format_code }}</div>
-        {% unless gift_card.enabled %}
-          <div class="gc-card__disabled">This gift card has been disabled</div>
-        {% endunless %}
-      </div>
+    <div class="gc-card">
+      <div class="gc-card__orb-1"></div>
+      <div class="gc-card__orb-2"></div>
+      <div class="gc-card__orb-3"></div>
+      <div class="gc-card__logo">Elara Ivy Co.</div>
+      <div class="gc-card__divider"></div>
+      <div class="gc-card__amount">{{ gift_card.initial_value | money_without_trailing_zeros }}</div>
+      <div class="gc-card__code-label">Gift card code</div>
+      <div class="gc-card__code" id="gift-card-code">{{ gift_card.code | format_code }}</div>
+      {% unless gift_card.enabled %}
+        <div class="gc-card__disabled">This gift card has been disabled</div>
+      {% endunless %}
     </div>
 
     {% if gift_card.balance != gift_card.initial_value %}
@@ -442,31 +352,27 @@
       <a href="{{ routes.root_url }}" class="gc-btn-shop">Shop the edit</a>
     </div>
 
-  </main>
+  </div>
 
-  <footer class="gc-footer">
-    <p>© {{ 'now' | date: '%Y' }} Elara Ivy Co. All rights reserved.</p>
-  </footer>
+</div>
 
-  <script>
-    new QRCode(document.getElementById('qr-code'), {
-      text: '{{ gift_card.code }}',
-      width: 130,
-      height: 130,
-      colorDark: '#0D1B3E',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.H
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+  new QRCode(document.getElementById('qr-code'), {
+    text: '{{ gift_card.code }}',
+    width: 130,
+    height: 130,
+    colorDark: '#0D1B3E',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+
+  function copyCode() {
+    var code = '{{ gift_card.code | format_code }}';
+    navigator.clipboard.writeText(code).then(function() {
+      var el = document.getElementById('copy-confirm');
+      el.textContent = 'Code copied to clipboard';
+      setTimeout(function() { el.textContent = ''; }, 3000);
     });
-
-    function copyCode() {
-      var code = '{{ gift_card.code | format_code }}';
-      navigator.clipboard.writeText(code).then(function() {
-        var el = document.getElementById('copy-confirm');
-        el.textContent = 'Code copied to clipboard';
-        setTimeout(function() { el.textContent = ''; }, 3000);
-      });
-    }
-  </script>
-
-</body>
-</html>
+  }
+</script>
