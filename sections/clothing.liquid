@@ -1,0 +1,92 @@
+{%- assign clothing = collections['clothing'] -%}
+
+<div class="ei-collection">
+
+  <div class="ei-collection__hero">
+    <p class="ei-collection__eyebrow">Ready-to-wear</p>
+    <h1 class="ei-collection__headline">Clothing</h1>
+    <p class="ei-collection__subline">Considered pieces for every occasion. Curated ready-to-wear from the world's most exceptional designers.</p>
+    <div class="ei-collection__meta">
+      <span>{{ clothing.products_count }} pieces</span>
+      <span class="ei-collection__dot">·</span>
+      <span>Complimentary shipping over £200</span>
+      <span class="ei-collection__dot">·</span>
+      <span>Returns within 14 days</span>
+    </div>
+  </div>
+
+  <div class="ei-collection__filter-bar">
+    <div class="ei-collection__filters">
+      <span class="ei-collection__filter-label">Filter</span>
+      <button class="ei-collection__pill ei-collection__pill--active" data-filter="all">All</button>
+      <button class="ei-collection__pill" data-filter="denim">Denim</button>
+      <button class="ei-collection__pill" data-filter="tops">Tops</button>
+      <button class="ei-collection__pill" data-filter="bottoms">Bottoms</button>
+      <button class="ei-collection__pill" data-filter="dresses">Dresses</button>
+      <button class="ei-collection__pill" data-filter="outerwear">Outerwear</button>
+      <button class="ei-collection__pill" data-filter="knitwear">Knitwear</button>
+      <button class="ei-collection__pill" data-filter="swimwear">Swimwear</button>
+      <button class="ei-collection__pill" data-filter="underwear">Underwear</button>
+    </div>
+    <div class="ei-collection__sort">
+      <span class="ei-collection__filter-label">Sort</span>
+      <select class="ei-collection__sort-select" id="ei-sort">
+        <option value="best-selling">Best selling</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+        <option value="title-asc">Name A–Z</option>
+        <option value="newest">Newest first</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="ei-collection__grid" id="ei-grid">
+    {%- for product in clothing.products -%}
+      {%- assign tags = product.tags | join: ',' | downcase -%}
+      {%- assign ptype = product.type | downcase -%}
+      {%- assign fv = '' -%}
+      {%- if tags contains 'denim' or ptype contains 'denim' or ptype contains 'jean' -%}{%- assign fv = fv | append: 'denim ' -%}{%- endif -%}
+      {%- if tags contains 'top' or ptype contains 'top' or ptype contains 'shirt' or ptype contains 'blouse' or ptype contains 't-shirt' or ptype contains 'tee' -%}{%- assign fv = fv | append: 'tops ' -%}{%- endif -%}
+      {%- if tags contains 'bottom' or ptype contains 'bottom' or ptype contains 'trouser' or ptype contains 'skirt' or ptype contains 'pant' or ptype contains 'short' -%}{%- assign fv = fv | append: 'bottoms ' -%}{%- endif -%}
+      {%- if tags contains 'dress' or ptype contains 'dress' -%}{%- assign fv = fv | append: 'dresses ' -%}{%- endif -%}
+      {%- if tags contains 'outerwear' or ptype contains 'outerwear' or ptype contains 'coat' or ptype contains 'jacket' or ptype contains 'blazer' -%}{%- assign fv = fv | append: 'outerwear ' -%}{%- endif -%}
+      {%- if tags contains 'knit' or ptype contains 'knit' or ptype contains 'sweater' or ptype contains 'cardigan' -%}{%- assign fv = fv | append: 'knitwear ' -%}{%- endif -%}
+      {%- if tags contains 'swim' or ptype contains 'swim' or ptype contains 'bikini' -%}{%- assign fv = fv | append: 'swimwear ' -%}{%- endif -%}
+      {%- if tags contains 'underwear' or ptype contains 'underwear' or ptype contains 'lingerie' or ptype contains 'bra' or ptype contains 'brief' -%}{%- assign fv = fv | append: 'underwear ' -%}{%- endif -%}
+
+      <a href="{{ product.url }}" class="ei-collection__card" data-filter-vals="{{ fv | strip }}" data-price="{{ product.price }}" data-title="{{ product.title | escape }}">
+        <div class="ei-collection__card-img">
+          {%- if product.featured_image -%}
+            <img src="{{ product.featured_image | img_url: '600x800', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="600" height="800">
+          {%- else -%}
+            <div class="ei-collection__card-placeholder"></div>
+          {%- endif -%}
+          {%- if product.tags contains 'new-in' or product.tags contains 'New In' -%}
+            <div class="ei-collection__card-badge">New In</div>
+          {%- endif -%}
+        </div>
+        <div class="ei-collection__card-body">
+          <p class="ei-collection__card-vendor">{{ product.vendor }}</p>
+          <p class="ei-collection__card-title">{{ product.title }}</p>
+          <p class="ei-collection__card-price">
+            {%- if product.price_varies -%}From {{ product.price_min | money }}{%- else -%}{{ product.price | money }}{%- endif -%}
+          </p>
+        </div>
+      </a>
+    {%- else -%}
+      <div class="ei-collection__empty"><p>No products found.</p></div>
+    {%- endfor -%}
+  </div>
+
+</div>
+
+{% render 'collection-styles' %}
+{% render 'collection-scripts' %}
+
+{% schema %}
+{
+  "name": "Clothing",
+  "settings": [],
+  "presets": [{ "name": "Clothing" }]
+}
+{% endschema %}
