@@ -36,8 +36,29 @@
         "dont_item_8a3AVk": {
           "type": "dont_item",
           "settings": {
-            "title": "Flash sales and artificial urgency",
-            "body": "We don't mark things up to mark them down. Every price is the real price."
+            "title": "Inflated prices or artificial markups",
+            "body": "We carry designer pieces at market price or below — never marked up to manufacture a discount. What you see is what the piece is worth."
+          }
+        },
+        "dont_item_bYcnBg": {
+          "type": "dont_item",
+          "settings": {
+            "title": "Flash sales and manufactured urgency",
+            "body": "No countdown timers, no \"only 2 left\" pressure tactics. If a piece sells out, it sells out. We'd rather you buy with confidence than rush."
+          }
+        },
+        "dont_item_wGCXKG": {
+          "type": "dont_item",
+          "settings": {
+            "title": "Trend-chasing for its own sake",
+            "body": "We don't add designers because they're having a moment. We add them because we believe in what they stand for — and we're prepared to carry them beyond the moment."
+          }
+        },
+        "dont_item_ttKYp9": {
+          "type": "dont_item",
+          "settings": {
+            "title": "Brands that don't earn their place",
+            "body": "Every designer in our edit has been reviewed against the same three questions we ask of every piece. There are no legacy inclusions, no paid placements. If they're here, they belong here."
           }
         },
         "stat_XGPE3E": {
@@ -53,6 +74,9 @@
         "pillar_zwyYJt",
         "pillar_cNmdX9",
         "dont_item_8a3AVk",
+        "dont_item_bYcnBg",
+        "dont_item_wGCXKG",
+        "dont_item_ttKYp9",
         "stat_XGPE3E"
       ],
       "settings": {
