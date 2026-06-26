@@ -2,7 +2,7 @@
   <h1 class="section__title ei-serif" style="margin-bottom:32px;">Your Bag</h1>
   {% if cart.item_count == 0 %}
     <p style="color:var(--ink-muted);font-size:13px;margin-bottom:24px;">Your bag is empty.</p>
-    <a href="{{ routes.collections_url }}" class="btn-primary">CONTINUE SHOPPING</a>
+    <a href="{{ routes.root_url }}" class="btn-primary">CONTINUE SHOPPING</a>
   {% else %}
     {% for item in cart.items %}
       <div style="display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--rule);">
@@ -21,7 +21,10 @@
         <div style="font-size:9px;letter-spacing:0.18em;color:var(--ink-muted);margin-bottom:4px;">SUBTOTAL</div>
         <div class="ei-serif" style="font-size:24px;color:var(--navy);">{{ cart.total_price | money }}</div>
       </div>
-      <a href="{{ routes.checkout }}" class="btn-primary">CHECKOUT</a>
+      <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+        <a href="{{ routes.root_url }}" style="font-size:11px;letter-spacing:0.15em;color:var(--ink-muted);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;">CONTINUE SHOPPING</a>
+        <a href="{{ routes.checkout }}" class="btn-primary">CHECKOUT</a>
+      </div>
     </div>
   {% endif %}
 </div>
