@@ -104,7 +104,7 @@
       "settings": {
         "heading": "Shop by Designer",
         "subheading": "Every designer we carry is here for a reason. Meet the makers behind the pieces.",
-        "view_all_url": ""
+        "view_all_url": "shopify://pages/designers"
       }
     },
     "featured_products": {
