@@ -1,0 +1,48 @@
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var pills = document.querySelectorAll('.ei-collection__pill');
+  var cards = Array.from(document.querySelectorAll('.ei-collection__card'));
+  var sortSelect = document.getElementById('ei-sort');
+  var grid = document.getElementById('ei-grid');
+  var currentFilter = 'all';
+
+  function applyFilter(filter) {
+    currentFilter = filter;
+    cards.forEach(function(card) {
+      if (filter === 'all') {
+        card.classList.remove('ei-hidden');
+      } else {
+        var vals = card.getAttribute('data-filter-vals') || '';
+        if (vals.indexOf(filter) > -1) {
+          card.classList.remove('ei-hidden');
+        } else {
+          card.classList.add('ei-hidden');
+        }
+      }
+    });
+  }
+
+  function applySort(method) {
+    var visible = cards.filter(function(c) { return !c.classList.contains('ei-hidden'); });
+    visible.sort(function(a, b) {
+      if (method === 'price-asc') return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+      if (method === 'price-desc') return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+      if (method === 'title-asc') return a.dataset.title.localeCompare(b.dataset.title);
+      return 0;
+    });
+    visible.forEach(function(card) { grid.appendChild(card); });
+  }
+
+  pills.forEach(function(pill) {
+    pill.addEventListener('click', function() {
+      pills.forEach(function(p) { p.classList.remove('ei-collection__pill--active'); });
+      pill.classList.add('ei-collection__pill--active');
+      applyFilter(pill.getAttribute('data-filter'));
+    });
+  });
+
+  if (sortSelect) {
+    sortSelect.addEventListener('change', function() { applySort(this.value); });
+  }
+});
+</script>
