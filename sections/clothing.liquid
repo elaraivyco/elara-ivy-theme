@@ -89,8 +89,8 @@
 .ei-cl__sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .ei-cl__sort-select{font-family:'Jost',sans-serif;font-size:12px;border:1px solid #D8D4CE;border-radius:2px;padding:6px 12px;background:#fff;color:#0D1B3E;outline:none}
 .ei-cl__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;background:transparent;padding:24px 48px}
-.ei-cl__card{display:block;text-decoration:none;color:inherit;background:#fff;transition:background .2s ease}
-.ei-cl__card:hover{background:#FAFAF8}
+.ei-cl__card{display:block;text-decoration:none;color:inherit;background:#fff;transition:all .2s ease;border:1px solid #E8E4DF;border-radius:2px}
+.ei-cl__card:hover{background:#FAFAF8;box-shadow:0 4px 16px rgba(13,27,62,.1);transform:translateY(-2px)}
 .ei-cl__card:hover img{transform:scale(1.03)}
 .ei-cl__card.ei-hidden{display:none}
 .ei-cl__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0;max-height:320px}
@@ -144,5 +144,6 @@ document.addEventListener('DOMContentLoaded',function(){
   "presets": [{ "name": "Clothing" }]
 }
 {% endschema %}
+
 
 
