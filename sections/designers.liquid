@@ -15,13 +15,7 @@
 
   <div class="ei-des__filter-bar">
     <div class="ei-des__filters">
-      <span class="ei-des__filter-label">Filter</span>
-      <button class="ei-des__pill ei-des__pill--active" data-filter="all">All</button>
-      <button class="ei-des__pill" data-filter="bags">Bags</button>
-      <button class="ei-des__pill" data-filter="shoes">Shoes</button>
-      <button class="ei-des__pill" data-filter="ready-to-wear">Ready-to-wear</button>
-      <button class="ei-des__pill" data-filter="swimwear">Swimwear</button>
-      <button class="ei-des__pill" data-filter="accessories">Accessories</button>
+      <span class="ei-des__filter-label">{{ collections | map: 'all_products_count' | sum }} pieces across all designers</span>
     </div>
     <div class="ei-des__sort">
       <span class="ei-des__filter-label">Sort</span>
@@ -37,11 +31,11 @@
 
     {%- assign designer_handles = 'adidas,alexander-wang,alice-olivia,balenciaga,birkenstock,bottega-veneta,burberry,cartier,casablanca,chanel,christian-dior,christian-louboutin,coach,cult-gaia,furla,golden-goose,gucci,hermes,hunza-g,kate-spade,khaite,loro-piana,louis-vuitton,marc-jacobs,max-mara,michael-kors,miu-miu,paige,philosophy,prada,saint-laurent,stella-mccartney,the-attico,the-row,tiffany-co,tom-ford,tory-burch,uma-wang,versace,victorias-secret,vivienne-westwood,wild-cashmere,windsor' | split: ',' -%}
 
-    {%- assign designer_categories = 'shoes,bags,ready-to-wear,bags,shoes,bags,ready-to-wear,accessories,ready-to-wear,bags,bags,shoes,bags,ready-to-wear,bags,shoes,bags,bags,swimwear,bags,bags,ready-to-wear,bags,bags,ready-to-wear,bags,shoes,ready-to-wear,ready-to-wear,bags,bags,bags,shoes,ready-to-wear,accessories,ready-to-wear,bags,bags,ready-to-wear,swimwear,ready-to-wear,accessories,ready-to-wear' | split: ',' -%}
+    {%- assign designer_descriptors = 'Sportswear Icon,New York Edge,Contemporary Chic,Avant-Garde,German Craft,Italian Artistry,British Heritage,French Jewellery,Casablanca Resort,French Couture,French Heritage,Parisian Glamour,American Leather,LA Cool,Italian Spirit,Italian Cool,Italian Luxury,French Exclusivity,Resort Swimwear,New York Prep,New York Modern,Italian Cashmere,French Exclusivity,New York Cool,Italian Elegance,New York Classic,Italian Edge,American Denim,Italian Romance,Italian Heritage,French Luxury,British Sustainability,Italian Contemporary,Quiet Luxury,American Jewellery,American Tailoring,American Prep,Shanghai Modern,Italian Baroque,American Intimates,British Punk,Scottish Cashmere,American Occasion' | split: ',' -%}
 
     {%- for handle in designer_handles -%}
       {%- assign col = collections[handle] -%}
-      {%- assign cat = designer_categories[forloop.index0] -%}
+      {%- assign cat = designer_descriptors[forloop.index0] -%}
       {%- if col != blank -%}
         <a href="{{ col.url }}" class="ei-des__card" data-filter="{{ cat }}" data-title="{{ col.title }}" data-count="{{ col.products_count }}">
           <div class="ei-des__card-img">
@@ -65,7 +59,7 @@
             {%- endif -%}
           </div>
           <div class="ei-des__card-body">
-            <p class="ei-des__card-cat">{{ cat | replace: '-', ' ' | capitalize }}</p>
+            <p class="ei-des__card-cat">{{ cat }}</p>
             <p class="ei-des__card-name">{{ col.title }}</p>
             <p class="ei-des__card-cta">Shop collection →</p>
           </div>
@@ -94,7 +88,7 @@
 .ei-des__sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
 .ei-des__sort-select{font-family:'Jost',sans-serif;font-size:12px;border:1px solid #D8D4CE;border-radius:2px;padding:6px 12px;background:#fff;color:#0D1B3E;outline:none}
 .ei-des__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:24px 48px;background:transparent}
-.ei-des__card{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:2px;overflow:hidden;transition:all .2s ease;box-shadow:0 1px 4px rgba(13,27,62,.06)}
+.ei-des__card{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:2px;overflow:hidden;transition:all .2s ease;border:1px solid #E8E4DF;box-shadow:0 1px 4px rgba(13,27,62,.06)}
 .ei-des__card:hover{box-shadow:0 4px 20px rgba(13,27,62,.12);transform:translateY(-2px)}
 .ei-des__card:hover img{transform:scale(1.04)}
 .ei-des__card.ei-hidden{display:none}
@@ -156,4 +150,5 @@ document.addEventListener('DOMContentLoaded',function(){
   "presets": [{ "name": "Designers" }]
 }
 {% endschema %}
+
 
