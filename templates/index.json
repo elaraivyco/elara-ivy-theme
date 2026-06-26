@@ -172,7 +172,7 @@
         "heading": "Not everything makes the cut. That's the point.",
         "body": "We spend months vetting new designers so you don't have to. Our curation is deliberate, seasonal, and always guided by one question: would we wear it ourselves?",
         "cta_label": "READ OUR PHILOSOPHY",
-        "cta_url": "/pages/our-philosophy"
+        "cta_url": "shopify://pages/our-philosophy"
       }
     },
     "editorial_strip": {
