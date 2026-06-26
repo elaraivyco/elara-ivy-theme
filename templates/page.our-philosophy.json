@@ -12,6 +12,20 @@
     "our_philosophy": {
       "type": "our-philosophy",
       "blocks": {
+        "stat_XGPE3E": {
+          "type": "stat",
+          "settings": {
+            "number": "12+",
+            "label": "Curated designer brands"
+          }
+        },
+        "dont_item_8a3AVk": {
+          "type": "dont_item",
+          "settings": {
+            "title": "Flash sales and artificial urgency",
+            "body": "We don't mark things up to mark them down. Every price is the real price."
+          }
+        },
         "pillar_jhH7kg": {
           "type": "pillar",
           "settings": {
@@ -35,6 +49,8 @@
         }
       },
       "block_order": [
+        "stat_XGPE3E",
+        "dont_item_8a3AVk",
         "pillar_jhH7kg",
         "pillar_zwyYJt",
         "pillar_cNmdX9"
