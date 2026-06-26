@@ -1,0 +1,33 @@
+<style>
+  .ei-collection { font-family: 'Jost', sans-serif; color: #0D1B3E; }
+  .ei-collection__hero { background-color: #0D1B3E; padding: 64px 48px 56px; text-align: center; background-image: radial-gradient(ellipse at 80% 20%, rgba(207,174,112,0.07) 0%, transparent 55%), radial-gradient(ellipse at 20% 80%, rgba(243,199,211,0.05) 0%, transparent 55%); }
+  .ei-collection__eyebrow { font-size: 10px; letter-spacing: 0.35em; text-transform: uppercase; color: #CFAE70; margin-bottom: 12px; }
+  .ei-collection__headline { font-family: 'Cormorant Garamond', Georgia, serif; font-size: clamp(40px, 6vw, 64px); font-weight: 300; font-style: italic; color: #ffffff; line-height: 1.1; margin-bottom: 16px; }
+  .ei-collection__subline { font-size: 14px; font-weight: 300; color: rgba(255,255,255,0.55); line-height: 1.85; max-width: 520px; margin: 0 auto 20px; }
+  .ei-collection__meta { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 11px; letter-spacing: 0.1em; color: rgba(255,255,255,0.35); text-transform: uppercase; flex-wrap: wrap; }
+  .ei-collection__dot { opacity: 0.4; }
+  .ei-collection__filter-bar { background: #F5F3F0; padding: 14px 48px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; border-bottom: 1px solid #E8E4DF; position: sticky; top: 0; z-index: 10; }
+  .ei-collection__filters { display: flex; align-items: center; gap: 8px; flex: 1; flex-wrap: wrap; }
+  .ei-collection__filter-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #999; margin-right: 4px; flex-shrink: 0; }
+  .ei-collection__pill { font-family: 'Jost', sans-serif; font-size: 12px; padding: 5px 14px; border-radius: 20px; border: 1px solid #D8D4CE; background: transparent; color: #666; cursor: pointer; transition: all 0.15s ease; white-space: nowrap; }
+  .ei-collection__pill:hover { border-color: #0D1B3E; color: #0D1B3E; }
+  .ei-collection__pill--active { background: #0D1B3E; color: #ffffff; border-color: #0D1B3E; }
+  .ei-collection__sort { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+  .ei-collection__sort-select { font-family: 'Jost', sans-serif; font-size: 12px; border: 1px solid #D8D4CE; border-radius: 2px; padding: 6px 12px; background: #ffffff; color: #0D1B3E; outline: none; }
+  .ei-collection__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: #E8E4DF; padding: 1px; }
+  .ei-collection__card { display: block; text-decoration: none; color: inherit; background: #ffffff; transition: background 0.2s ease; }
+  .ei-collection__card:hover { background: #FAFAF8; }
+  .ei-collection__card:hover img { transform: scale(1.03); }
+  .ei-collection__card.ei-hidden { display: none; }
+  .ei-collection__card-img { position: relative; aspect-ratio: 3/4; overflow: hidden; background: #F5F3F0; }
+  .ei-collection__card-img img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .ei-collection__card-placeholder { width: 100%; height: 100%; background: #F0EDE8; }
+  .ei-collection__card-badge { position: absolute; top: 12px; left: 12px; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #CFAE70; background: rgba(13,27,62,0.8); padding: 4px 10px; border-radius: 2px; }
+  .ei-collection__card-body { padding: 16px 20px 20px; border-top: 1px solid #F0EDE8; }
+  .ei-collection__card-vendor { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #0D1B3E; margin-bottom: 4px; }
+  .ei-collection__card-title { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 16px; font-style: italic; color: #0D1B3E; margin-bottom: 6px; line-height: 1.3; }
+  .ei-collection__card-price { font-size: 14px; font-weight: 300; color: #666; }
+  .ei-collection__empty { grid-column: 1 / -1; text-align: center; padding: 80px 24px; font-size: 14px; color: #999; background: #ffffff; }
+  @media (max-width: 768px) { .ei-collection__hero { padding: 40px 24px 32px; } .ei-collection__filter-bar { padding: 12px 16px; } .ei-collection__grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .ei-collection__grid { grid-template-columns: 1fr; } }
+</style>
