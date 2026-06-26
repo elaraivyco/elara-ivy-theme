@@ -1,420 +1,157 @@
-{%- assign is_clothing = collection.handle == 'clothing' -%}
-{%- assign is_accessories = collection.handle == 'accessories' -%}
+<div class="ei-col">
 
-{%- if is_clothing -%}
-  {%- assign hero_eyebrow = 'Ready-to-wear' -%}
-  {%- assign hero_headline = 'Clothing' -%}
-  {%- assign hero_sub = 'Considered pieces for every occasion. Curated ready-to-wear from the world\'s most exceptional designers.' -%}
-  {%- assign filters = 'All,Denim,Tops,Bottoms,Underwear,Dresses,Outerwear,Knitwear,Swimwear' | split: ',' -%}
-{%- elsif is_accessories -%}
-  {%- assign hero_eyebrow = 'The Finishing Touch' -%}
-  {%- assign hero_headline = 'Accessories' -%}
-  {%- assign hero_sub = 'The details that define an outfit. Bags, jewellery, scarves and more from the world\'s most coveted houses.' -%}
-  {%- assign filters = 'All,Bags,Sunglasses,Scarves,Jewellery,Belts,Wallets' | split: ',' -%}
-{%- else -%}
-  {%- assign hero_eyebrow = 'The Collection' -%}
-  {%- assign hero_headline = collection.title -%}
-  {%- assign hero_sub = collection.description -%}
-  {%- assign filters = '' -%}
-{%- endif -%}
-
-<div class="ei-collection">
-
-  <div class="ei-collection__hero">
-    <p class="ei-collection__eyebrow">{{ hero_eyebrow }}</p>
-    <h1 class="ei-collection__headline">{{ hero_headline }}</h1>
-    <p class="ei-collection__subline">{{ hero_sub }}</p>
-    <div class="ei-collection__meta">
+  <div class="ei-col__hero">
+    <p class="ei-col__eyebrow">{{ collection.title }}</p>
+    <h1 class="ei-col__headline">{{ collection.title }}</h1>
+    {%- if collection.description != blank -%}
+      <p class="ei-col__subline">{{ collection.description }}</p>
+    {%- endif -%}
+    <div class="ei-col__meta">
       <span>{{ collection.products_count }} pieces</span>
-      <span class="ei-collection__dot">·</span>
+      <span class="ei-col__dot">·</span>
       <span>Complimentary shipping over £200</span>
-      <span class="ei-collection__dot">·</span>
+      <span class="ei-col__dot">·</span>
       <span>Returns within 14 days</span>
     </div>
   </div>
 
-  {%- if filters != '' -%}
-  <div class="ei-collection__filter-bar">
-    <div class="ei-collection__filters">
-      <span class="ei-collection__filter-label">Filter</span>
-      {%- for f in filters -%}
-        <button
-          class="ei-collection__pill{% if forloop.first %} ei-collection__pill--active{% endif %}"
-          data-filter="{{ f | downcase | replace: ' ', '-' }}"
-        >{{ f }}</button>
-      {%- endfor -%}
+  <div class="ei-col__filter-bar">
+    <div class="ei-col__filters">
+      <span class="ei-col__filter-label">Filter</span>
+      <button class="ei-col__pill ei-col__pill--active" data-filter="all">All</button>
+      <button class="ei-col__pill" data-filter="bags">Bags</button>
+      <button class="ei-col__pill" data-filter="shoes">Shoes</button>
+      <button class="ei-col__pill" data-filter="clothing">Clothing</button>
+      <button class="ei-col__pill" data-filter="accessories">Accessories</button>
+      <button class="ei-col__pill" data-filter="swimwear">Swimwear</button>
+      <button class="ei-col__pill" data-filter="jewellery">Jewellery</button>
     </div>
-    <div class="ei-collection__sort">
-      <span class="ei-collection__filter-label">Sort</span>
-      <select class="ei-collection__sort-select" onchange="window.location=this.value">
-        <option value="?sort_by=best-selling"{% if collection.sort_by == 'best-selling' %} selected{% endif %}>Best selling</option>
-        <option value="?sort_by=price-ascending"{% if collection.sort_by == 'price-ascending' %} selected{% endif %}>Price: low to high</option>
-        <option value="?sort_by=price-descending"{% if collection.sort_by == 'price-descending' %} selected{% endif %}>Price: high to low</option>
-        <option value="?sort_by=title-ascending"{% if collection.sort_by == 'title-ascending' %} selected{% endif %}>Name A–Z</option>
-        <option value="?sort_by=created-descending"{% if collection.sort_by == 'created-descending' %} selected{% endif %}>Newest first</option>
+    <div class="ei-col__sort">
+      <span class="ei-col__filter-label">Sort</span>
+      <select class="ei-col__sort-select" id="ei-col-sort">
+        <option value="best-selling">Best selling</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+        <option value="title-asc">Name A–Z</option>
+        <option value="newest">Newest first</option>
       </select>
     </div>
   </div>
-  {%- endif -%}
 
-  <div class="ei-collection__grid" id="ei-collection-grid">
+  <div class="ei-col__grid" id="ei-col-grid">
     {%- for product in collection.products -%}
-      {%- assign product_tags = product.tags | join: ',' | downcase -%}
-      {%- assign product_type = product.type | downcase -%}
+      {%- assign tags = product.tags | join: ',' | downcase -%}
+      {%- assign ptype = product.type | downcase -%}
+      {%- assign fv = '' -%}
+      {%- if tags contains 'bag' or ptype contains 'bag' or ptype contains 'tote' or ptype contains 'handbag' or ptype contains 'clutch' or ptype contains 'backpack' or ptype contains 'crossbody' -%}{%- assign fv = fv | append: 'bags ' -%}{%- endif -%}
+      {%- if tags contains 'shoe' or tags contains 'heel' or tags contains 'sneaker' or tags contains 'sandal' or tags contains 'boot' or ptype contains 'shoe' or ptype contains 'heel' or ptype contains 'sneaker' or ptype contains 'sandal' or ptype contains 'boot' or ptype contains 'loafer' or ptype contains 'flat' -%}{%- assign fv = fv | append: 'shoes ' -%}{%- endif -%}
+      {%- if tags contains 'clothing' or ptype contains 'dress' or ptype contains 'top' or ptype contains 'shirt' or ptype contains 'trouser' or ptype contains 'skirt' or ptype contains 'jacket' or ptype contains 'coat' or ptype contains 'knitwear' or ptype contains 'denim' or ptype contains 'jean' -%}{%- assign fv = fv | append: 'clothing ' -%}{%- endif -%}
+      {%- if tags contains 'accessory' or tags contains 'accessories' or ptype contains 'scarf' or ptype contains 'belt' or ptype contains 'wallet' or ptype contains 'sunglass' or ptype contains 'hat' or ptype contains 'glove' -%}{%- assign fv = fv | append: 'accessories ' -%}{%- endif -%}
+      {%- if tags contains 'swim' or ptype contains 'swim' or ptype contains 'bikini' or ptype contains 'one-piece' -%}{%- assign fv = fv | append: 'swimwear ' -%}{%- endif -%}
+      {%- if tags contains 'jewel' or ptype contains 'jewel' or ptype contains 'necklace' or ptype contains 'earring' or ptype contains 'ring' or ptype contains 'bracelet' -%}{%- assign fv = fv | append: 'jewellery ' -%}{%- endif -%}
 
-      {%- comment -%}Build filter data attribute{%- endcomment -%}
-      {%- assign filter_vals = '' -%}
-      {%- if product_tags contains 'denim' or product_type contains 'denim' -%}{%- assign filter_vals = filter_vals | append: 'denim,' -%}{%- endif -%}
-      {%- if product_tags contains 'top' or product_type contains 'top' or product_type contains 'shirt' or product_type contains 'blouse' or product_type contains 't-shirt' or product_type contains 'sweater' -%}{%- assign filter_vals = filter_vals | append: 'tops,' -%}{%- endif -%}
-      {%- if product_tags contains 'bottom' or product_type contains 'bottom' or product_type contains 'trouser' or product_type contains 'skirt' or product_type contains 'pant' or product_type contains 'jean' -%}{%- assign filter_vals = filter_vals | append: 'bottoms,' -%}{%- endif -%}
-      {%- if product_tags contains 'underwear' or product_type contains 'underwear' or product_type contains 'lingerie' or product_type contains 'brief' or product_type contains 'bra' -%}{%- assign filter_vals = filter_vals | append: 'underwear,' -%}{%- endif -%}
-      {%- if product_tags contains 'dress' or product_type contains 'dress' -%}{%- assign filter_vals = filter_vals | append: 'dresses,' -%}{%- endif -%}
-      {%- if product_tags contains 'outerwear' or product_type contains 'outerwear' or product_type contains 'coat' or product_type contains 'jacket' or product_type contains 'blazer' -%}{%- assign filter_vals = filter_vals | append: 'outerwear,' -%}{%- endif -%}
-      {%- if product_tags contains 'knit' or product_type contains 'knit' or product_type contains 'knitwear' or product_type contains 'sweater' or product_type contains 'cardigan' -%}{%- assign filter_vals = filter_vals | append: 'knitwear,' -%}{%- endif -%}
-      {%- if product_tags contains 'swim' or product_type contains 'swim' or product_type contains 'bikini' -%}{%- assign filter_vals = filter_vals | append: 'swimwear,' -%}{%- endif -%}
-      {%- if product_tags contains 'bag' or product_type contains 'bag' or product_type contains 'tote' or product_type contains 'handbag' -%}{%- assign filter_vals = filter_vals | append: 'bags,' -%}{%- endif -%}
-      {%- if product_tags contains 'sunglass' or product_type contains 'sunglass' -%}{%- assign filter_vals = filter_vals | append: 'sunglasses,' -%}{%- endif -%}
-      {%- if product_tags contains 'scarf' or product_type contains 'scarf' -%}{%- assign filter_vals = filter_vals | append: 'scarves,' -%}{%- endif -%}
-      {%- if product_tags contains 'jewel' or product_type contains 'jewel' or product_type contains 'necklace' or product_type contains 'earring' or product_type contains 'ring' -%}{%- assign filter_vals = filter_vals | append: 'jewellery,' -%}{%- endif -%}
-      {%- if product_tags contains 'belt' or product_type contains 'belt' -%}{%- assign filter_vals = filter_vals | append: 'belts,' -%}{%- endif -%}
-      {%- if product_tags contains 'wallet' or product_type contains 'wallet' -%}{%- assign filter_vals = filter_vals | append: 'wallets,' -%}{%- endif -%}
-
-      <a href="{{ product.url }}" class="ei-collection__card" data-filters="{{ filter_vals }}">
-        <div class="ei-collection__card-img">
+      <a href="{{ product.url }}" class="ei-col__card" data-fv="{{ fv | strip }}" data-price="{{ product.price }}" data-title="{{ product.title | escape }}">
+        <div class="ei-col__card-img">
           {%- if product.featured_image -%}
-            <img
-              src="{{ product.featured_image | img_url: '600x800', crop: 'center' }}"
-              alt="{{ product.featured_image.alt | escape }}"
-              loading="lazy"
-              width="600"
-              height="800"
-            >
+            <img src="{{ product.featured_image | img_url: '400x533', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="400" height="533">
           {%- else -%}
-            <div class="ei-collection__card-placeholder"></div>
+            <div class="ei-col__card-placeholder"></div>
           {%- endif -%}
-          {%- if product.tags contains 'new-in' or product.tags contains 'New In' -%}
-            <div class="ei-collection__card-badge">New In</div>
+          {%- if product.tags contains 'New In' -%}
+            <div class="ei-col__card-badge">New In</div>
           {%- endif -%}
         </div>
-        <div class="ei-collection__card-body">
-          <p class="ei-collection__card-vendor">{{ product.vendor }}</p>
-          <p class="ei-collection__card-title">{{ product.title }}</p>
-          <p class="ei-collection__card-price">
-            {%- if product.price_varies -%}
-              From {{ product.price_min | money }}
-            {%- else -%}
-              {{ product.price | money }}
-            {%- endif -%}
-          </p>
+        <div class="ei-col__card-body">
+          <p class="ei-col__card-vendor">{{ product.vendor }}</p>
+          <p class="ei-col__card-title">{{ product.title }}</p>
+          <p class="ei-col__card-price">{%- if product.price_varies -%}From {{ product.price_min | money }}{%- else -%}{{ product.price | money }}{%- endif -%}</p>
         </div>
       </a>
     {%- else -%}
-      <div class="ei-collection__empty">
-        <p>No products found in this collection yet.</p>
-      </div>
+      <div class="ei-col__empty"><p>No products found in this collection.</p></div>
     {%- endfor -%}
   </div>
 
   {%- if paginate.pages > 1 -%}
-    <div class="ei-collection__pagination">
-      {%- if paginate.previous -%}
-        <a href="{{ paginate.previous.url }}" class="ei-collection__page-btn">← Previous</a>
-      {%- endif -%}
-      <span class="ei-collection__page-info">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
-      {%- if paginate.next -%}
-        <a href="{{ paginate.next.url }}" class="ei-collection__page-btn">Next →</a>
-      {%- endif -%}
+    <div class="ei-col__pagination">
+      {%- if paginate.previous -%}<a href="{{ paginate.previous.url }}" class="ei-col__page-btn">← Previous</a>{%- endif -%}
+      <span class="ei-col__page-info">Page {{ paginate.current_page }} of {{ paginate.pages }}</span>
+      {%- if paginate.next -%}<a href="{{ paginate.next.url }}" class="ei-col__page-btn">Next →</a>{%- endif -%}
     </div>
   {%- endif -%}
 
 </div>
 
 <style>
-  .ei-collection {
-    font-family: 'Jost', sans-serif;
-    color: #0D1B3E;
-  }
-
-  .ei-collection__hero {
-    background-color: #0D1B3E;
-    padding: 64px 48px 56px;
-    text-align: center;
-    background-image: radial-gradient(ellipse at 80% 20%, rgba(207,174,112,0.07) 0%, transparent 55%),
-                      radial-gradient(ellipse at 20% 80%, rgba(243,199,211,0.05) 0%, transparent 55%);
-  }
-
-  .ei-collection__eyebrow {
-    font-size: 10px;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: #CFAE70;
-    margin-bottom: 12px;
-  }
-
-  .ei-collection__headline {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: clamp(40px, 6vw, 64px);
-    font-weight: 300;
-    font-style: italic;
-    color: #ffffff;
-    line-height: 1.1;
-    margin-bottom: 16px;
-  }
-
-  .ei-collection__subline {
-    font-size: 14px;
-    font-weight: 300;
-    color: rgba(255,255,255,0.55);
-    line-height: 1.85;
-    max-width: 520px;
-    margin: 0 auto 20px;
-  }
-
-  .ei-collection__meta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    font-size: 11px;
-    letter-spacing: 0.1em;
-    color: rgba(255,255,255,0.35);
-    text-transform: uppercase;
-  }
-
-  .ei-collection__dot { opacity: 0.4; }
-
-  .ei-collection__filter-bar {
-    background: #F5F3F0;
-    padding: 14px 48px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    border-bottom: 1px solid #E8E4DF;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-  }
-
-  .ei-collection__filters {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1;
-    flex-wrap: wrap;
-  }
-
-  .ei-collection__filter-label {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #999;
-    margin-right: 4px;
-    flex-shrink: 0;
-  }
-
-  .ei-collection__pill {
-    font-family: 'Jost', sans-serif;
-    font-size: 12px;
-    padding: 5px 14px;
-    border-radius: 20px;
-    border: 1px solid #D8D4CE;
-    background: transparent;
-    color: #666;
-    cursor: pointer;
-    transition: all 0.15s ease;
-    white-space: nowrap;
-  }
-
-  .ei-collection__pill:hover {
-    border-color: #0D1B3E;
-    color: #0D1B3E;
-  }
-
-  .ei-collection__pill--active {
-    background: #0D1B3E;
-    color: #ffffff;
-    border-color: #0D1B3E;
-  }
-
-  .ei-collection__sort {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-
-  .ei-collection__sort-select {
-    font-family: 'Jost', sans-serif;
-    font-size: 12px;
-    border: 1px solid #D8D4CE;
-    border-radius: 2px;
-    padding: 6px 12px;
-    background: #ffffff;
-    color: #0D1B3E;
-    outline: none;
-  }
-
-  .ei-collection__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: #E8E4DF;
-    padding: 1px;
-  }
-
-  .ei-collection__card {
-    display: block;
-    text-decoration: none;
-    color: inherit;
-    background: #ffffff;
-    transition: background 0.2s ease;
-  }
-
-  .ei-collection__card:hover { background: #FAFAF8; }
-  .ei-collection__card:hover img { transform: scale(1.03); }
-  .ei-collection__card.ei-hidden { display: none; }
-
-  .ei-collection__card-img {
-    position: relative;
-    aspect-ratio: 3/4;
-    overflow: hidden;
-    background: #F5F3F0;
-  }
-
-  .ei-collection__card-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-    transition: transform 0.5s ease;
-  }
-
-  .ei-collection__card-placeholder {
-    width: 100%;
-    height: 100%;
-    background: #F0EDE8;
-  }
-
-  .ei-collection__card-badge {
-    position: absolute;
-    top: 12px;
-    left: 12px;
-    font-size: 9px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #CFAE70;
-    background: rgba(13,27,62,0.8);
-    padding: 4px 10px;
-    border-radius: 2px;
-  }
-
-  .ei-collection__card-body {
-    padding: 16px 20px 20px;
-    border-top: 1px solid #F0EDE8;
-  }
-
-  .ei-collection__card-vendor {
-    font-size: 10px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #0D1B3E;
-    margin-bottom: 4px;
-  }
-
-  .ei-collection__card-title {
-    font-family: 'Cormorant Garamond', Georgia, serif;
-    font-size: 16px;
-    font-style: italic;
-    color: #0D1B3E;
-    margin-bottom: 6px;
-    line-height: 1.3;
-  }
-
-  .ei-collection__card-price {
-    font-size: 14px;
-    font-weight: 300;
-    color: #666;
-  }
-
-  .ei-collection__empty {
-    grid-column: 1 / -1;
-    text-align: center;
-    padding: 80px 24px;
-    font-size: 14px;
-    color: #999;
-    background: #ffffff;
-  }
-
-  .ei-collection__pagination {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 24px;
-    padding: 40px 24px;
-    border-top: 1px solid #E8E4DF;
-  }
-
-  .ei-collection__page-btn {
-    font-size: 11px;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: #0D1B3E;
-    text-decoration: none;
-    border-bottom: 1px solid #CFAE70;
-    padding-bottom: 2px;
-    transition: color 0.2s ease;
-  }
-
-  .ei-collection__page-btn:hover { color: #CFAE70; }
-
-  .ei-collection__page-info {
-    font-size: 12px;
-    color: #999;
-    letter-spacing: 0.1em;
-  }
-
-  @media (max-width: 768px) {
-    .ei-collection__hero { padding: 40px 24px 32px; }
-    .ei-collection__filter-bar { padding: 12px 16px; }
-    .ei-collection__grid { grid-template-columns: repeat(2, 1fr); }
-  }
-
-  @media (max-width: 480px) {
-    .ei-collection__grid { grid-template-columns: 1fr; }
-  }
+.ei-col{font-family:'Jost',sans-serif;color:#0D1B3E}
+.ei-col__hero{background:#0D1B3E;padding:64px 48px 56px;text-align:center;background-image:radial-gradient(ellipse at 80% 20%,rgba(207,174,112,.07) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(243,199,211,.05) 0%,transparent 55%)}
+.ei-col__eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:#CFAE70;margin-bottom:12px}
+.ei-col__headline{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(40px,6vw,64px);font-weight:300;font-style:italic;color:#fff;line-height:1.1;margin-bottom:16px}
+.ei-col__subline{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.85;max-width:520px;margin:0 auto 20px}
+.ei-col__meta{display:flex;align-items:center;justify-content:center;gap:12px;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.35);text-transform:uppercase;flex-wrap:wrap}
+.ei-col__dot{opacity:.4}
+.ei-col__filter-bar{background:#F5F3F0;padding:14px 48px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid #E8E4DF;position:sticky;top:0;z-index:10}
+.ei-col__filters{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap}
+.ei-col__filter-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#999;margin-right:4px;flex-shrink:0}
+.ei-col__pill{font-family:'Jost',sans-serif;font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid #D8D4CE;background:transparent;color:#666;cursor:pointer;transition:all .15s ease;white-space:nowrap}
+.ei-col__pill:hover{border-color:#0D1B3E;color:#0D1B3E}
+.ei-col__pill--active{background:#0D1B3E;color:#fff;border-color:#0D1B3E}
+.ei-col__sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ei-col__sort-select{font-family:'Jost',sans-serif;font-size:12px;border:1px solid #D8D4CE;border-radius:2px;padding:6px 12px;background:#fff;color:#0D1B3E;outline:none}
+.ei-col__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;padding:24px 48px;background:transparent}
+.ei-col__card{display:block;text-decoration:none;color:inherit;background:#fff;transition:background .2s ease}
+.ei-col__card:hover{background:#FAFAF8}
+.ei-col__card:hover img{transform:scale(1.03)}
+.ei-col__card.ei-hidden{display:none}
+.ei-col__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0;max-height:320px}
+.ei-col__card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.ei-col__card-placeholder{width:100%;height:100%;background:#F0EDE8}
+.ei-col__card-badge{position:absolute;top:10px;left:10px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;background:rgba(13,27,62,.8);padding:3px 8px;border-radius:2px}
+.ei-col__card-body{padding:14px 16px 16px;border-top:2px solid #0D1B3E;background:#fff}
+.ei-col__card-vendor{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;margin-bottom:4px;font-weight:500}
+.ei-col__card-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;font-style:italic;color:#0D1B3E;margin-bottom:6px;line-height:1.25}
+.ei-col__card-price{font-size:13px;font-weight:500;color:#0D1B3E;letter-spacing:.02em}
+.ei-col__empty{grid-column:1/-1;text-align:center;padding:80px 24px;font-size:14px;color:#999;background:#fff}
+.ei-col__pagination{display:flex;align-items:center;justify-content:center;gap:24px;padding:40px 24px;border-top:1px solid #E8E4DF}
+.ei-col__page-btn{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#0D1B3E;text-decoration:none;border-bottom:1px solid #CFAE70;padding-bottom:2px;transition:color .2s ease}
+.ei-col__page-btn:hover{color:#CFAE70}
+.ei-col__page-info{font-size:12px;color:#999;letter-spacing:.1em}
+@media(max-width:1024px){.ei-col__grid{grid-template-columns:repeat(4,1fr);padding:20px 24px}}
+@media(max-width:768px){.ei-col__hero{padding:40px 24px 32px}.ei-col__filter-bar{padding:12px 16px}.ei-col__grid{grid-template-columns:repeat(2,1fr);padding:16px}}
+@media(max-width:480px){.ei-col__grid{grid-template-columns:repeat(2,1fr)}}
 </style>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var pills = document.querySelectorAll('.ei-collection__pill');
-    var cards = document.querySelectorAll('.ei-collection__card');
+document.addEventListener('DOMContentLoaded',function(){
+  var pills=document.querySelectorAll('.ei-col__pill');
+  var cards=Array.from(document.querySelectorAll('.ei-col__card'));
+  var sort=document.getElementById('ei-col-sort');
+  var grid=document.getElementById('ei-col-grid');
 
-    pills.forEach(function(pill) {
-      pill.addEventListener('click', function() {
-        pills.forEach(function(p) { p.classList.remove('ei-collection__pill--active'); });
-        pill.classList.add('ei-collection__pill--active');
-
-        var filter = pill.getAttribute('data-filter');
-        var visible = 0;
-
-        cards.forEach(function(card) {
-          if (filter === 'all') {
-            card.classList.remove('ei-hidden');
-            visible++;
-          } else {
-            var filters = card.getAttribute('data-filters') || '';
-            if (filters.indexOf(filter) > -1) {
-              card.classList.remove('ei-hidden');
-              visible++;
-            } else {
-              card.classList.add('ei-hidden');
-            }
-          }
-        });
+  pills.forEach(function(pill){
+    pill.addEventListener('click',function(){
+      pills.forEach(function(p){p.classList.remove('ei-col__pill--active')});
+      pill.classList.add('ei-col__pill--active');
+      var f=pill.getAttribute('data-filter');
+      cards.forEach(function(c){
+        if(f==='all'){c.classList.remove('ei-hidden')}
+        else{var v=c.getAttribute('data-fv')||'';v.indexOf(f)>-1?c.classList.remove('ei-hidden'):c.classList.add('ei-hidden')}
       });
     });
   });
+
+  if(sort){sort.addEventListener('change',function(){
+    var m=this.value;
+    var visible=cards.filter(function(c){return!c.classList.contains('ei-hidden')});
+    visible.sort(function(a,b){
+      if(m==='price-asc')return parseInt(a.dataset.price)-parseInt(b.dataset.price);
+      if(m==='price-desc')return parseInt(b.dataset.price)-parseInt(a.dataset.price);
+      if(m==='title-asc')return a.dataset.title.localeCompare(b.dataset.title);
+      return 0;
+    });
+    visible.forEach(function(c){grid.appendChild(c)});
+  });}
+});
 </script>
 
 {% schema %}
