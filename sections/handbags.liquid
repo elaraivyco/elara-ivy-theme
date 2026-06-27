@@ -1,0 +1,143 @@
+{%- assign handbags = collections['handbags'] -%}
+
+<div class="ei-hb">
+  <div class="ei-hb__hero">
+    <p class="ei-hb__eyebrow">Bags & Accessories</p>
+    <h1 class="ei-hb__headline">Handbags</h1>
+    <p class="ei-hb__subline">An edit of the finest handbags from the world's most considered designers. From structured totes to evening clutches.</p>
+    <div class="ei-hb__meta">
+      <span>{{ handbags.products_count }} styles</span>
+      <span class="ei-hb__dot">·</span>
+      <span>Worldwide shipping</span>
+      <span class="ei-hb__dot">·</span>
+      <span>Returns within 14 days</span>
+    </div>
+  </div>
+
+  <div class="ei-hb__filter-bar">
+    <div class="ei-hb__filters">
+      <span class="ei-hb__filter-label">Filter</span>
+      <button class="ei-hb__pill ei-hb__pill--active" data-filter="all">All</button>
+      <button class="ei-hb__pill" data-filter="shoulder">Shoulder</button>
+      <button class="ei-hb__pill" data-filter="crossbody">Crossbody</button>
+      <button class="ei-hb__pill" data-filter="tote">Tote</button>
+      <button class="ei-hb__pill" data-filter="clutch">Clutch</button>
+      <button class="ei-hb__pill" data-filter="backpack">Backpack</button>
+      <button class="ei-hb__pill" data-filter="mini">Mini</button>
+    </div>
+    <div class="ei-hb__sort">
+      <span class="ei-hb__filter-label">Sort</span>
+      <select class="ei-hb__sort-select" id="ei-hb-sort">
+        <option value="best-selling">Best selling</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+        <option value="title-asc">Name A–Z</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="ei-hb__grid" id="ei-hb-grid">
+    {%- for product in handbags.products -%}
+      {%- assign tags = product.tags | join: ',' | downcase -%}
+      {%- assign ptitle = product.title | downcase -%}
+      {%- assign fv = '' -%}
+      {%- if tags contains 'shoulder' or ptitle contains 'shoulder' -%}{%- assign fv = fv | append: 'shoulder ' -%}{%- endif -%}
+      {%- if tags contains 'crossbody' or ptitle contains 'crossbody' or ptitle contains 'cross body' -%}{%- assign fv = fv | append: 'crossbody ' -%}{%- endif -%}
+      {%- if tags contains 'tote' or ptitle contains 'tote' -%}{%- assign fv = fv | append: 'tote ' -%}{%- endif -%}
+      {%- if tags contains 'clutch' or ptitle contains 'clutch' or ptitle contains 'wristlet' or ptitle contains 'pouch' -%}{%- assign fv = fv | append: 'clutch ' -%}{%- endif -%}
+      {%- if tags contains 'backpack' or ptitle contains 'backpack' or ptitle contains 'bookbag' -%}{%- assign fv = fv | append: 'backpack ' -%}{%- endif -%}
+      {%- if tags contains 'mini' or ptitle contains 'mini' or ptitle contains 'micro' or ptitle contains 'small' -%}{%- assign fv = fv | append: 'mini ' -%}{%- endif -%}
+      <a href="{{ product.url }}" class="ei-hb__card" data-fv="{{ fv | strip }}" data-price="{{ product.price }}" data-title="{{ product.title | escape }}">
+        <div class="ei-hb__card-img">
+          {%- if product.featured_image -%}
+            <img src="{{ product.featured_image | img_url: '600x800', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="600" height="800">
+          {%- else -%}
+            <div class="ei-hb__card-placeholder"></div>
+          {%- endif -%}
+          {%- if product.tags contains 'New In' -%}<div class="ei-hb__card-badge">New In</div>{%- endif -%}
+        </div>
+        <div class="ei-hb__card-body">
+          <p class="ei-hb__card-vendor">{{ product.vendor }}</p>
+          <p class="ei-hb__card-title">{{ product.title }}</p>
+          <p class="ei-hb__card-price">{%- if product.price_varies -%}From {{ product.price_min | money }}{%- else -%}{{ product.price | money }}{%- endif -%}</p>
+        </div>
+      </a>
+    {%- else -%}
+      <div class="ei-hb__empty"><p>No handbags found.</p></div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+.ei-hb{font-family:'Jost',sans-serif;color:#0D1B3E}
+.ei-hb__hero{background:#0D1B3E;padding:64px 48px 56px;text-align:center;background-image:radial-gradient(ellipse at 80% 20%,rgba(207,174,112,.07) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(243,199,211,.05) 0%,transparent 55%)}
+.ei-hb__eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:#CFAE70;margin-bottom:12px}
+.ei-hb__headline{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(40px,6vw,64px);font-weight:300;font-style:italic;color:#fff;line-height:1.1;margin-bottom:16px}
+.ei-hb__subline{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.85;max-width:520px;margin:0 auto 20px}
+.ei-hb__meta{display:flex;align-items:center;justify-content:center;gap:12px;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.35);text-transform:uppercase;flex-wrap:wrap}
+.ei-hb__dot{opacity:.4}
+.ei-hb__filter-bar{background:#F5F3F0;padding:14px 48px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid #E8E4DF;position:sticky;top:0;z-index:10}
+.ei-hb__filters{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap}
+.ei-hb__filter-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#999;margin-right:4px;flex-shrink:0}
+.ei-hb__pill{font-family:'Jost',sans-serif;font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid #D8D4CE;background:transparent;color:#666;cursor:pointer;transition:all .15s ease;white-space:nowrap}
+.ei-hb__pill:hover{border-color:#0D1B3E;color:#0D1B3E}
+.ei-hb__pill--active{background:#0D1B3E;color:#fff;border-color:#0D1B3E}
+.ei-hb__sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ei-hb__sort-select{font-family:'Jost',sans-serif;font-size:12px;border:1px solid #D8D4CE;border-radius:2px;padding:6px 12px;background:#fff;color:#0D1B3E;outline:none}
+.ei-hb__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;background:transparent;padding:24px 48px}
+.ei-hb__card{display:block;text-decoration:none;color:inherit;background:#fff;transition:all .2s ease;border:1px solid #E8E4DF;border-radius:2px}
+.ei-hb__card:hover{background:#FAFAF8;box-shadow:0 4px 16px rgba(13,27,62,.1);transform:translateY(-2px)}
+.ei-hb__card:hover img{transform:scale(1.03)}
+.ei-hb__card.ei-hidden{display:none}
+.ei-hb__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0;max-height:320px}
+.ei-hb__card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.ei-hb__card-placeholder{width:100%;height:100%;background:#F0EDE8}
+.ei-hb__card-badge{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;background:rgba(13,27,62,.8);padding:4px 10px;border-radius:2px}
+.ei-hb__card-body{padding:14px 16px 16px;border-top:2px solid #0D1B3E;background:#ffffff}
+.ei-hb__card-vendor{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;margin-bottom:4px;font-weight:500}
+.ei-hb__card-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;font-style:italic;color:#0D1B3E;margin-bottom:6px;line-height:1.25;font-weight:400}
+.ei-hb__card-price{font-size:13px;font-weight:500;color:#0D1B3E;letter-spacing:.02em}
+.ei-hb__empty{grid-column:1/-1;text-align:center;padding:80px 24px;font-size:14px;color:#999;background:#fff}
+@media(max-width:1024px){.ei-hb__grid{grid-template-columns:repeat(4,1fr);padding:20px 24px}}
+@media(max-width:768px){.ei-hb__hero{padding:40px 24px 32px}.ei-hb__filter-bar{padding:12px 16px}.ei-hb__grid{grid-template-columns:repeat(2,1fr);padding:16px}}
+@media(max-width:480px){.ei-hb__grid{grid-template-columns:1fr}}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var pills=document.querySelectorAll('.ei-hb__pill');
+  var cards=Array.from(document.querySelectorAll('.ei-hb__card'));
+  var sort=document.getElementById('ei-hb-sort');
+  var grid=document.getElementById('ei-hb-grid');
+  pills.forEach(function(pill){
+    pill.addEventListener('click',function(){
+      pills.forEach(function(p){p.classList.remove('ei-hb__pill--active')});
+      pill.classList.add('ei-hb__pill--active');
+      var f=pill.getAttribute('data-filter');
+      cards.forEach(function(c){
+        if(f==='all'){c.classList.remove('ei-hidden')}
+        else{var v=c.getAttribute('data-fv')||'';v.indexOf(f)>-1?c.classList.remove('ei-hidden'):c.classList.add('ei-hidden')}
+      });
+    });
+  });
+  if(sort){sort.addEventListener('change',function(){
+    var m=this.value;
+    var visible=cards.filter(function(c){return!c.classList.contains('ei-hidden')});
+    visible.sort(function(a,b){
+      if(m==='price-asc')return parseInt(a.dataset.price)-parseInt(b.dataset.price);
+      if(m==='price-desc')return parseInt(b.dataset.price)-parseInt(a.dataset.price);
+      if(m==='title-asc')return a.dataset.title.localeCompare(b.dataset.title);
+      return 0;
+    });
+    visible.forEach(function(c){grid.appendChild(c)});
+  });}
+});
+</script>
+
+{% schema %}
+{
+  "name": "Handbags",
+  "settings": [],
+  "presets": [{ "name": "Handbags" }]
+}
+{% endschema %}
