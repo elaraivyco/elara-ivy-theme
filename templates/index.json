@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
@@ -174,16 +165,6 @@
         "cta_label": "READ OUR PHILOSOPHY",
         "cta_url": "shopify://pages/our-philosophy"
       }
-    },
-    "editorial_strip": {
-      "type": "editorial-strip",
-      "settings": {
-        "label": "FROM THE JOURNAL",
-        "heading": "Summer dressing, done with intention.",
-        "body": "Our SS26 edit is built around ease — pieces that move between beach and dinner, morning and midnight, without missing a beat.",
-        "link_label": "READ THE STORY",
-        "link_url": "/blogs/journal"
-      }
     }
   },
   "order": [
@@ -191,7 +172,6 @@
     "marquee",
     "designer_grid",
     "featured_products",
-    "accent_strip",
-    "editorial_strip"
+    "accent_strip"
   ]
 }
