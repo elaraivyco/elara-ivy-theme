@@ -62,19 +62,22 @@
   <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">WOMEN'S CLOTHING</div>
   <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:28px;">Clothing Size Conversion</h2>
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
-    <table style="width:100%;border-collapse:collapse;min-width:560px;font-size:12px;">
+    <table style="width:100%;border-collapse:collapse;min-width:680px;font-size:12px;">
       <thead>
         <tr style="background:var(--navy);">
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">US</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">UK</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">EU</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">BUST (CM)</th>
+          <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">BUST (IN)</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">WAIST (CM)</th>
+          <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">WAIST (IN)</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">HIPS (CM)</th>
+          <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">HIPS (IN)</th>
         </tr>
       </thead>
       <tbody>
-        {% assign clothing_sizes = "XS,6,34,79-81,61-63,86-88|S,8,36,84-86,64-66,89-91|M,10,38,89-91,69-71,94-96|L,12,40,94-96,74-76,99-101|XL,14,42,99-101,79-81,104-106|XXL,16,44,104-106,84-86,109-111" | split: "|" %}
+        {% assign clothing_sizes = "XS,6,34,79-81,31-32,61-63,24-25,86-88,34-35|S,8,36,84-86,33-34,64-66,25-26,89-91,35-36|M,10,38,89-91,35-36,69-71,27-28,94-96,37-38|L,12,40,94-96,37-38,74-76,29-30,99-101,39-40|XL,14,42,99-101,39-40,79-81,31-32,104-106,41-42|XXL,16,44,104-106,41-42,84-86,33-34,109-111,43-44" | split: "|" %}
         {% for row in clothing_sizes %}
           {% assign cols = row | split: "," %}
           <tr style="border-bottom:1px solid var(--rule);background:{% cycle 'var(--white)', 'var(--surface-warm)' %};">
@@ -84,6 +87,9 @@
             <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[3] }}</td>
             <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[4] }}</td>
             <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[5] }}</td>
+            <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[6] }}</td>
+            <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[7] }}</td>
+            <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[8] }}</td>
           </tr>
         {% endfor %}
       </tbody>
@@ -97,19 +103,22 @@
   <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:16px;">Swimwear Size Conversion</h2>
   <p style="font-size:13px;color:var(--ink-muted);line-height:1.8;margin-bottom:28px;max-width:600px;">Swimwear sizing can vary significantly by designer. Always refer to the individual product size guide. As a general reference:</p>
   <div style="overflow-x:auto;-webkit-overflow-scrolling:touch;">
-    <table style="width:100%;border-collapse:collapse;min-width:560px;font-size:12px;">
+    <table style="width:100%;border-collapse:collapse;min-width:680px;font-size:12px;">
       <thead>
         <tr style="background:var(--navy);">
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">US</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">UK</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">EU</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">BUST (CM)</th>
+          <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">BUST (IN)</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">WAIST (CM)</th>
+          <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">WAIST (IN)</th>
           <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">HIPS (CM)</th>
+          <th style="padding:14px 16px;text-align:left;font-size:8px;letter-spacing:0.2em;color:rgba(255,255,255,0.6);font-weight:400;">HIPS (IN)</th>
         </tr>
       </thead>
       <tbody>
-        {% assign swim_sizes = "XS,6,34,79-81,61-63,86-88|S,8,36,84-86,64-66,89-91|M,10,38,89-91,69-71,94-96|L,12,40,94-96,74-76,99-101|XL,14,42,99-101,79-81,104-106" | split: "|" %}
+        {% assign swim_sizes = "XS,6,34,79-81,31-32,61-63,24-25,86-88,34-35|S,8,36,84-86,33-34,64-66,25-26,89-91,35-36|M,10,38,89-91,35-36,69-71,27-28,94-96,37-38|L,12,40,94-96,37-38,74-76,29-30,99-101,39-40|XL,14,42,99-101,39-40,79-81,31-32,104-106,41-42" | split: "|" %}
         {% for row in swim_sizes %}
           {% assign cols = row | split: "," %}
           <tr style="border-bottom:1px solid var(--rule);background:{% cycle 'var(--white)', 'var(--surface-warm)' %};">
@@ -119,6 +128,9 @@
             <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[3] }}</td>
             <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[4] }}</td>
             <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[5] }}</td>
+            <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[6] }}</td>
+            <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[7] }}</td>
+            <td style="padding:14px 16px;color:var(--ink-muted);">{{ cols[8] }}</td>
           </tr>
         {% endfor %}
       </tbody>
@@ -126,5 +138,75 @@
   </div>
 
   <!-- Hunza G special note -->
-  <div style="background:var(--periwinkle-lt);border-left:3px solid var(--periwinkle);padding:16px 20px;margin-top:20px;max-width:720px;">
-    <div style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);margin-bottom
+  <div style="background:#FFF8EC;border-left:3px solid var(--gold);padding:16px 20px;margin-top:20px;max-width:720px;">
+    <div style="font-size:9px;letter-spacing:0.18em;color:var(--navy);margin-bottom:6px;">HUNZA G — ONE SIZE</div>
+    <div style="font-size:12px;color:var(--ink-body);line-height:1.7;">All Hunza G swimwear is one size fits all, designed to fit UK sizes 6–18. The brand's signature crinkle fabric stretches to accommodate a wide range of body types.</div>
+  </div>
+</div>
+
+<!-- DESIGNER FIT NOTES -->
+<div style="background:var(--surface-warm);padding:56px 24px;">
+  <div style="font-size:8px;letter-spacing:0.3em;color:var(--periwinkle);margin-bottom:16px;text-transform:uppercase;">DESIGNER FIT NOTES</div>
+  <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:28px;">How each brand fits</h2>
+  <div style="display:flex;flex-direction:column;gap:3px;max-width:720px;">
+
+    <div style="background:var(--white);padding:20px 24px;border-left:3px solid var(--periwinkle);">
+      <div style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);margin-bottom:6px;">TOM FORD</div>
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.7;">Runs true to size with a tailored, body-conscious cut. Consider sizing up if you prefer a relaxed fit.</div>
+    </div>
+
+    <div style="background:var(--white);padding:20px 24px;border-left:3px solid var(--periwinkle);">
+      <div style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);margin-bottom:6px;">PRADA</div>
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.7;">Sizing is consistent with Italian standards. Fits true to size; structured pieces may feel more fitted around the chest.</div>
+    </div>
+
+    <div style="background:var(--white);padding:20px 24px;border-left:3px solid var(--periwinkle);">
+      <div style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);margin-bottom:6px;">THE ATTICO</div>
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.7;">Runs small to true to size. We recommend sizing up one, especially in dresses and fitted tops.</div>
+    </div>
+
+    <div style="background:var(--white);padding:20px 24px;border-left:3px solid var(--periwinkle);">
+      <div style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);margin-bottom:6px;">GUCCI</div>
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.7;">Italian sizing. Generally runs true to size; knitwear tends to be slightly oversized by design.</div>
+    </div>
+
+    <div style="background:var(--white);padding:20px 24px;border-left:3px solid var(--periwinkle);">
+      <div style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);margin-bottom:6px;">BALENCIAGA</div>
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.7;">Known for oversized silhouettes. Size down for a more fitted look, or embrace the intended relaxed drape in your usual size.</div>
+    </div>
+
+    <div style="background:var(--white);padding:20px 24px;border-left:3px solid var(--periwinkle);">
+      <div style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);margin-bottom:6px;">BURBERRY</div>
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.7;">Runs true to size with a classic British cut. Outerwear is designed to layer, so your usual size works well.</div>
+    </div>
+
+    <div style="background:var(--white);padding:20px 24px;border-left:3px solid var(--periwinkle);">
+      <div style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);margin-bottom:6px;">MIU MIU</div>
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.7;">Runs small. We recommend sizing up one for most styles, particularly in skirts and fitted dresses.</div>
+    </div>
+
+    <div style="background:var(--white);padding:20px 24px;border-left:3px solid var(--periwinkle);">
+      <div style="font-size:9px;letter-spacing:0.18em;color:var(--periwinkle);margin-bottom:6px;">HUNZA G</div>
+      <div style="font-size:12px;color:var(--ink-body);line-height:1.7;">One size fits all. Designed to fit UK 6–18. The crinkle fabric provides natural stretch and hold without adjustment.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div style="background:var(--white);padding:56px 24px;text-align:center;">
+  <div style="max-width:480px;margin:0 auto;">
+    <h2 class="ei-serif" style="font-size:32px;font-style:italic;font-weight:300;color:var(--navy);margin-bottom:12px;">Still not sure?</h2>
+    <p style="font-size:13px;color:var(--ink-muted);line-height:1.85;margin-bottom:28px;">Our team is happy to help you find the right fit before you order.</p>
+    <a href="mailto:shop@elaraivyco.com" class="btn-primary">EMAIL US</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Size Guide",
+  "settings": [],
+  "presets": [{ "name": "Size Guide" }]
+}
+{% endschema %}
+
