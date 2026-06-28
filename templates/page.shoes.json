@@ -9,7 +9,7 @@
  */
 {
   "sections": {
-    "main": { "type": "main-page", "settings": {} }
+    "main": { "type": "shoes", "settings": {} }
   },
   "order": ["main"]
 }
