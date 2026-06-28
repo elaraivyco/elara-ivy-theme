@@ -1,0 +1,146 @@
+{%- assign shoes = collections['shoes'] -%}
+
+<div class="ei-sh">
+  <div class="ei-sh__hero">
+    <p class="ei-sh__eyebrow">Footwear</p>
+    <h1 class="ei-sh__headline">Shoes</h1>
+    <p class="ei-sh__subline">An edit of the finest footwear from the world's most considered designers. From heels to sneakers, loafers to boots.</p>
+    <div class="ei-sh__meta">
+      <span>{{ shoes.products_count }} styles</span>
+      <span class="ei-sh__dot">·</span>
+      <span>Worldwide shipping</span>
+      <span class="ei-sh__dot">·</span>
+      <span>Returns within 14 days</span>
+    </div>
+  </div>
+
+  <div class="ei-sh__filter-bar">
+    <div class="ei-sh__filters">
+      <span class="ei-sh__filter-label">Filter</span>
+      <button class="ei-sh__pill ei-sh__pill--active" data-filter="all">All</button>
+      <button class="ei-sh__pill" data-filter="heels">Heels</button>
+      <button class="ei-sh__pill" data-filter="flats">Flats</button>
+      <button class="ei-sh__pill" data-filter="sneakers">Sneakers</button>
+      <button class="ei-sh__pill" data-filter="sandals">Sandals</button>
+      <button class="ei-sh__pill" data-filter="boots">Boots</button>
+      <button class="ei-sh__pill" data-filter="loafers">Loafers</button>
+      <button class="ei-sh__pill" data-filter="mules">Mules</button>
+    </div>
+    <div class="ei-sh__sort">
+      <span class="ei-sh__filter-label">Sort</span>
+      <select class="ei-sh__sort-select" id="ei-sh-sort">
+        <option value="best-selling">Best selling</option>
+        <option value="price-asc">Price: low to high</option>
+        <option value="price-desc">Price: high to low</option>
+        <option value="title-asc">Name A–Z</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="ei-sh__grid" id="ei-sh-grid">
+    {%- for product in shoes.products -%}
+      {%- assign tags = product.tags | join: ',' | downcase -%}
+      {%- assign ptitle = product.title | downcase -%}
+      {%- assign ptype = product.type | downcase -%}
+      {%- assign fv = '' -%}
+      {%- if tags contains 'heel' or ptitle contains 'heel' or ptitle contains 'pump' or ptitle contains 'stiletto' or ptitle contains 'wedge' -%}{%- assign fv = fv | append: 'heels ' -%}{%- endif -%}
+      {%- if tags contains 'flat' or ptitle contains 'flat' or ptitle contains 'ballet' or ptitle contains 'loafer' or ptitle contains 'slip-on' -%}{%- assign fv = fv | append: 'flats ' -%}{%- endif -%}
+      {%- if tags contains 'sneaker' or ptitle contains 'sneaker' or ptitle contains 'trainer' or ptitle contains 'athletic' -%}{%- assign fv = fv | append: 'sneakers ' -%}{%- endif -%}
+      {%- if tags contains 'sandal' or ptitle contains 'sandal' or ptitle contains 'slide' or ptitle contains 'mule' and ptitle contains 'sandal' -%}{%- assign fv = fv | append: 'sandals ' -%}{%- endif -%}
+      {%- if tags contains 'boot' or ptitle contains 'boot' -%}{%- assign fv = fv | append: 'boots ' -%}{%- endif -%}
+      {%- if tags contains 'loafer' or ptitle contains 'loafer' or ptitle contains 'horsebit' -%}{%- assign fv = fv | append: 'loafers ' -%}{%- endif -%}
+      {%- if tags contains 'mule' or ptitle contains 'mule' or ptitle contains 'clog' -%}{%- assign fv = fv | append: 'mules ' -%}{%- endif -%}
+      <a href="{{ product.url }}" class="ei-sh__card" data-fv="{{ fv | strip }}" data-price="{{ product.price }}" data-title="{{ product.title | escape }}">
+        <div class="ei-sh__card-img">
+          {%- if product.featured_image -%}
+            <img src="{{ product.featured_image | img_url: '600x800', crop: 'center' }}" alt="{{ product.featured_image.alt | escape }}" loading="lazy" width="600" height="800">
+          {%- else -%}
+            <div class="ei-sh__card-placeholder"></div>
+          {%- endif -%}
+          {%- if product.tags contains 'New In' -%}<div class="ei-sh__card-badge">New In</div>{%- endif -%}
+        </div>
+        <div class="ei-sh__card-body">
+          <p class="ei-sh__card-vendor">{{ product.vendor }}</p>
+          <p class="ei-sh__card-title">{{ product.title }}</p>
+          <p class="ei-sh__card-price">{%- if product.price_varies -%}From {{ product.price_min | money }}{%- else -%}{{ product.price | money }}{%- endif -%}</p>
+        </div>
+      </a>
+    {%- else -%}
+      <div class="ei-sh__empty"><p>No shoes found.</p></div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<style>
+.ei-sh{font-family:'Jost',sans-serif;color:#0D1B3E}
+.ei-sh__hero{background:#0D1B3E;padding:64px 48px 56px;text-align:center;background-image:radial-gradient(ellipse at 80% 20%,rgba(207,174,112,.07) 0%,transparent 55%),radial-gradient(ellipse at 20% 80%,rgba(243,199,211,.05) 0%,transparent 55%)}
+.ei-sh__eyebrow{font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:#CFAE70;margin-bottom:12px}
+.ei-sh__headline{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(40px,6vw,64px);font-weight:300;font-style:italic;color:#fff;line-height:1.1;margin-bottom:16px}
+.ei-sh__subline{font-size:14px;font-weight:300;color:rgba(255,255,255,.55);line-height:1.85;max-width:520px;margin:0 auto 20px}
+.ei-sh__meta{display:flex;align-items:center;justify-content:center;gap:12px;font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.35);text-transform:uppercase;flex-wrap:wrap}
+.ei-sh__dot{opacity:.4}
+.ei-sh__filter-bar{background:#F5F3F0;padding:14px 48px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;border-bottom:1px solid #E8E4DF;position:sticky;top:0;z-index:10}
+.ei-sh__filters{display:flex;align-items:center;gap:8px;flex:1;flex-wrap:wrap}
+.ei-sh__filter-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#999;margin-right:4px;flex-shrink:0}
+.ei-sh__pill{font-family:'Jost',sans-serif;font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid #D8D4CE;background:transparent;color:#666;cursor:pointer;transition:all .15s ease;white-space:nowrap}
+.ei-sh__pill:hover{border-color:#0D1B3E;color:#0D1B3E}
+.ei-sh__pill--active{background:#0D1B3E;color:#fff;border-color:#0D1B3E}
+.ei-sh__sort{display:flex;align-items:center;gap:8px;flex-shrink:0}
+.ei-sh__sort-select{font-family:'Jost',sans-serif;font-size:12px;border:1px solid #D8D4CE;border-radius:2px;padding:6px 12px;background:#fff;color:#0D1B3E;outline:none}
+.ei-sh__grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;background:transparent;padding:24px 48px}
+.ei-sh__card{display:block;text-decoration:none;color:inherit;background:#fff;transition:all .2s ease;border:1px solid #E8E4DF;border-radius:2px}
+.ei-sh__card:hover{background:#FAFAF8;box-shadow:0 4px 16px rgba(13,27,62,.1);transform:translateY(-2px)}
+.ei-sh__card:hover img{transform:scale(1.03)}
+.ei-sh__card.ei-hidden{display:none}
+.ei-sh__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0;max-height:320px}
+.ei-sh__card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.ei-sh__card-placeholder{width:100%;height:100%;background:#F0EDE8}
+.ei-sh__card-badge{position:absolute;top:12px;left:12px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;background:rgba(13,27,62,.8);padding:4px 10px;border-radius:2px}
+.ei-sh__card-body{padding:14px 16px 16px;border-top:2px solid #0D1B3E;background:#ffffff}
+.ei-sh__card-vendor{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;margin-bottom:4px;font-weight:500}
+.ei-sh__card-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:15px;font-style:italic;color:#0D1B3E;margin-bottom:6px;line-height:1.25;font-weight:400}
+.ei-sh__card-price{font-size:13px;font-weight:500;color:#0D1B3E;letter-spacing:.02em}
+.ei-sh__empty{grid-column:1/-1;text-align:center;padding:80px 24px;font-size:14px;color:#999;background:#fff}
+@media(max-width:1024px){.ei-sh__grid{grid-template-columns:repeat(4,1fr);padding:20px 24px}}
+@media(max-width:768px){.ei-sh__hero{padding:40px 24px 32px}.ei-sh__filter-bar{padding:12px 16px}.ei-sh__grid{grid-template-columns:repeat(2,1fr);padding:16px}}
+@media(max-width:480px){.ei-sh__grid{grid-template-columns:1fr}}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded',function(){
+  var pills=document.querySelectorAll('.ei-sh__pill');
+  var cards=Array.from(document.querySelectorAll('.ei-sh__card'));
+  var sort=document.getElementById('ei-sh-sort');
+  var grid=document.getElementById('ei-sh-grid');
+  pills.forEach(function(pill){
+    pill.addEventListener('click',function(){
+      pills.forEach(function(p){p.classList.remove('ei-sh__pill--active')});
+      pill.classList.add('ei-sh__pill--active');
+      var f=pill.getAttribute('data-filter');
+      cards.forEach(function(c){
+        if(f==='all'){c.classList.remove('ei-hidden')}
+        else{var v=c.getAttribute('data-fv')||'';v.indexOf(f)>-1?c.classList.remove('ei-hidden'):c.classList.add('ei-hidden')}
+      });
+    });
+  });
+  if(sort){sort.addEventListener('change',function(){
+    var m=this.value;
+    var visible=cards.filter(function(c){return!c.classList.contains('ei-hidden')});
+    visible.sort(function(a,b){
+      if(m==='price-asc')return parseInt(a.dataset.price)-parseInt(b.dataset.price);
+      if(m==='price-desc')return parseInt(b.dataset.price)-parseInt(a.dataset.price);
+      if(m==='title-asc')return a.dataset.title.localeCompare(b.dataset.title);
+      return 0;
+    });
+    visible.forEach(function(c){grid.appendChild(c)});
+  });}
+});
+</script>
+
+{% schema %}
+{
+  "name": "Shoes",
+  "settings": [],
+  "presets": [{ "name": "Shoes" }]
+}
+{% endschema %}
