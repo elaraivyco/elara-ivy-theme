@@ -3,13 +3,10 @@
   <div class="ei-col__hero">
     <p class="ei-col__eyebrow">{{ collection.title }}</p>
     <h1 class="ei-col__headline">{{ collection.title }}</h1>
-    {%- if collection.description != blank -%}
-      <p class="ei-col__subline">{{ collection.description }}</p>
-    {%- endif -%}
     <div class="ei-col__meta">
       <span>{{ collection.products_count }} pieces</span>
       <span class="ei-col__dot">·</span>
-      <span>Complimentary shipping over £200</span>
+      <span>Worldwide shipping</span>
       <span class="ei-col__dot">·</span>
       <span>Returns within 14 days</span>
     </div>
@@ -161,4 +158,3 @@ document.addEventListener('DOMContentLoaded',function(){
   "presets": [{ "name": "Collection" }]
 }
 {% endschema %}
-
