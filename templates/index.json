@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -33,16 +42,6 @@
             "link_url": "shopify://collections/gucci"
           }
         },
-        "designer_LEgypb": {
-          "type": "designer",
-          "settings": {
-            "image": "shopify://shop_images/10247166.jpg",
-            "name": "Balenciaga",
-            "category": "AVANT-GARDE",
-            "description": "Pushing the boundaries of fashion with bold silhouettes and iconic streetwear.",
-            "link_url": "shopify://collections/balenciaga"
-          }
-        },
         "designer_hmrjbf": {
           "type": "designer",
           "settings": {
@@ -73,6 +72,16 @@
             "link_url": "shopify://collections/versace"
           }
         },
+        "designer_LEgypb": {
+          "type": "designer",
+          "settings": {
+            "image": "shopify://shop_images/10952344.jpg",
+            "name": "Golden Goose",
+            "category": "TIMELESS EDGE",
+            "description": "Italian craftsmanship with effortless attitude.",
+            "link_url": "shopify://collections/golden-goose"
+          }
+        },
         "designer_YrdAUQ": {
           "type": "designer",
           "settings": {
@@ -86,10 +95,10 @@
       },
       "block_order": [
         "designer_TnLhCz",
-        "designer_LEgypb",
         "designer_hmrjbf",
         "designer_BdURB4",
         "designer_z48hpm",
+        "designer_LEgypb",
         "designer_YrdAUQ"
       ],
       "settings": {
