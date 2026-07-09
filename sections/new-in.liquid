@@ -10,8 +10,6 @@
       <span>{{ new_in.products_count }} pieces</span>
       <span class="ei-new-in__dot">·</span>
       <span>Updated weekly</span>
-      <span class="ei-new-in__dot">·</span>
-      <span>Complimentary shipping over £200</span>
     </div>
   </div>
 
@@ -39,7 +37,7 @@
   <div class="ei-new-in__grid" id="ei-new-in-grid">
     {%- for product in new_in.products -%}
       {%- assign product_tags = product.tags | join: ',' -%}
-      <a
+      
         href="{{ product.url }}"
         class="ei-new-in__card"
         data-tags="{{ product_tags }}"
