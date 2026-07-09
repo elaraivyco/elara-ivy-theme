@@ -73,8 +73,8 @@ button{cursor:pointer;font-family:var(--font-body)}
 .section__link{font-size:9px;letter-spacing:.18em;color:var(--periwinkle);border-bottom:1px solid var(--periwinkle);padding-bottom:1px;cursor:pointer;white-space:nowrap;margin-left:12px}
 .designer-grid{display:grid;grid-template-columns:1fr;gap:16px}
 .designer-card{background:var(--white);overflow:hidden;border:1px solid var(--rule-light)}
-.designer-card__img{height:240px;overflow:hidden;background:#EBEBEB;position:relative}
-.designer-card__img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.designer-card__img{height:240px;overflow:hidden;background:#EBEBEB;position:relative;display:flex;align-items:center;justify-content:center}
+.designer-card__img img{width:100%;height:100%;object-fit:contain;padding:16px;transition:transform .5s ease}
 .designer-card:hover .designer-card__img img{transform:scale(1.03)}
 .designer-card__info{padding:20px 22px 24px}
 .designer-card__pill{display:inline-block;font-size:8px;letter-spacing:.2em;background:var(--periwinkle-lt);color:var(--periwinkle);padding:4px 10px;margin-bottom:10px}
