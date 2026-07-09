@@ -5,7 +5,7 @@
     <h1 class="ei-des__headline">The Designers</h1>
     <p class="ei-des__subline">Every label we carry is here for a reason. A considered edit of the world's most exceptional designers — spanning heritage houses, contemporary icons, and emerging voices.</p>
     <div class="ei-des__meta">
-      <span>44 designers</span>
+      <span>45 designers</span>
       <span class="ei-des__dot">·</span>
       <span>New labels added seasonally</span>
       <span class="ei-des__dot">·</span>
@@ -29,9 +29,9 @@
 
   <div class="ei-des__grid" id="ei-des-grid">
 
-    {%- assign designer_handles = 'adidas,alexander-wang,alice-olivia,birkenstock,bottega-veneta,burberry,cartier,casablanca,chanel,christian-dior,christian-louboutin,coach,cult-gaia,furla,golden-goose,gucci,hermes,hunza-g,isabel-marant,kate-spade,khaite,loro-piana,louis-vuitton,marc-jacobs,max-mara,michael-kors,miu-miu,paige,philosophy,prada,saint-laurent,stella-mccartney,the-attico,the-row,tiffany-co,tom-ford,tory-burch,uma-wang,valentino,versace,victorias-secret,vivienne-westwood,wild-cashmere,windsor' | split: ',' -%}
+    {%- assign designer_handles = 'adidas,alexander-wang,alice-olivia,birkenstock,bottega-veneta,burberry,cartier,casablanca,chanel,chloe,christian-dior,christian-louboutin,coach,cult-gaia,furla,golden-goose,gucci,hermes,hunza-g,isabel-marant,kate-spade,khaite,loro-piana,louis-vuitton,marc-jacobs,max-mara,michael-kors,miu-miu,paige,philosophy,prada,saint-laurent,stella-mccartney,the-attico,the-row,tiffany-co,tom-ford,tory-burch,uma-wang,valentino,versace,victorias-secret,vivienne-westwood,wild-cashmere,windsor' | split: ',' -%}
 
-    {%- assign designer_descriptors = 'Sportswear Icon,New York Edge,Contemporary Chic,German Craft,Italian Artistry,British Heritage,French Jewellery,Casablanca Resort,French Couture,French Heritage,Parisian Glamour,American Leather,LA Cool,Italian Spirit,Italian Cool,Italian Luxury,French Exclusivity,Resort Swimwear,Parisian Cool,New York Prep,New York Modern,Italian Cashmere,French Exclusivity,New York Cool,Italian Elegance,New York Classic,Italian Edge,American Denim,Italian Romance,Italian Heritage,French Luxury,British Sustainability,Italian Contemporary,Quiet Luxury,American Jewellery,American Tailoring,American Prep,Shanghai Modern,Italian Romanticism,Italian Baroque,American Intimates,British Punk,Scottish Cashmere,American Occasion' | split: ',' -%}
+    {%- assign designer_descriptors = 'Sportswear Icon,New York Edge,Contemporary Chic,German Craft,Italian Artistry,British Heritage,French Jewellery,Casablanca Resort,French Couture,French Romanticism,French Heritage,Parisian Glamour,American Leather,LA Cool,Italian Spirit,Italian Cool,Italian Luxury,French Exclusivity,Resort Swimwear,Parisian Cool,New York Prep,New York Modern,Italian Cashmere,French Exclusivity,New York Cool,Italian Elegance,New York Classic,Italian Edge,American Denim,Italian Romance,Italian Heritage,French Luxury,British Sustainability,Italian Contemporary,Quiet Luxury,American Jewellery,American Tailoring,American Prep,Shanghai Modern,Italian Romanticism,Italian Baroque,American Intimates,British Punk,Scottish Cashmere,American Occasion' | split: ',' -%}
 
     {%- for handle in designer_handles -%}
       {%- assign col = collections[handle] -%}
@@ -92,8 +92,8 @@
 .ei-des__card:hover{box-shadow:0 4px 20px rgba(13,27,62,.12);transform:translateY(-2px)}
 .ei-des__card:hover img{transform:scale(1.04)}
 .ei-des__card.ei-hidden{display:none}
-.ei-des__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0;max-height:320px}
-.ei-des__card-img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.ei-des__card-img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#FFFFFF;border:2px solid #CFAE70;max-height:320px;display:flex;align-items:center;justify-content:center}
+.ei-des__card-img img{width:100%;height:100%;object-fit:contain;padding:12px;display:block;transition:transform .5s ease}
 .ei-des__card-placeholder{width:100%;height:100%;background:#F0EDE8;display:flex;align-items:center;justify-content:center}
 .ei-des__card-initial{font-family:'Cormorant Garamond',Georgia,serif;font-size:56px;font-weight:300;font-style:italic;color:#D4CFC8}
 .ei-des__card-count{position:absolute;bottom:10px;left:10px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:rgba(13,27,62,.7);padding:3px 8px;border-radius:2px;backdrop-filter:blur(4px)}
