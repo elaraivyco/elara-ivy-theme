@@ -37,11 +37,7 @@
   <div class="ei-new-in__grid" id="ei-new-in-grid">
     {%- for product in new_in.products -%}
       {%- assign product_tags = product.tags | join: ',' -%}
-      
-        href="{{ product.url }}"
-        class="ei-new-in__card"
-        data-tags="{{ product_tags }}"
-      >
+      <a href="{{ product.url }}" class="ei-new-in__card" data-tags="{{ product_tags }}">
         <div class="ei-new-in__card-img">
           {%- if product.featured_image -%}
             <img
