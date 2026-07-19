@@ -95,3 +95,24 @@
       </div>
       <div class="pdp-highlights__row">
         <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Authentic luxury — every piece verified</span>
+      </div>
+    </div>
+
+    {% if product.description != blank %}
+      <div class="pdp-info__rule"></div>
+      <div class="pdp-description">
+        {{ product.description }}
+      </div>
+    {% endif %}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Product",
+  "settings": [],
+  "presets": [{ "name": "Product" }]
+}
+{% endschema %}
