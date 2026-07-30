@@ -10,26 +10,54 @@
   {% endif %}
   <div class="designer-grid">
     {% for block in section.blocks %}
-      <div class="designer-card" {{ block.shopify_attributes }}>
-        <div class="designer-card__img">
-          {% if block.settings.image %}
-            <img src="{{ block.settings.image | img_url: '800x' }}" alt="{{ block.settings.name | escape }}" loading="lazy">
-          {% endif %}
-        </div>
-        <div class="designer-card__info">
-          {% if block.settings.category != blank %}
-            <div class="designer-card__pill">{{ block.settings.category }}</div>
-          {% endif %}
-          <div class="designer-card__name ei-serif">{{ block.settings.name }}</div>
-          <p class="designer-card__desc">{{ block.settings.description }}</p>
-          {% if block.settings.link_url != blank %}
-            <a href="{{ block.settings.link_url }}" class="designer-card__link">SHOP {{ block.settings.name | upcase }}</a>
-          {% endif %}
-        </div>
-      </div>
+      {% assign col = block.settings.collection %}
+      {% if col != blank %}
+        <a href="{{ col.url }}" class="designer-card" {{ block.shopify_attributes }}>
+          <div class="designer-card__img">
+            {% if col.image %}
+              <img src="{{ col.image | img_url: '800x' }}" alt="{{ col.title | escape }}" loading="lazy">
+            {% else %}
+              <div class="designer-card__placeholder">
+                <span class="designer-card__initial">{{ col.title | slice: 0 }}</span>
+              </div>
+            {% endif %}
+            {% if col.products_count == 0 %}
+              <div class="designer-card__badge designer-card__badge--soon">Coming soon</div>
+            {% else %}
+              <div class="designer-card__badge">{{ col.products_count }} piece{% if col.products_count != 1 %}s{% endif %}</div>
+            {% endif %}
+          </div>
+          <div class="designer-card__info">
+            {% if block.settings.category != blank %}
+              <p class="designer-card__cat">{{ block.settings.category }}</p>
+            {% endif %}
+            <p class="designer-card__name ei-serif">{{ col.title }}</p>
+            <p class="designer-card__cta">Shop collection →</p>
+          </div>
+        </a>
+      {% endif %}
     {% endfor %}
   </div>
 </section>
+
+<style>
+.designer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.designer-card{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:2px;overflow:hidden;border:1px solid #E8E4DF;box-shadow:0 1px 4px rgba(13,27,62,.06);transition:all .2s ease}
+.designer-card:hover{box-shadow:0 4px 20px rgba(13,27,62,.12);transform:translateY(-2px)}
+.designer-card:hover img{transform:scale(1.04)}
+.designer-card__img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0;max-height:320px}
+.designer-card__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
+.designer-card__placeholder{width:100%;height:100%;background:#F0EDE8;display:flex;align-items:center;justify-content:center}
+.designer-card__initial{font-family:'Cormorant Garamond',Georgia,serif;font-size:56px;font-weight:300;font-style:italic;color:#D4CFC8}
+.designer-card__badge{position:absolute;bottom:10px;left:10px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:rgba(13,27,62,.7);padding:3px 8px;border-radius:2px;backdrop-filter:blur(4px)}
+.designer-card__badge--soon{color:#CFAE70}
+.designer-card__info{padding:14px 16px 16px;border-top:2px solid #0D1B3E;background:#fff}
+.designer-card__cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;margin-bottom:4px;font-weight:500}
+.designer-card__name{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-style:italic;color:#0D1B3E;margin-bottom:6px;line-height:1.25}
+.designer-card__cta{font-size:10px;letter-spacing:.1em;color:#999;transition:color .2s ease}
+.designer-card:hover .designer-card__cta{color:#0D1B3E}
+@media(max-width:768px){.designer-grid{grid-template-columns:repeat(2,1fr)}}
+</style>
 
 {% schema %}
 {
@@ -44,11 +72,8 @@
       "type": "designer",
       "name": "Designer",
       "settings": [
-        { "type": "image_picker", "id": "image", "label": "Designer image" },
-        { "type": "text", "id": "name", "label": "Designer name", "default": "Jacquemus" },
-        { "type": "text", "id": "category", "label": "Category pill", "default": "FRENCH LUXURY" },
-        { "type": "textarea", "id": "description", "label": "Description", "default": "Sun-drenched minimalism with a Provençal soul." },
-        { "type": "url", "id": "link_url", "label": "Collection link" }
+        { "type": "collection", "id": "collection", "label": "Designer collection" },
+        { "type": "text", "id": "category", "label": "Category label", "default": "FRENCH LUXURY" }
       ]
     }
   ],
