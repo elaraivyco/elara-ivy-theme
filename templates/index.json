@@ -109,58 +109,10 @@
     },
     "featured_products": {
       "type": "featured-products",
-      "blocks": {
-        "product_3eeWnM": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/9102056.jpg",
-            "designer": "The Attico",
-            "title": "Fuchsia Jersey Halter Cocktail Dress",
-            "price": "$849",
-            "show_badge": true
-          }
-        },
-        "product_CCHaRy": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/10952344.jpg",
-            "designer": "Golden Goose",
-            "title": "Golden Goose Ballstar Goatskin Sneakers",
-            "price": "$599",
-            "show_badge": true
-          }
-        },
-        "product_c43wGQ": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/7809264_3edb36cc-a26a-4aaf-866b-017578bfda2a.jpg",
-            "designer": "Furla",
-            "title": "Furla Gold Metal Square Sunglasses",
-            "price": "$249",
-            "show_badge": true
-          }
-        },
-        "product_J6q6aL": {
-          "type": "product",
-          "settings": {
-            "image": "shopify://shop_images/10967111.jpg",
-            "designer": "Miu Miu",
-            "title": "Miu Miu Brown Calf Leather Gladiator Sandals",
-            "price": "$1,089",
-            "show_badge": true
-          }
-        }
-      },
-      "block_order": [
-        "product_3eeWnM",
-        "product_CCHaRy",
-        "product_c43wGQ",
-        "product_J6q6aL"
-      ],
       "settings": {
         "heading": "New In",
         "subheading": "The latest arrivals from across our designer roster, landing now.",
-        "collection": "",
+        "collection": "new-in",
         "products_to_show": 4,
         "view_all_url": "shopify://pages/new-in"
       }
