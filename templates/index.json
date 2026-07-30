@@ -31,44 +31,11 @@
     },
     "designer_grid": {
       "type": "designer-grid",
-      "blocks": {
-        "designer_TnLhCz": {
-          "type": "designer",
-          "settings": { "collection": "gucci", "category": "ITALIAN LUXURY" }
-        },
-        "designer_hmrjbf": {
-          "type": "designer",
-          "settings": { "collection": "burberry", "category": "BRITISH HERITAGE" }
-        },
-        "designer_BdURB4": {
-          "type": "designer",
-          "settings": { "collection": "saint-laurent", "category": "FRENCH LUXURY" }
-        },
-        "designer_z48hpm": {
-          "type": "designer",
-          "settings": { "collection": "versace", "category": "ITALIAN FASHION" }
-        },
-        "designer_LEgypb": {
-          "type": "designer",
-          "settings": { "collection": "golden-goose", "category": "TIMELESS EDGE" }
-        },
-        "designer_YrdAUQ": {
-          "type": "designer",
-          "settings": { "collection": "the-attico", "category": "CONTEMPORARY LUXURY" }
-        }
-      },
-      "block_order": [
-        "designer_TnLhCz",
-        "designer_hmrjbf",
-        "designer_BdURB4",
-        "designer_z48hpm",
-        "designer_LEgypb",
-        "designer_YrdAUQ"
-      ],
       "settings": {
         "heading": "Shop by Designer",
         "subheading": "Every designer we carry is here for a reason. Meet the makers behind the pieces.",
-        "view_all_url": "shopify://pages/designers"
+        "view_all_url": "shopify://pages/designers",
+        "number_to_show": 6
       }
     },
     "featured_products": {
