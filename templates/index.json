@@ -34,63 +34,27 @@
       "blocks": {
         "designer_TnLhCz": {
           "type": "designer",
-          "settings": {
-            "image": "shopify://shop_images/10822139.jpg",
-            "name": "Gucci",
-            "category": "ITALIAN LUXURY",
-            "description": "Where maximalism meets heritage. The house that redefined Italian glamour.",
-            "link_url": "shopify://collections/gucci"
-          }
+          "settings": { "collection": "gucci", "category": "ITALIAN LUXURY" }
         },
         "designer_hmrjbf": {
           "type": "designer",
-          "settings": {
-            "image": "shopify://shop_images/10758427.jpg",
-            "name": "Burberry",
-            "category": "BRITISH HERITAGE",
-            "description": "The definitive British luxury house. Timeless checks, iconic trench coats.",
-            "link_url": "shopify://collections/burberry"
-          }
+          "settings": { "collection": "burberry", "category": "BRITISH HERITAGE" }
         },
         "designer_BdURB4": {
           "type": "designer",
-          "settings": {
-            "image": "shopify://shop_images/10831039.jpg",
-            "name": "Saint Laurent",
-            "category": "FRENCH LUXURY",
-            "description": "Effortless Parisian cool. Rock and roll edge with couture precision.",
-            "link_url": "shopify://collections/saint-laurent"
-          }
+          "settings": { "collection": "saint-laurent", "category": "FRENCH LUXURY" }
         },
         "designer_z48hpm": {
           "type": "designer",
-          "settings": {
-            "image": "shopify://shop_images/10915338.jpg",
-            "name": "Versace",
-            "category": "ITALIAN FASHION",
-            "description": "Bold, sensual, unapologetic. The house of Medusa never whispers.",
-            "link_url": "shopify://collections/versace"
-          }
+          "settings": { "collection": "versace", "category": "ITALIAN FASHION" }
         },
         "designer_LEgypb": {
           "type": "designer",
-          "settings": {
-            "image": "shopify://shop_images/10952344.jpg",
-            "name": "Golden Goose",
-            "category": "TIMELESS EDGE",
-            "description": "Italian craftsmanship with effortless attitude.",
-            "link_url": "shopify://collections/golden-goose"
-          }
+          "settings": { "collection": "golden-goose", "category": "TIMELESS EDGE" }
         },
         "designer_YrdAUQ": {
           "type": "designer",
-          "settings": {
-            "image": "shopify://shop_images/10659353.jpg",
-            "name": "The Attico",
-            "category": "CONTEMPORARY LUXURY",
-            "description": "Milan's most wanted. Elevated eveningwear for the woman who owns the room.",
-            "link_url": "shopify://collections/the-attico"
-          }
+          "settings": { "collection": "the-attico", "category": "CONTEMPORARY LUXURY" }
         }
       },
       "block_order": [
