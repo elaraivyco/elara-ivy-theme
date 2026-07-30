@@ -1,82 +1,102 @@
-<section class="section section--white">
-  <div class="section__header">
-    <h2 class="section__title ei-serif">{{ section.settings.heading }}</h2>
-    {% if section.settings.view_all_url != blank %}
-      <a href="{{ section.settings.view_all_url }}" class="section__link">VIEW ALL</a>
-    {% endif %}
-  </div>
-  {% if section.settings.subheading != blank %}
-    <p class="section__sub">{{ section.settings.subheading }}</p>
-  {% endif %}
-  <div class="designer-grid">
-    {% for block in section.blocks %}
-      {% assign col = block.settings.collection %}
-      {% if col != blank %}
-        <a href="{{ col.url }}" class="designer-card" {{ block.shopify_attributes }}>
-          <div class="designer-card__img">
-            {% if col.image %}
-              <img src="{{ col.image | img_url: '800x' }}" alt="{{ col.title | escape }}" loading="lazy">
-            {% else %}
-              <div class="designer-card__placeholder">
-                <span class="designer-card__initial">{{ col.title | slice: 0 }}</span>
-              </div>
-            {% endif %}
-            {% if col.products_count == 0 %}
-              <div class="designer-card__badge designer-card__badge--soon">Coming soon</div>
-            {% else %}
-              <div class="designer-card__badge">{{ col.products_count }} piece{% if col.products_count != 1 %}s{% endif %}</div>
-            {% endif %}
-          </div>
-          <div class="designer-card__info">
-            {% if block.settings.category != blank %}
-              <p class="designer-card__cat">{{ block.settings.category }}</p>
-            {% endif %}
-            <p class="designer-card__name ei-serif">{{ col.title }}</p>
-            <p class="designer-card__cta">Shop collection →</p>
-          </div>
-        </a>
-      {% endif %}
-    {% endfor %}
-  </div>
-</section>
-
-<style>
-.designer-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.designer-card{display:block;text-decoration:none;color:inherit;background:#fff;border-radius:2px;overflow:hidden;border:1px solid #E8E4DF;box-shadow:0 1px 4px rgba(13,27,62,.06);transition:all .2s ease}
-.designer-card:hover{box-shadow:0 4px 20px rgba(13,27,62,.12);transform:translateY(-2px)}
-.designer-card:hover img{transform:scale(1.04)}
-.designer-card__img{position:relative;aspect-ratio:3/4;overflow:hidden;background:#F5F3F0;max-height:320px}
-.designer-card__img img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s ease}
-.designer-card__placeholder{width:100%;height:100%;background:#F0EDE8;display:flex;align-items:center;justify-content:center}
-.designer-card__initial{font-family:'Cormorant Garamond',Georgia,serif;font-size:56px;font-weight:300;font-style:italic;color:#D4CFC8}
-.designer-card__badge{position:absolute;bottom:10px;left:10px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#fff;background:rgba(13,27,62,.7);padding:3px 8px;border-radius:2px;backdrop-filter:blur(4px)}
-.designer-card__badge--soon{color:#CFAE70}
-.designer-card__info{padding:14px 16px 16px;border-top:2px solid #0D1B3E;background:#fff}
-.designer-card__cat{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:#CFAE70;margin-bottom:4px;font-weight:500}
-.designer-card__name{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-style:italic;color:#0D1B3E;margin-bottom:6px;line-height:1.25}
-.designer-card__cta{font-size:10px;letter-spacing:.1em;color:#999;transition:color .2s ease}
-.designer-card:hover .designer-card__cta{color:#0D1B3E}
-@media(max-width:768px){.designer-grid{grid-template-columns:repeat(2,1fr)}}
-</style>
-
-{% schema %}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
-  "name": "Designer Grid",
-  "settings": [
-    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by Designer" },
-    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Every designer we carry is here for a reason." },
-    { "type": "url", "id": "view_all_url", "label": "View all link" }
-  ],
-  "blocks": [
-    {
-      "type": "designer",
-      "name": "Designer",
-      "settings": [
-        { "type": "collection", "id": "collection", "label": "Designer collection" },
-        { "type": "text", "id": "category", "label": "Category label", "default": "FRENCH LUXURY" }
-      ]
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "hero_image": "shopify://shop_images/10913617_1.jpg",
+        "badge_name": "Gucci",
+        "eyebrow": "SS26 COLLECTION — NOW LANDING",
+        "heading": "The season's most coveted arrivals.",
+        "subheading": "Curated from the world's finest designers. Each piece selected for its craftsmanship, story, and undeniable presence.",
+        "cta_primary_label": "EXPLORE THE EDIT",
+        "cta_primary_url": "shopify://pages/new-in",
+        "cta_secondary_label": "SHOP DESIGNERS",
+        "cta_secondary_url": "shopify://pages/designers"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "brands": "ADIDAS, ALEXANDER WANG, ALICE + OLIVIA, BIRKENSTOCK, BOTTEGA VENETA, BURBERRY, COACH, CARTIER, CASABLANCA, CHANEL, CHRISTIAN DIOR, CHRISTIAN LOUBOUTIN, CULT GAIA, FURLA, GOLDEN GOOSE, GUCCI, HERMÉS, HUNZA G, KATE SPADE, KHAITE, LORO PIANA, LOUIS VUITTON, MARC JACOBS, MAX MARA, MICHAEL KORS, MIU MIU, PAIGE, PHILOSOPHY, PRADA, SAINT LAURENT, STELLA McCARTNEY, THE ATTICO, THE ROW, TIFFANY & CO., TOM FORD, TORY BURCH, UMA WANG, VERSACE, VICTORIA'S SECRET, VIVIENNE WESTWOOD, WILD CASHMERE, WINDSOR,"
+      }
+    },
+    "designer_grid": {
+      "type": "designer-grid",
+      "blocks": {
+        "designer_TnLhCz": {
+          "type": "designer",
+          "settings": { "collection": "gucci", "category": "ITALIAN LUXURY" }
+        },
+        "designer_hmrjbf": {
+          "type": "designer",
+          "settings": { "collection": "burberry", "category": "BRITISH HERITAGE" }
+        },
+        "designer_BdURB4": {
+          "type": "designer",
+          "settings": { "collection": "saint-laurent", "category": "FRENCH LUXURY" }
+        },
+        "designer_z48hpm": {
+          "type": "designer",
+          "settings": { "collection": "versace", "category": "ITALIAN FASHION" }
+        },
+        "designer_LEgypb": {
+          "type": "designer",
+          "settings": { "collection": "golden-goose", "category": "TIMELESS EDGE" }
+        },
+        "designer_YrdAUQ": {
+          "type": "designer",
+          "settings": { "collection": "the-attico", "category": "CONTEMPORARY LUXURY" }
+        }
+      },
+      "block_order": [
+        "designer_TnLhCz",
+        "designer_hmrjbf",
+        "designer_BdURB4",
+        "designer_z48hpm",
+        "designer_LEgypb",
+        "designer_YrdAUQ"
+      ],
+      "settings": {
+        "heading": "Shop by Designer",
+        "subheading": "Every designer we carry is here for a reason. Meet the makers behind the pieces.",
+        "view_all_url": "shopify://pages/designers"
+      }
+    },
+    "featured_products": {
+      "type": "featured-products",
+      "settings": {
+        "heading": "New In",
+        "subheading": "The latest arrivals from across our designer roster, landing now.",
+        "collection": "new-in",
+        "products_to_show": 4,
+        "view_all_url": "shopify://pages/new-in"
+      }
+    },
+    "accent_strip": {
+      "type": "accent-strip",
+      "settings": {
+        "label": "THE ELARA IVY EDIT",
+        "heading": "Not everything makes the cut. That's the point.",
+        "body": "We spend months vetting new designers so you don't have to. Our curation is deliberate, seasonal, and always guided by one question: would we wear it ourselves?",
+        "cta_label": "READ OUR PHILOSOPHY",
+        "cta_url": "shopify://pages/our-philosophy"
+      }
     }
-  ],
-  "presets": [{ "name": "Designer Grid" }]
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "designer_grid",
+    "featured_products",
+    "accent_strip"
+  ]
 }
-{% endschema %}
